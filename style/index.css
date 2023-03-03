@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800&display=swap');
+
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Golos Text';
+}
+
+.header-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1% 17%;
+}
+
+.navbar-container > ul {
+    display: flex;
+    list-style: none;
+}
+
+.navbar-container > ul > li {
+    margin: 0 20px
+}
+
+.navbar-container > ul > li > a {
+    text-decoration: none;
+    color: grey;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.checkout-container > button {
+    background-color: rgb(255, 106, 0);
+    padding: 10px 30px;
+    border-radius: 40px;
+    color: white;
+    font-size: 1rem;
+    border-color: transparent;
+    font-weight: 500;
+}
+
+.slider-section {
+    padding-top: 2%;
+    position: relative;
+}
+
+
+.maintext-slider-container > .title-maintext-container > h2{
+    font-size: 5.4rem;
+    text-align: center;
+    color: rgb(64, 64, 64);
+    font-weight: 600;
+}
+
+.maintext-slider-container > .description-maintext-container {
+    padding: 0 25%;
+    margin-top: 1%;
+}
+
+.maintext-slider-container > .description-maintext-container > p {
+    text-align: center;
+    font-size: 1.8rem;
+    color: hsl(0, 0%, 40%);
+    line-height: 40px;
+    font-weight: 100;
+}
+
+.slider-section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.slider-section > .button-slider-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 2%;
+}
+
+.slider-section > .button-slider-container > button {
+    padding: 15px 80px;
+    font-size: 1.7rem;
+    background-color: #0084ff;
+    color: white;
+    border-color: transparent;
+    border-radius: 50px
+}
+
+.image-slider-container {
+    width: 46%; 
+}
+
+.image-slider-container > img {
+    width: 100%;
+    height: 50vh;
+}
+
+.background-slider-container {
+    position: absolute;
+    bottom: 0;
+    z-index: -1;
+    width: 100%;
+}
+
+.background-slider-container > img {
+    width: 100%;
+}
