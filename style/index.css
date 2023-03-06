@@ -13,12 +13,11 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 15%;
-    margin-top: 1%;
+    padding: 0 20%;
 }
 
 .header-section > .logo-container {
-    width: 10%;
+    width: 8%;
 }
 
 .logo-container > img {
@@ -27,16 +26,14 @@
 .navbar-container > ul {
     display: flex;
     list-style: none;
+    gap: 2rem;
 }
 
-.navbar-container > ul > li {
-    margin: 0 20px
-}
 
 .navbar-container > ul > li > a {
     text-decoration: none;
     color: grey;
-    font-size: 1.2rem;
+    font-size: 0.9rem;
     font-weight: 500;
 }
 
@@ -48,13 +45,14 @@
     font-size: 1rem;
     border-color: transparent;
     font-weight: 500;
+    cursor: pointer;
+    
 }
 
 .slider-section {
     padding-top: 2%;
     position: relative;
 }
-
 
 .maintext-slider-container > .title-maintext-container > h2{
     font-size: 5.4rem;
@@ -70,7 +68,7 @@
 
 .maintext-slider-container > .description-maintext-container > p {
     text-align: center;
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     color: hsl(0, 0%, 40%);
     line-height: 40px;
     font-weight: 100;
@@ -93,7 +91,9 @@
     background-color: #0084ff;
     color: white;
     border-color: transparent;
-    border-radius: 50px
+    border-radius: 50px;
+    border: 5px solid transparent;
+    cursor: pointer;
 }
 
 .image-slider-container {
@@ -114,4 +114,184 @@
 
 .background-slider-container > img {
     width: 100%;
+}
+
+.featured-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10vh 20%;
+    gap: 1rem;
+    background-color: #efefef;
+}
+
+.installation-featured-container {
+    display: flex;
+    gap: 2rem;
+}
+
+.card-installation-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.featured-section .maintext-featured-container {
+    text-align: center;
+}
+
+.maintext-featured-container .title-maintext-container h2{
+    font-size: 3rem;
+    color: rgb(64, 64, 64);
+}
+
+.maintext-featured-container .description-maintext-container p{
+    padding: 0px 20%;
+    font-size: 1.2rem;
+    color: rgb(91, 91, 91);
+}
+
+.featured-section .installation-featured-container {
+    display: flex;
+}
+
+.card-installation-container .image-card-container{
+    gap: 55%;
+    width: 50%;
+}
+
+.image-card-container img {
+    width: 100%;
+}
+
+.text-card-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.5rem;
+}
+
+.text-card-container h3 {
+    font-size: 1.5rem;
+    color: rgb(64, 64, 64);
+}
+
+.text-card-container p {
+    color: rgb(83, 83, 83);
+}
+
+.details-section {
+    display: flex;
+    justify-content: center;
+    gap: 1%;
+    padding: 10vh 0;
+}
+
+.column-details-container {
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    gap: 5vh;
+}
+
+.right-column .element-column-container{
+    flex-direction: row-reverse;
+    text-align: right;
+}
+
+.text-element-container h4 {
+    font-size: 1.2rem;
+}
+
+.description-text-container p {
+    font-size: 1rem;
+    color: rgb(64, 64, 64);
+}
+
+.element-column-container {
+    display: flex;
+    gap: 5%;
+}
+
+.image-element-container {
+    width: 8rem;
+    filter: invert(0.5) sepia(1) saturate(5) hue-rotate(175deg);
+    animation: iconFadeIn 1.5s ease-in;
+}
+
+.image-element-container img {
+    width: 100%
+}
+
+.image-details-container {
+    width: 20%;
+    
+}
+
+.image-details-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transform: scale(250%);
+    animation: carAnimation 1s ease-in-out;
+}
+
+@keyframes carAnimation {
+    0%{
+        transform: scale(300%);
+    }
+    100%{
+        ransform: scale(250%);
+    }
+}
+
+@keyframes iconFadeIn {
+    0%{
+        opacity: 0%;
+    }
+
+    100%{
+        opacity: 100%;
+    }
+}
+
+.team-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.team-section .maintext-team-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.maintext-team-container h2 {
+    font-size: 3rem;
+    color: rgb(64, 64, 64);
+}
+
+.maintext-team-container p {
+    font-size: 1.2rem;
+    color: rgb(91, 91, 91);
+}
+
+.team-section .teamcard-team-container {
+    border: 2px solid red;
+    display: flex;
+}
+
+.card-teamcard-container .image-card-container {
+    border: 1px solid red;
+    width: 20rem;
+    height: 20rem;
+}
+
+.image-card-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
