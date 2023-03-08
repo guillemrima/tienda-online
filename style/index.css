@@ -7,6 +7,11 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Golos Text';
+    text-decoration: none;
+}
+
+body {
+   position: relative;
 }
 
 .header-section {
@@ -110,10 +115,12 @@
     bottom: 0;
     z-index: -1;
     width: 100%;
+    height: 100vh;
 }
 
 .background-slider-container > img {
     width: 100%;
+    height: 100%;
 }
 
 .featured-section {
@@ -122,7 +129,6 @@
     align-items: center;
     padding: 10vh 20%;
     gap: 1rem;
-    background-color: #efefef;
 }
 
 .installation-featured-container {
@@ -187,6 +193,7 @@
     justify-content: center;
     gap: 1%;
     padding: 10vh 0;
+    padding-top: 0;
 }
 
 .column-details-container {
@@ -261,6 +268,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 5rem;
+    padding: 10vh 0;
+    background-color: #efefef;
 }
 
 .team-section .maintext-team-container {
@@ -279,19 +289,120 @@
     color: rgb(91, 91, 91);
 }
 
-.team-section .teamcard-team-container {
-    border: 2px solid red;
+.team-section .card-teamcard-container {
     display: flex;
+    flex-direction: column;
+}
+
+.team-section .teamcard-team-container {
+    display: flex;
+    gap: 1rem;
 }
 
 .card-teamcard-container .image-card-container {
-    border: 1px solid red;
     width: 20rem;
     height: 20rem;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    overflow: hidden;
 }
 
 .image-card-container img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+
+}
+
+.card-teamcard-container .text-card-container {
+    background-color: white;
+    padding: 1rem 0;
+}
+
+.card-teamcard-container .text-card-container  h5{
+    font-size: 1rem;
+}
+
+.card-teamcard-container .text-card-container p{
+    font-size: 0.8rem;
+}
+
+.contact-section {
+    display: flex;
+    justify-content: center;
+    padding: 10vh 0;
+}
+
+
+.card-contact-container {
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30%;
+    height: 40vh;
+    padding: 2rem;
+    gap: 1rem;
+}
+
+.card-contact-container .icon-contact-container {
+    width: 2rem;
+    height: 2rem;
+} 
+
+.icon-contact-container img {
+    width: 100%;
+    height: 100%;
+}
+
+.card-contact-container .item-contact-container {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.item-contact-container .text-contact-container {
+    display: flex;
+    align-items: center;
+}
+.card-contact-container .title-card-container {
+    font-size: 2rem;
+}
+
+.button-contact-container {
+    height: 4rem;
+    width: 100%;
+}
+
+
+.button-contact-container button {
+    width: 100%;
+    height: 100%;
+    background-color: #0084ff;
+    color: white;
+    border: none;
+    font-weight: 600;
+    font-size: 1.5rem;
+    padding: 10px 20px;
+}
+
+.footer-section {
+    background-color: #efefef;
+    padding: 5vh 20%;
+}
+
+.footer-section .rrss-footer-container {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.rrss-footer-container .icon-rrss {
+    width: 3rem;
+    height: 3rem;
+    filter: invert(0.5) sepia(1) saturate(5) hue-rotate(175deg);
+    opacity: 50%;
+}
+
+.icon-rrss:hover {
+    opacity: 100%;
 }
