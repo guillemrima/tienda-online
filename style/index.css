@@ -1,68 +1,97 @@
-@import url('https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800&display=swap');
-
-
-
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Golos Text';
     text-decoration: none;
+    font-family: 'Golos Text', sans-serif;
+
 }
 
+img {
+    width: 100%;
+    height: 100%;
+}
+
+:root {
+    --paddinGeneral : 0 20%;
+    --marginBottomGeneral: 10vh;
+    --mainColor: hsl(0, 0%, 25%);
+    --secondaryBackgroundColor: hsl(209, 100%, 50%);
+    --tertiaryBackgroundColor: hsl(18, 100%, 57%);
+    --borderButton: 20px;
+}
 body {
    position: relative;
 }
 
 .header-section {
     display: flex;
+    padding:  var(--paddinGeneral);
     justify-content: space-between;
     align-items: center;
-    padding: 0 20%;
-}
-
-.header-section > .logo-container {
-    width: 8%;
-}
-
-.logo-container > img {
+    height: 10vh;
+    position: fixed;
     width: 100%;
+    background-color: hsl(0, 0%, 100%);
+    z-index: 99;
+
 }
-.navbar-container > ul {
+
+.header-section .navbar-container ul {
     display: flex;
-    list-style: none;
     gap: 2rem;
+    list-style: none;
 }
 
-
-.navbar-container > ul > li > a {
-    text-decoration: none;
-    color: grey;
-    font-size: 0.9rem;
-    font-weight: 500;
-}
-
-.checkout-container > button {
-    background-color: rgb(255, 106, 0);
-    padding: 10px 30px;
-    border-radius: 40px;
-    color: white;
+.header-section .navbar-container ul li a{
     font-size: 1rem;
-    border-color: transparent;
+    color: var(--mainColor);
+    opacity: 50%;
+    transition: 0.5s;
+}
+
+.header-section .navbar-container ul li a:hover {
+    opacity: 100%;
+}
+
+.header-section .logo-container {
+    min-width: 8rem;
+    max-width: 8rem;
+    display: flex;
+}
+
+.header-section .checkout-container button {
+    font-size: 1rem;
     font-weight: 500;
+    background-color: transparent;
+    color: var(--tertiaryBackgroundColor);
+    border: 2px solid var(--tertiaryBackgroundColor);
+    border-radius: var(--borderButton);
+    padding: 5px 20px;
     cursor: pointer;
-    
+    transition: 0.5s;
+}
+
+.header-section .checkout-container button:hover {
+    background-color: var(--tertiaryBackgroundColor);
+    color: white;
 }
 
 .slider-section {
-    padding-top: 2%;
     position: relative;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: var(--marginBottomGeneral);
+    padding-top: 10vh;
 }
 
 .maintext-slider-container > .title-maintext-container > h2{
     font-size: 5.4rem;
     text-align: center;
-    color: rgb(64, 64, 64);
+    color: var(--mainColor);
     font-weight: 600;
 }
 
@@ -74,35 +103,37 @@ body {
 .maintext-slider-container > .description-maintext-container > p {
     text-align: center;
     font-size: 1.5rem;
-    color: hsl(0, 0%, 40%);
+    color: var(--mainColor);
     line-height: 40px;
     font-weight: 100;
 }
 
-.slider-section{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
 .slider-section > .button-slider-container {
     display: flex;
     justify-content: center;
-    margin-top: 2%;
 }
 
 .slider-section > .button-slider-container > button {
     padding: 15px 80px;
     font-size: 1.7rem;
-    background-color: #0084ff;
-    color: white;
+    background-color: transparent;
+    color: var(--secondaryBackgroundColor);
     border-color: transparent;
     border-radius: 50px;
     border: 5px solid transparent;
     cursor: pointer;
+    border: 4px solid var(--secondaryBackgroundColor);
+    transition: 0.5s;
+}
+
+.slider-section > .button-slider-container > button:hover {
+    background-color: var(--secondaryBackgroundColor);
+    color: white;
+    font-weight: 800;
 }
 
 .image-slider-container {
-    width: 45%; 
+    width: 40%; 
 }
 
 .image-slider-container > img {
@@ -115,7 +146,7 @@ body {
     bottom: 0;
     z-index: -1;
     width: 100%;
-    height: 100vh;
+    height: 100%;
 }
 
 .background-slider-container > img {
@@ -127,8 +158,9 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 10vh 20%;
+    padding: var(--paddinGeneral);
     gap: 1rem;
+    margin-bottom: var(--marginBottomGeneral);
 }
 
 .installation-featured-container {
@@ -149,13 +181,14 @@ body {
 
 .maintext-featured-container .title-maintext-container h2{
     font-size: 3rem;
-    color: rgb(64, 64, 64);
+    color: var(--mainColor);
 }
 
 .maintext-featured-container .description-maintext-container p{
-    padding: 0px 20%;
+    padding: 0 10%;;
     font-size: 1.2rem;
-    color: rgb(91, 91, 91);
+    color: var(--mainColor);
+    text-align: center;
 }
 
 .featured-section .installation-featured-container {
@@ -163,8 +196,7 @@ body {
 }
 
 .card-installation-container .image-card-container{
-    gap: 55%;
-    width: 50%;
+    width: 70%;
 }
 
 .image-card-container img {
@@ -181,19 +213,18 @@ body {
 
 .text-card-container h3 {
     font-size: 1.5rem;
-    color: rgb(64, 64, 64);
+    color: var(--mainColor);
 }
 
 .text-card-container p {
-    color: rgb(83, 83, 83);
+    color: var(--mainColor);
 }
 
 .details-section {
     display: flex;
     justify-content: center;
     gap: 1%;
-    padding: 10vh 0;
-    padding-top: 0;
+    margin-bottom: var(--marginBottomGeneral);
 }
 
 .column-details-container {
@@ -214,7 +245,7 @@ body {
 
 .description-text-container p {
     font-size: 1rem;
-    color: rgb(64, 64, 64);
+    color: var(--mainColor);
 }
 
 .element-column-container {
@@ -224,12 +255,11 @@ body {
 
 .image-element-container {
     width: 8rem;
-    filter: invert(0.5) sepia(1) saturate(5) hue-rotate(175deg);
-    animation: iconFadeIn 1.5s ease-in;
 }
 
 .image-element-container img {
-    width: 100%
+    width: 100%;
+    filter: invert(0.5) sepia(1) saturate(5) hue-rotate(175deg);
 }
 
 .image-details-container {
@@ -242,26 +272,6 @@ body {
     height: 100%;
     object-fit: contain;
     transform: scale(250%);
-    animation: carAnimation 1s ease-in-out;
-}
-
-@keyframes carAnimation {
-    0%{
-        transform: scale(300%);
-    }
-    100%{
-        ransform: scale(250%);
-    }
-}
-
-@keyframes iconFadeIn {
-    0%{
-        opacity: 0%;
-    }
-
-    100%{
-        opacity: 100%;
-    }
 }
 
 .team-section {
@@ -269,10 +279,21 @@ body {
     flex-direction: column;
     align-items: center;
     gap: 5rem;
-    padding: 10vh 0;
-    background-color: #efefef;
+    background-color: hsl(0, 0%, 94%);
+    padding: 10vh 10%;
 }
 
+.team-section .teamcard-team-container .card-teamcard-container .expand-card-container {
+   width: 30px; 
+   height: 30px;
+   background-color: white;
+   position: absolute;
+   right: 0;
+   margin: 20px;
+   padding: 5px;
+   border-radius: 100%;
+   cursor: pointer;
+}
 .team-section .maintext-team-container {
     display: flex;
     flex-direction: column;
@@ -281,27 +302,34 @@ body {
 
 .maintext-team-container h2 {
     font-size: 3rem;
-    color: rgb(64, 64, 64);
+    color: var(--mainColor);
 }
 
 .maintext-team-container p {
     font-size: 1.2rem;
-    color: rgb(91, 91, 91);
+    color: var(--mainColor);
+    text-align: center;
+    padding: 0 10%;
 }
 
 .team-section .card-teamcard-container {
     display: flex;
     flex-direction: column;
+    position: relative;
+    -webkit-box-shadow: 10px 10px 71px -37px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 71px -37px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 71px -37px rgba(0,0,0,0.75);
 }
 
 .team-section .teamcard-team-container {
     display: flex;
+    justify-content: center;
     gap: 1rem;
+    width: 100%;
 }
 
 .card-teamcard-container .image-card-container {
-    width: 20rem;
-    height: 20rem;
+    height: 30vh;
     border-top-right-radius: 20px;
     border-top-left-radius: 20px;
     overflow: hidden;
@@ -315,7 +343,7 @@ body {
 }
 
 .card-teamcard-container .text-card-container {
-    background-color: white;
+    background-color: hsl(0, 0%, 100%);
     padding: 1rem 0;
 }
 
@@ -331,18 +359,29 @@ body {
     display: flex;
     justify-content: center;
     padding: 10vh 0;
+    position: relative;
 }
 
+.contact-section .map-contact-container {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
 
 .card-contact-container {
-    border: 1px solid black;
+    background-color: hsl(0, 0%, 100%);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     width: 30%;
     height: 40vh;
     padding: 2rem;
-    gap: 1rem;
+    border-radius: 20px;
+    -webkit-box-shadow: 10px 10px 71px -37px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 71px -37px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 71px -37px rgba(0,0,0,0.75);
 }
 
 .card-contact-container .icon-contact-container {
@@ -377,17 +416,29 @@ body {
 .button-contact-container button {
     width: 100%;
     height: 100%;
-    background-color: #0084ff;
-    color: white;
-    border: none;
+    background-color: transparent;
+    color: var(--secondaryBackgroundColor);
+    border: 2px solid var(--secondaryBackgroundColor);
     font-weight: 600;
     font-size: 1.5rem;
     padding: 10px 20px;
+    border-radius: 10px;
+    transition: 0.5s;
+}
+
+.button-contact-container button:hover {
+    background-color: var(--secondaryBackgroundColor);
+    color: white
 }
 
 .footer-section {
-    background-color: #efefef;
+    background-color: hsl(0, 0%, 94%);
     padding: 5vh 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    padding-top: 10vh;
 }
 
 .footer-section .rrss-footer-container {
@@ -397,12 +448,41 @@ body {
 }
 
 .rrss-footer-container .icon-rrss {
-    width: 3rem;
-    height: 3rem;
+    width: 2.5rem;
+    height: 2.5rem;
     filter: invert(0.5) sepia(1) saturate(5) hue-rotate(175deg);
     opacity: 50%;
+    transition: 0.5s;
 }
 
 .icon-rrss:hover {
     opacity: 100%;
 }
+
+.footer-section .separation-line {
+    border: 1px solid  hsla(0, 0%, 54%, 0.226);
+    width: 80%;
+    height: 1px;
+}
+
+.footer-section .information-footer-container ul{
+    display: flex;
+    list-style: none;
+    gap: 3rem;
+}
+
+.footer-section .information-footer-container ul li a{
+    color: var(--mainColor);
+    opacity: 50%;
+    font-size: 1rem;
+}
+
+.footer-section .information-footer-container ul li a:hover {
+    opacity: 100%;
+}
+
+.footer-section .copyright-footer-container {
+    font-size: 0.8rem;
+    color: hsl(0, 0%, 64%);
+}
+
