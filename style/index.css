@@ -3,7 +3,7 @@
     padding: 0;
     box-sizing: border-box;
     text-decoration: none;
-    font-family: 'Golos Text', sans-serif;
+    font-family: 'Poppins', sans-serif;
 
 }
 
@@ -12,29 +12,45 @@ img {
     height: 100%;
 }
 
+ul {
+    list-style: none;
+}
+
 :root {
     --paddinGeneral : 0 20%;
     --marginBottomGeneral: 10vh;
-    --mainColor: hsl(0, 0%, 25%);
+    --mainColor: hwb(0 25% 75%);
+    --secondaryColor: hsl(0, 0%, 55%);
     --secondaryBackgroundColor: hsl(209, 100%, 50%);
     --tertiaryBackgroundColor: hsl(18, 100%, 57%);
     --borderButton: 20px;
+    --backGroundPrincipal: hsl(0,9%,96%);
 }
+
+::-webkit-scrollbar {
+    background-color: rgb(232, 232, 232);
+    width: 0.5rem;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--secondaryBackgroundColor);
+    border-radius: 20px;
+}
+
 body {
    position: relative;
 }
 
 .header-section {
     display: flex;
-    padding:  var(--paddinGeneral);
     justify-content: space-between;
     align-items: center;
     height: 10vh;
-    position: fixed;
+    padding: 0 20%;
     width: 100%;
-    background-color: hsl(0, 0%, 100%);
-    z-index: 99;
-
+    position: fixed;
+    background-color: hsla(0, 0%, 100%);
+    z-index: 999;
 }
 
 .header-section .navbar-container ul {
@@ -48,6 +64,7 @@ body {
     color: var(--mainColor);
     opacity: 50%;
     transition: 0.5s;
+    font-weight: 500;
 }
 
 .header-section .navbar-container ul li a:hover {
@@ -58,23 +75,23 @@ body {
     min-width: 8rem;
     max-width: 8rem;
     display: flex;
+    cursor: pointer;
 }
 
 .header-section .checkout-container button {
     font-size: 1rem;
     font-weight: 500;
-    background-color: transparent;
-    color: var(--tertiaryBackgroundColor);
-    border: 2px solid var(--tertiaryBackgroundColor);
+    background-color: var(--tertiaryBackgroundColor);
+    color: white;
+    border: none;
     border-radius: var(--borderButton);
-    padding: 5px 20px;
+    padding: 8px 35px;
     cursor: pointer;
     transition: 0.5s;
 }
 
 .header-section .checkout-container button:hover {
-    background-color: var(--tertiaryBackgroundColor);
-    color: white;
+    background-color: hsl(204, 15%,26%);
 }
 
 .slider-section {
@@ -84,12 +101,15 @@ body {
     flex-direction: column;
     align-items: center;
     gap: 2rem;
-    margin-bottom: var(--marginBottomGeneral);
     padding-top: 10vh;
 }
 
+.slider-section .maintext-slider-container {
+    margin-top: 5vh;
+}
+
 .maintext-slider-container > .title-maintext-container > h2{
-    font-size: 5.4rem;
+    font-size: 5.2rem;
     text-align: center;
     color: var(--mainColor);
     font-weight: 600;
@@ -103,9 +123,9 @@ body {
 .maintext-slider-container > .description-maintext-container > p {
     text-align: center;
     font-size: 1.5rem;
-    color: var(--mainColor);
+    color: var(--secondaryColor);
     line-height: 40px;
-    font-weight: 100;
+    font-weight: 300;
 }
 
 .slider-section > .button-slider-container {
@@ -114,26 +134,25 @@ body {
 }
 
 .slider-section > .button-slider-container > button {
-    padding: 15px 80px;
+    padding: 17px 80px;
     font-size: 1.7rem;
-    background-color: transparent;
-    color: var(--secondaryBackgroundColor);
-    border-color: transparent;
+    font-weight: 500;
+    background-color: var(--secondaryBackgroundColor);
+    color: white;
+    border: none;
     border-radius: 50px;
-    border: 5px solid transparent;
     cursor: pointer;
-    border: 4px solid var(--secondaryBackgroundColor);
     transition: 0.5s;
 }
 
 .slider-section > .button-slider-container > button:hover {
-    background-color: var(--secondaryBackgroundColor);
-    color: white;
-    font-weight: 800;
+    background-color: hsl(204, 15%,26%);
 }
 
-.image-slider-container {
+.slider-section .image-slider-container {
     width: 40%; 
+    position: absolute;
+    bottom: 0;
 }
 
 .image-slider-container > img {
@@ -158,9 +177,10 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: var(--paddinGeneral);
+    padding: 10vh 20%;
     gap: 1rem;
     margin-bottom: var(--marginBottomGeneral);
+    background-color: hsl(0, 3%, 93%);
 }
 
 .installation-featured-container {
@@ -173,6 +193,7 @@ body {
     flex-direction: column;
     align-items: center;
     gap: 2rem;
+    
 }
 
 .featured-section .maintext-featured-container {
@@ -193,6 +214,7 @@ body {
 
 .featured-section .installation-featured-container {
     display: flex;
+
 }
 
 .card-installation-container .image-card-container{
@@ -254,7 +276,7 @@ body {
 }
 
 .image-element-container {
-    width: 8rem;
+    width: 6rem;
 }
 
 .image-element-container img {
@@ -284,16 +306,47 @@ body {
 }
 
 .team-section .teamcard-team-container .card-teamcard-container .expand-card-container {
-   width: 30px; 
-   height: 30px;
-   background-color: white;
    position: absolute;
    right: 0;
    margin: 20px;
-   padding: 5px;
-   border-radius: 100%;
-   cursor: pointer;
+   width: 30px;
+   min-height: 15vh;
+   border-radius: 20px;
+   overflow: hidden;
 }
+
+.expand-card-container:hover  .expanded-card-container{
+    transform: translateY(15vh);
+}
+
+.team-section .expand-card-container .contracted-card-container {
+    width: 30px;
+    height: 30px;
+    background-color: white;
+    border-radius: 100%;
+    cursor: pointer;
+    position: absolute;
+    z-index: 99;
+}
+
+.team-section .expand-card-container .expanded-card-container {
+    position: absolute;
+    z-index: 98;
+    height: 100%;
+    border-radius: 30px;
+    padding-top: 100%;
+    background-color: white;
+    top: -100%;
+    transition: all 1s;
+}
+  
+.expanded-card-container img {
+    transform: scale(70%);
+}
+.team-section .contracted-card-container img {
+    transform: scale(70%)
+}
+
 .team-section .maintext-team-container {
     display: flex;
     flex-direction: column;
@@ -314,6 +367,8 @@ body {
 
 .team-section .card-teamcard-container {
     display: flex;
+    border-top-right-radius: 20px;
+    border-top-left-radius:20px;
     flex-direction: column;
     position: relative;
     -webkit-box-shadow: 10px 10px 71px -37px rgba(0,0,0,0.75);
@@ -403,6 +458,7 @@ body {
     display: flex;
     align-items: center;
 }
+
 .card-contact-container .title-card-container {
     font-size: 2rem;
 }
@@ -424,6 +480,7 @@ body {
     padding: 10px 20px;
     border-radius: 10px;
     transition: 0.5s;
+    cursor: pointer;
 }
 
 .button-contact-container button:hover {
