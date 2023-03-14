@@ -38,7 +38,7 @@ ul {
 }
 
 body {
-   position: relative;
+    position: relative;
 }
 
 .header-section {
@@ -194,10 +194,20 @@ body {
     align-items: center;
     gap: 2rem;
 }
-
+.card-installation {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
 .card-installation::after{
-    content: "gola";
-    border: 2px solid red;
+    content: url(./../assets/icon/arrow-right.svg);
+    width: 50px;
+    display: block;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+    top: 100px;
+    right: -45px;
 }
 
 .featured-section .maintext-featured-container {
