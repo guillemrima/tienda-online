@@ -13,7 +13,8 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
+        <script src="./../index.js" async></script>
+        
     </head>
     <body>
         <header class="header-section" id="header"> 
@@ -40,7 +41,7 @@
                 </ul>
             </nav>
             <div class="checkout-container">
-                <button type="button">BUY IT NOW</button>
+                <button type="button" id="checkoutButtonHeader">BUY IT NOW</button>
             </div>
         </header>
 
@@ -55,7 +56,7 @@
                 </div>
             </div>
             <div class="button-slider-container">
-                <button type="button">HAZTE CON EL TUYO</button>
+                <button type="button" id="checkoutButtonSlider">HAZTE CON EL TUYO</button>
             </div>
             <div class="image-slider-container">
                 <img src="./assets/product.png" alt="product-image">
@@ -485,6 +486,10 @@
                     <div class="checkout-button">
                         <button type="button">CHECKOUT</button>
                     </div>
+                </div>
+                
+                <div class="close-button" id="closeButton">
+                    <img src="./assets/icon/close.svg" />
                 </div>
             </div>
         </section>
