@@ -4,7 +4,7 @@
     box-sizing: border-box;
     text-decoration: none;
     font-family: 'Poppins', sans-serif;
-
+    scroll-behavior: smooth;
 }
 
 img {
@@ -193,13 +193,11 @@ body {
     flex-direction: column;
     align-items: center;
     gap: 2rem;
-}
-
-.card-installation-after {
     position: relative;
 }
 
-.card-installation-after::after{
+
+.card-installation-container:not(:last-child):after{
     content: url(./../assets/icon/menu-right.svg);
     width: 50px;
     display: block;
@@ -423,6 +421,9 @@ body {
     font-size: 0.8rem;
 }
 
+
+/* CONTACT SECTION STYLE */
+
 .contact-section {
     display: flex;
     justify-content: center;
@@ -503,6 +504,9 @@ body {
     color: white
 }
 
+
+/* FOOTER SECTION STYLE */
+
 .footer-section {
     background-color: hsl(0, 0%, 94%);
     padding: 5vh 20%;
@@ -558,4 +562,213 @@ body {
     font-size: 0.8rem;
     color: hsl(0, 0%, 64%);
 }
+
+
+/* CHECKOUT SECTION STYLE */
+
+.checkout-section {
+    position: fixed;
+    width: 100%;
+    height: 90vh;
+    bottom: 0;
+    border: 5px solid red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.checkout-section .checkout { 
+    background-color: rgb(93, 93, 93);
+    width: 60rem;
+    height: 65vh;
+    display: flex;
+}
+
+.checkout-section .checkout .image-carrousel {
+    background-color: rgb(255, 255, 255);
+    width: 50%;
+    height: 100%;
+}
+
+.checkout-section .checkout .image-carrousel img {
+    object-fit: cover;
+}
+
+.checkout-section .checkout .details-checkout {
+    background-color: rgb(255, 255, 255);
+    width: 50%;
+    height: 65vh;
+    padding: 5% 5%;
+}
+
+.checkout-section .checkout .details-checkout .title {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 8%;
+}
+
+.checkout-section .checkout .details-checkout .title::after {
+    content: "";
+    width: 100%;
+    height: 1px;
+    background-color: var(--secondaryColor);
+    opacity: 0.2;
+    margin-top: 8%;
+}
+
+.checkout-section .checkout .details-checkout .title .car-name p {
+    font-size: 1.2rem;
+    color: var(--secondaryColor);
+}
+
+.checkout-section .checkout .details-checkout .title .car-edition p {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--mainColor);
+}
+
+.checkout-section .checkout .details-checkout .title .car-model p{
+    font-size: 0.9rem;
+    color: hsl(0, 0%, 71%);
+}
+
+.checkout-section .checkout .details-checkout .title .car-facture {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+
+.checkout-section .checkout .details-checkout .title .car-facture .car-price p {
+    font-size: 1.2rem;
+}
+
+.checkout-section .car-facture .car-price .old-price {
+    text-decoration:line-through;
+    color: var(--secondaryColor);
+}
+
+.checkout-section .car-facture .car-price .new-price {
+    font-size: 1.7rem;
+    font-weight: 600;
+    color: var(--secondaryBackgroundColor);
+}
+
+.checkout-section .car-facture .offer-tag {
+    background-color: var(--tertiaryBackgroundColor);
+    padding: 1px 15px;
+    border-radius: 4px;
+}
+
+.checkout-section .car-facture .offer-tag p {
+    color: white;
+    font-size: 0.7rem;
+}
+
+.checkout-section .description {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 8%;
+}
+
+.checkout-section .description::after {
+    content: "";
+    width: 100%;
+    height: 1px;
+    background-color: var(--secondaryColor);
+    opacity: 0.2;
+    margin-top: 8%;
+}
+
+.checkout-section .description p {
+    font-size: 1rem;
+    color: var(--secondaryColor);
+}
+
+.checkout-section .details-checkout .color-car {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 8%;
+}
+
+.checkout-section .details-checkout .color-car::after {
+    content: "";
+    width: 100%;
+    height: 1px;
+    background-color: var(--secondaryColor);
+    opacity: 0.2;
+    margin-top: 8%;
+}
+
+.checkout-section .details-checkout .color-car .form-color {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.checkout-section .details-checkout .color-car .form-color .color {
+
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.checkout-section .details-checkout .color-car .form-color input[type="radio"]:checked + div{
+    border: 3px solid rgb(85, 85, 85);
+}
+
+.checkout-section .details-checkout .color-car .form-color .color input {
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    position: absolute;
+}
+
+.checkout-section .details-checkout .color-car .form-color .color-red-outline {
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+    background-color: red;
+}
+
+.checkout-section .details-checkout .color-car .form-color .color-blue {
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+    background-color: rgb(52, 154, 255);
+}
+
+.checkout-section .details-checkout .color-car .form-color .color-grey {
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+    background-color: rgb(148, 148, 148);
+}
+
+.checkout-section .checkout-button {
+    width: 100%;
+    height: 8vh
+}
+
+.checkout-section .checkout-button button {
+    width: 100%;
+    height: 100%;
+    background-color: var(--secondaryBackgroundColor);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+
+
+
+
+
+
 

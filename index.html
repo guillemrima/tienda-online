@@ -16,26 +16,26 @@
 
     </head>
     <body>
-        <header class="header-section"> 
+        <header class="header-section" id="header"> 
             <div class="logo-container">
                 <img src="./assets/logo.webp" alt="logo-image">
             </div>
             <nav  class="navbar-container">
                 <ul>
                     <li>
-                        <a href="#">HOME</a>
+                        <a href="#slider">HOME</a>
                     </li>
                     <li>
-                        <a href="#">NUESTRO PRODUCTO</a>
+                        <a href="#featured">NUESTRO PRODUCTO</a>
                     </li>
                     <li>
-                        <a href="#">CARACTERÍSTICAS</a>
+                        <a href="#details">CARACTERÍSTICAS</a>
                     </li>
                     <li>
-                        <a href="#">REVIEWS</a>
+                        <a href="#team">NUESTRO EQUIPO</a>
                     </li>
                     <li>
-                        <a href="#">CONTACTO</a>
+                        <a href="#contact">CONTACTO</a>
                     </li>
                 </ul>
             </nav>
@@ -43,9 +43,8 @@
                 <button type="button">BUY IT NOW</button>
             </div>
         </header>
-        <div class="separador"></div>
 
-         <section class="slider-section">
+        <section class="slider-section" id="slider">
             <div class="maintext-slider-container">
                 <div class="title-maintext-container">
                     <h2>El futuro de la conducción</h2>
@@ -66,7 +65,7 @@
             </div>
         </section>
 
-        <section class="featured-section">
+        <section class="featured-section" id="featured">
             <div class="maintext-featured-container">
                 <div class="title-maintext-container">
                     <h2>LA ÚLTIMA TECNOLOGÍA</h2>
@@ -76,7 +75,7 @@
                 </div>
             </div>
             <div class="installation-featured-container">
-                    <div class="card-installation-container card-installation-after">
+                    <div class="card-installation-container">
                         <div class="image-card-container">
                             <img src="./assets/feature-1.webp" alt="card-image">
                         </div>
@@ -89,7 +88,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card-installation-container card-installation-after">
+                    <div class="card-installation-container">
                         <div class="image-card-container">
                             <img src="./assets/feature-2.webp" alt="card-image">
                         </div>
@@ -118,7 +117,7 @@
             </div>
         </section>
 
-        <section class="details-section">
+        <section class="details-section" id="details">
             <div class="column-details-container">
                 <div class="element-column-container">
                     <div class="image-element-container">
@@ -206,7 +205,7 @@
             </div>
         </section>
 
-        <section class="team-section">
+        <section class="team-section" id="team">
             <div class="maintext-team-container">
                 <div class="title-maintext-container">
                     <h2>CONOCE AL EQUIPO</h2>
@@ -323,7 +322,7 @@
             </div>
         </section>
 
-        <section class="contact-section">
+        <section class="contact-section" id="contact">
             <div  class="map-contact-container">
                 <iframe  width="100%" height="100%" src="https://www.openstreetmap.org/export/embed.html?bbox=2.5489997863769536%2C39.556338932988446%2C2.835674285888672%2C39.676145005898455&amp;layer=mapnik&amp;marker=39.61626788999703%2C2.6923370361328125"></iframe>          
             </div>
@@ -362,7 +361,7 @@
             
         </section>
 
-        <footer class="footer-section">
+        <footer class="footer-section" id="footer">
             <div class="rrss-footer-container">
                 <div class="rrss-container">
                     <a href="#">
@@ -428,5 +427,66 @@
                 <p>Copyright ©guillemrima. Guillem Rivas Martorell. All rights reserved</p>
             </div>
         </footer>
+
+        <section class="checkout-section" id="checkout">
+            <div class="checkout">
+                <div class="image-carrousel">
+                    <img src="./assets/checkout-carrousel/carrousel-1.jpg">
+                </div>
+                <div class="details-checkout">
+                    <div class="title">
+                        <div class="car-name">
+                            <p>HYUNDAI® TUCSON</p>
+                        </div>
+                        <div class="car-edition">
+                            <p>2023 LIMITED EDITION</p>
+                        </div>
+                        <div class="car-model">
+                            <p>MODEL AS1500</p>
+                        </div>
+                        <div class="car-facture">
+                            <div class="car-price">
+                                <p>
+                                    <span class="old-price">
+                                        30.000€
+                                    </span>
+                                    <span class="new-price">
+                                        27.000€
+                                    </span>
+                                </p>
+                            </div>
+                            <div class="offer-tag">
+                                <p>NEW YEAR OFFER</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="description">
+                        <p>El nuevo modelo de coche 4x4 cuenta con una potente suspensión, tracción en las cuatro ruedas y un diseño deportivo y elegante.</p>
+                    </div>
+                    <div class="color-car">
+                        <div class="title-color">
+                            <p>Acabados disponibles:</p>
+                        </div>
+                        <form class="form-color">
+                            <div class="color">
+                                <input type="radio" name="color" value="red" />
+                                <div class="color-red-outline"></div>
+                            </div>
+                            <div class="color">
+                                <input type="radio" name="color" value="blue" />
+                                <div class="color-blue"></div>
+                            </div>
+                            <div class="color">
+                                <input type="radio" name="color" value="grey" />
+                                <div class="color-grey"></div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="checkout-button">
+                        <button type="button">CHECKOUT</button>
+                    </div>
+                </div>
+            </div>
+        </section>
     </body>
 </html>
