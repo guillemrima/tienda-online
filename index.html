@@ -41,7 +41,7 @@
                 </ul>
             </nav>
             <div class="checkout-container">
-                <button type="button" id="checkoutButtonHeader">BUY IT NOW</button>
+               <a href="#slider"><button type="button" id="checkoutButtonHeader">BUY IT NOW</button></a>
             </div>
         </header>
 
@@ -435,58 +435,85 @@
                     <img src="./assets/checkout-carrousel/carrousel-1.jpg">
                 </div>
                 <div class="details-checkout">
-                    <div class="title">
-                        <div class="car-name">
-                            <p>HYUNDAI® TUCSON</p>
-                        </div>
-                        <div class="car-edition">
-                            <p>2023 LIMITED EDITION</p>
-                        </div>
-                        <div class="car-model">
-                            <p>MODEL AS1500</p>
-                        </div>
-                        <div class="car-facture">
-                            <div class="car-price">
-                                <p>
-                                    <span class="old-price">
-                                        30.000€
-                                    </span>
-                                    <span class="new-price">
-                                        27.000€
-                                    </span>
-                                </p>
+                    <div class="checkout-part1">
+                        <div class="title">
+                            <div class="car-name">
+                                <p>HYUNDAI® TUCSON</p>
                             </div>
-                            <div class="offer-tag">
-                                <p>NEW YEAR OFFER</p>
+                            <div class="car-edition">
+                                <p>2023 LIMITED EDITION</p>
                             </div>
+                            <div class="car-model">
+                                <p>MODEL AS1500</p>
+                            </div>
+                            <div class="car-facture">
+                                <div class="car-price">
+                                    <p>
+                                        <span class="old-price">
+                                            30.000€
+                                        </span>
+                                        <span class="new-price">
+                                            27.000€
+                                        </span>
+                                    </p>
+                                </div>
+                                <div class="offer-tag">
+                                    <p>NEW YEAR OFFER</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="description">
+                            <p>El nuevo modelo de coche 4x4 cuenta con una potente suspensión, tracción en las cuatro ruedas y un diseño deportivo y elegante.</p>
+                        </div>
+                        <div class="color-car">
+                            <div class="title-color">
+                                <p>Acabados disponibles:</p>
+                            </div>
+                            <form class="form-color">
+                                <div class="color">
+                                    <input type="radio" name="color" value="red" />
+                                    <div class="color-red-outline"></div>
+                                </div>
+                                <div class="color">
+                                    <input type="radio" name="color" value="blue" />
+                                    <div class="color-blue"></div>
+                                </div>
+                                <div class="color">
+                                    <input type="radio" name="color" value="grey" />
+                                    <div class="color-grey"></div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="checkout-button">
+                            <button type="button">CHECKOUT</button>
                         </div>
                     </div>
-                    <div class="description">
-                        <p>El nuevo modelo de coche 4x4 cuenta con una potente suspensión, tracción en las cuatro ruedas y un diseño deportivo y elegante.</p>
-                    </div>
-                    <div class="color-car">
-                        <div class="title-color">
-                            <p>Acabados disponibles:</p>
+                    <div class="checkout-part2">
+                        <div class="back-button">
+                            <button>Volver</button>
                         </div>
-                        <form class="form-color">
-                            <div class="color">
-                                <input type="radio" name="color" value="red" />
-                                <div class="color-red-outline"></div>
-                            </div>
-                            <div class="color">
-                                <input type="radio" name="color" value="blue" />
-                                <div class="color-blue"></div>
-                            </div>
-                            <div class="color">
-                                <input type="radio" name="color" value="grey" />
-                                <div class="color-grey"></div>
-                            </div>
+                        <form id="checkoutForm">
+                            <input type="text" placeholder="Nombre" />
+                            <input type="text" placeholder="Apellidos" />
+                            <input type="text" placeholder="Correo electrónico" />
+                            <input type="text" placeholder="Dirección 1" />
+                            <input type="text" placeholder="Dirección 2" />
+                            <input type="text" placeholder="Provincia" />
+                            <input type="text" placeholder="Código postal" />
+                            <select name="pais" id="paisInput">
+                                <option value="default">-Seleccione un País-</option>
+                                <option value="España">España</option> 
+                                <option value="Reino Unido">Reino Unido</option>
+                                <option value="Alemania">Alemania</option>
+                                <option value="Suecia">Suecia</option>
+                                <option value="Francia">Francia</option>
+                                <option value="Dinamarca">Dinamarca</option>
+                            </select>
+                            <button type="submit">FINALIZAR COMPRA</button>
                         </form>
                     </div>
-                    <div class="checkout-button">
-                        <button type="button">CHECKOUT</button>
-                    </div>
                 </div>
+                
                 
                 <div class="close-button" id="closeButton">
                     <img src="./assets/icon/close.svg" />
