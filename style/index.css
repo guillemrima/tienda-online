@@ -25,6 +25,7 @@ ul {
     --tertiaryBackgroundColor: hsl(18, 100%, 57%);
     --borderButton: 20px;
     --backGroundPrincipal: hsl(0,9%,96%);
+    --hoverButton : hsl(204, 15%,26%);
 }
 
 ::-webkit-scrollbar {
@@ -429,6 +430,7 @@ body {
 .contact-section {
     display: flex;
     justify-content: center;
+    align-items: center;
     position: relative;
     height: 60vh;
     width: 100%;
@@ -444,33 +446,40 @@ body {
 
 
 .card-contact-container {
+    position: relative;
+    width: 500px;
+    height: 50vh;
+    z-index: 100;
+}
+
+.card {
     background-color: hsl(0, 0%, 100%);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 30%;
-    height: 40vh;
+    position: absolute;
+    backface-visibility: hidden;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
     padding: 2rem;
+    transition: 1s;
     -webkit-box-shadow: 10px 10px 71px -37px rgba(0,0,0,0.75);
     -moz-box-shadow: 10px 10px 71px -37px rgba(0,0,0,0.75);
     box-shadow: 10px 10px 71px -37px rgba(0,0,0,0.75);
-    z-index: 100;
-    position: absolute;
-    top: 20%;
-    animation-name: flipCard;
-    animation-duration: 1s;
-    animation-timing-function: ease-in-out;
-    animation-fill-mode: forwards;
-    perspective: 1000px;
 }
 
-@keyframes flipCard {
-    from {
-        opacity: 1;
-    }
-    to {
-        transform: rotateY(180deg);
-    }
+.front {
+    transform: perspective(1000px) rotateY(0deg);
+}
+
+.back {
+    transform: perspective(1000px) rotateY(180deg);
+
+}
+
+.card .back {
+    transform: perspective(1000px) rotateZ(0deg);
 }
 
 .card-contact-container .icon-contact-container {
@@ -506,23 +515,79 @@ body {
 .button-contact-container button {
     width: 100%;
     height: 100%;
-    background-color: transparent;
-    color: var(--secondaryBackgroundColor);
-    border: 2px solid var(--secondaryBackgroundColor);
+    background-color: var(--secondaryBackgroundColor);
+    color: white;
+    border: none;
     font-weight: 600;
     font-size: 1.5rem;
     padding: 10px 20px;
-    border-radius: 10px;
     transition: 0.5s;
     cursor: pointer;
 }
 
 .button-contact-container button:hover {
-    background-color: var(--secondaryBackgroundColor);
-    color: white
+    background-color: var(--hoverButton);
+}
+
+.back {
+    width: 100%;
+    height: 100%;
+    padding-top: 3rem;
+}
+
+.back form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    gap: 1rem;
+}
+
+.back .name-email {
+    display: flex;
+    gap: 1rem;
+}
+
+.back input {
+    width: 100%;
+    height: 100%;
+    border: 1px solid rgba(232,238,242,255);
+    background-color: rgba(248,251,253,255);
+    padding: 10px 10px;
+    font-size: 1rem;
 }
 
 
+.back .message {
+    height: 100%;
+}
+
+.back .message input {
+    position: relative;
+}
+
+.back input::placeholder {
+    color: rgba(203,212,217,255); 
+    position: absolute;
+}
+
+.back button {
+    width: 100%;
+    height: 100%;
+    background-color: var(--secondaryBackgroundColor);
+    color: white;
+    border: none;
+    font-weight: 600;
+    font-size: 1.5rem;
+    padding: 10px 20px;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.back button:hover {
+    background-color: var(--hoverButton);  
+}
 /* FOOTER SECTION STYLE */
 
 .footer-section {
@@ -898,6 +963,12 @@ background-color: hsl(204, 15%,26%);
     font-size: 1.5rem;
     font-weight: 600;
     border-radius: 5px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.checkout-section  .checkout-part2 form button:hover {
+    background-color: hsl(204, 15%,26%);
 }
 
 @keyframes fadeCheckoutPart1 {

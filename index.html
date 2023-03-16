@@ -41,7 +41,7 @@
                 </ul>
             </nav>
             <div class="checkout-container">
-               <a href="#slider"><button type="button" id="checkoutButtonHeader">BUY IT NOW</button></a>
+                <a href="#slider"><button type="button" id="checkoutButtonHeader">BUY IT NOW</button></a>
             </div>
         </header>
 
@@ -328,35 +328,57 @@
                 <iframe  width="100%" height="100%" src="https://www.openstreetmap.org/export/embed.html?bbox=2.5489997863769536%2C39.556338932988446%2C2.835674285888672%2C39.676145005898455&amp;layer=mapnik&amp;marker=39.61626788999703%2C2.6923370361328125"></iframe>          
             </div>
             <div class="card-contact-container">
-                <div class="title-card-container">
-                    <h4>CONTACTA CON NOSOTROS</h4>
+                <div class="card front" id="frontContact">
+                    <div class="title-card-container">
+                        <h4>CONTACTA CON NOSOTROS</h4>
+                    </div>
+                    <div class="location-contact-container item-contact-container">
+                        <div class="icon-contact-container">
+                            <img src="./assets/icon/location.svg" alt="location-icon">
+                        </div>
+                        <div class="text-contact-container">
+                            <p>Marratxí, Mallorca</p>
+                        </div>
+                    </div>
+                    <div class="phone-contact-container item-contact-container">
+                        <div class="icon-contact-container">
+                            <img src="./assets/icon/phone.svg" alt="phone-icon">
+                        </div>
+                        <div class="text-contact-container">
+                            <p>(+34) 692 18 89 89</p>
+                        </div>
+                    </div>
+                    <div class="email-contact-container item-contact-container">
+                        <div class="icon-contact-container">
+                            <img src="./assets/icon/email.svg" alt="email-icon">
+                        </div>
+                        <div class="text-contact-container">
+                            <p>rivasmartorellguillem@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="button-contact-container" id="buttonFront">
+                        <button type="button">CONTÁCTANOS</button>
+                    </div>
                 </div>
-                <div class="location-contact-container item-contact-container">
-                    <div class="icon-contact-container">
-                        <img src="./assets/icon/location.svg" alt="location-icon">
-                    </div>
-                    <div class="text-contact-container">
-                        <p>Marratxí, Mallorca</p>
-                    </div>
-                </div>
-                <div class="phone-contact-container item-contact-container">
-                    <div class="icon-contact-container">
-                        <img src="./assets/icon/phone.svg" alt="phone-icon">
-                    </div>
-                    <div class="text-contact-container">
-                        <p>(+34) 692 18 89 89</p>
-                    </div>
-                </div>
-                <div class="email-contact-container item-contact-container">
-                    <div class="icon-contact-container">
-                        <img src="./assets/icon/email.svg" alt="email-icon">
-                    </div>
-                    <div class="text-contact-container">
-                        <p>rivasmartorellguillem@gmail.com</p>
-                    </div>
-                </div>
-                <div class="button-contact-container">
-                    <button type="button">CONTÁCTANOS</button>
+                <div class="card back" id="backContact">
+                    <form>
+                        <div class="name-email">
+                            <input type="text" placeholder="Nombre">
+                            <input type="text" placeholder="Correo electrónico">
+                        </div>
+                        <div class="subject">
+                            <input type="text" placeholder="Asunto">
+                        </div>
+                        <div class="message">
+                            <input type="text" placeholder="Esribe tu mensaje...">
+                        </div>
+                        <div class="button">
+                            <button type="submit">ENVIAR MENSAJE</button>
+                        </div>
+                    </form>
+                    <div class="close-button" id="buttonBack">
+                        <img src="./assets/icon/close.svg" />
+                    </div>    
                 </div>
             </div>
             
@@ -432,7 +454,7 @@
         <section class="checkout-section" id="checkout">
             <div class="checkout">
                 <div class="image-carrousel">
-                    <img src="./assets/checkout-carrousel/carrousel-1.jpg">
+                    <img src="./assets/checkout-carrousel/carrousel-2.webp" id="imagenCheckout">
                 </div>
                 <div class="details-checkout" id="detailsCheckout">
                     <div class="checkout-part1" id="checkoutPart1">
