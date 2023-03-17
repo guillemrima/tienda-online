@@ -176,6 +176,8 @@ body {
     height: 100%;
 }
 
+/* FEATURED SECTION STYLE */
+
 .featured-section {
     display: flex;
     flex-direction: column;
@@ -254,6 +256,8 @@ body {
     color: var(--mainColor);
 }
 
+/* DETAILS SECTION STYLE */
+
 .details-section {
     display: flex;
     justify-content: center;
@@ -308,6 +312,94 @@ body {
     object-fit: contain;
     transform: scale(250%);
 }
+
+/* FAQ SECTION STYLE */
+
+.faq-section {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4rem;
+    padding: var(--paddinGeneral);
+    margin-bottom: var(--marginBottomGeneral);
+}
+
+.faq-section .faq-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.faq-section .faq-main .main-title h2{
+    font-size: 3rem;
+    color: var(--mainColor);
+}
+
+.faq-section .faq-main .main-description p {
+    padding: 0 10%;
+    font-size: 1.2rem;
+    color: var(--mainColor);
+    text-align: center;
+}
+
+.faq-section .faq-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.faq-section .faq-content .faq-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.faq-section .faq-content .faq-item .faq-question {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+}
+
+.faq-section .faq-content .faq-item .faq-question::after {
+    content: "";
+    height: 1px;
+    background-color: var(--secondaryColor);
+    width: 100%;
+    position:  absolute;
+    bottom: 0;
+}
+
+.faq-section .faq-content .faq-item .faq-question h6{
+    font-size: 1.5rem;
+    color: var(--mainColor);
+}
+
+.faq-section .faq-content .faq-item .faq-question .button-question {
+    width: 1.5rem;
+    height: 1.5rem;
+    cursor: pointer;
+}
+
+.faq-section .faq-content .faq-item .faq-question .button-question img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover
+}
+
+.faq-section .faq-content .faq-item .faq-answer{
+    display: none;
+}
+
+.faq-section .faq-content .faq-item .faq-answer p{
+    color: var(--secondaryColor);
+    font-size: 1rem;
+}
+
+/* TEAM SECTION STYLE */
 
 .team-section {
     display: flex;
@@ -998,6 +1090,7 @@ background-color: hsl(204, 15%,26%);
         opacity: 1;
     }
 }
+
 
 @keyframes fadeOut {
     from {
