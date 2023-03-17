@@ -1,5 +1,11 @@
 const buttonsQuestion = document.querySelectorAll(".button-question")
 const answerFAQ = document.querySelectorAll(".faq-answer")
+const featuredSection = document.getElementById("featured")
+const detailsSection = document.getElementById("details")
+const faqSection = document.getElementById("faq")
+const teamSection = document.getElementById("team")
+const contactSection = document.getElementById("contact")
+const footerSection = document.getElementById("footer")
 
 function showAnswer(event) {
     for (let i = 0; i < answerFAQ.length; i++){
@@ -28,3 +34,12 @@ buttonsQuestion.forEach(buttonQuestion => {
 })
 
 // ES UN POCO CUTRILLO PERO FUNCIONA
+
+function showSection() {
+    if(window.scrollY > 600 && window.scrollY < 1000){
+    featuredSection.style.animation = "fadeIn 1s ease-in forwards"}
+    else if(window.scrollY > 1000){
+        detailsSection.style.animation = "fadeIn 1s ease-in forwards"}
+}
+
+window.addEventListener("scroll", showSection)
