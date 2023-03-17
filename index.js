@@ -6,6 +6,20 @@ const faqSection = document.getElementById("faq")
 const teamSection = document.getElementById("team")
 const contactSection = document.getElementById("contact")
 const footerSection = document.getElementById("footer")
+const checkoutButtonHeader = document.getElementById("checkoutButtonHeader");
+const checkoutButtonSlider = document.getElementById("checkoutButtonSlider");
+const checkoutButtonCheckoutBox = document.getElementById("checkoutButtonCheckoutBox")
+const checkoutBox = document.getElementById("checkout")
+const closeCheckoutBox = document.getElementById("closeButton")
+const detailsCheckout = document.getElementById("detailsCheckout")
+const backButtonCheckoutPart2 = document.getElementById("backButtonCheckoutPart2")
+const checkoutPart1 = document.getElementById("checkoutPart1")
+const checkoutPart2 = document.getElementById("checkoutPart2")
+const imageCheckout = document.getElementById("imagenCheckout")
+const buttonFront = document.getElementById("buttonFront")
+const frontContact = document.getElementById("frontContact")
+const backContact = document.getElementById("backContact")
+const buttonBack = document.getElementById("buttonBack")
 
 function showAnswer(event) {
     for (let i = 0; i < answerFAQ.length; i++){
@@ -28,6 +42,44 @@ function showAnswer(event) {
     }
 }
 
+function showCheckoutBox() {
+    checkoutBox.style.display = "flex"
+    checkoutBox.style.animation = "fadeIn 0.2s ease-in"
+    checkoutBox.style.zIndex = "999"
+    detailsCheckout.style.left = "50%"
+    checkoutPart1.style.animation = ""
+    checkoutPart2.style.animation = ""
+}
+function hideCheckoutButton() {
+    checkoutBox.style.display = "none"
+    checkoutBox.style.zIndex = "-999"
+    detailsCheckout.style.animation = ""
+}
+
+function showCheckoutPart1() {
+    detailsCheckout.style.left = "50%"
+    detailsCheckout.style.animation = "fadeCheckoutPart2 0.7s ease-in-out forwards"
+    checkoutPart1.style.animation = "fadeIn 0.5s ease-in"
+    checkoutPart2.style.animation = "fadeOut 0.5s ease-in forwards"
+
+}
+
+function showCheckoutPart2() {
+    detailsCheckout.style.left = "0%"
+    detailsCheckout.style.animation = "fadeCheckoutPart1 0.7s ease-in-out forwards"
+    checkoutPart2.style.animation = "fadeIn 0.5s ease-in"
+    checkoutPart1.style.animation = "fadeOut 0.5s ease-in forwards"
+}
+
+function flipCardBack() {
+    frontContact.style.transform ="perspective(1000px) rotateY(180deg)"
+    backContact.style.transform = "perspective(1000px) rotateY(360deg)"
+}
+
+function flipCardFront() {
+    frontContact.style.transform ="perspective(1000px) rotateY(0deg)"
+    backContact.style.transform = "perspective(1000px) rotateY(180deg)"
+}
 
 buttonsQuestion.forEach(buttonQuestion => {
     buttonQuestion.addEventListener("click", showAnswer)
@@ -43,3 +95,10 @@ function showSection() {
 }
 
 window.addEventListener("scroll", showSection)
+checkoutButtonHeader.addEventListener("click", showCheckoutBox)
+checkoutButtonSlider.addEventListener("click", showCheckoutBox)
+checkoutButtonCheckoutBox.addEventListener("click", showCheckoutPart2)
+backButtonCheckoutPart2.addEventListener("click", showCheckoutPart1)
+closeCheckoutBox.addEventListener("click", hideCheckoutButton)
+buttonFront.addEventListener("click", flipCardBack)
+buttonBack.addEventListener("click", flipCardFront)
