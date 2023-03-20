@@ -1,0 +1,52 @@
+.header-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 10vh;
+    padding: 0 20%;
+    width: 100%;
+    position: fixed;
+    background-color: hsla(0, 0%, 100%);
+    z-index: 999;
+}
+
+.header-section .navbar-container ul {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+}
+
+.header-section .navbar-container ul li a{
+    font-size: 1rem;
+    color: var(--mainColor);
+    opacity: 50%;
+    transition: 0.5s;
+    font-weight: 500;
+}
+
+.header-section .navbar-container ul li a:hover {
+    opacity: 100%;
+}
+
+.header-section .logo-container {
+    min-width: 8rem;
+    max-width: 8rem;
+    display: flex;
+    cursor: pointer;
+}
+
+.header-section .checkout-container button {
+    font-size: 1rem;
+    font-weight: 500;
+    background-color: var(--tertiaryBackgroundColor);
+    color: white;
+    border: none;
+    border-radius: var(--borderButton);
+    padding: 8px 35px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.header-section .checkout-container button:hover {
+    background-color: hsl(204, 15%,26%);
+}

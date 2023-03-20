@@ -1,0 +1,55 @@
+.footer-section {
+    background-color: hsl(0, 0%, 94%);
+    padding: 5vh 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    padding-top: 10vh;
+}
+
+.footer-section .rrss-footer-container {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+
+.rrss-footer-container .icon-rrss {
+    width: 2.5rem;
+    height: 2.5rem;
+    filter: invert(0.5) sepia(1) saturate(5) hue-rotate(175deg);
+    opacity: 50%;
+    transition: 0.5s;
+}
+
+.icon-rrss:hover {
+    opacity: 100%;
+}
+
+.footer-section .separation-line {
+    border: 1px solid  hsla(0, 0%, 54%, 0.226);
+    width: 80%;
+    height: 1px;
+}
+
+.footer-section .information-footer-container ul{
+    display: flex;
+    list-style: none;
+    gap: 3rem;
+}
+
+.footer-section .information-footer-container ul li a{
+    color: var(--mainColor);
+    opacity: 50%;
+    font-size: 1rem;
+}
+
+.footer-section .information-footer-container ul li a:hover {
+    opacity: 100%;
+}
+
+.footer-section .copyright-footer-container {
+    font-size: 0.8rem;
+    color: hsl(0, 0%, 64%);
+}

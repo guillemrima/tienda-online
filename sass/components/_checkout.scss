@@ -1,0 +1,361 @@
+.checkout-section {
+    position: fixed;
+    width: 100%;
+    height: 90vh;
+    bottom: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: -999;
+}
+
+.checkout-section .checkout { 
+    background-color: rgb(93, 93, 93);
+    width: 60rem;
+    height: 65vh;
+    display: flex;
+    -webkit-box-shadow: 10px 10px 58px -6px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 58px -6px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 58px -6px rgba(0,0,0,0.75);
+    position: relative;
+    overflow: hidden;
+}
+
+.checkout-section .checkout .image-carrousel {
+    background-color: rgb(255, 255, 255);
+    width: 50%;
+    height: 100%;
+    z-index: 998;
+}
+
+.checkout-section .checkout .image-carrousel img {
+    object-fit: cover;
+}
+
+.checkout-section .checkout .details-checkout {
+    background-color: rgb(255, 255, 255);
+    width: 100%;
+    height: 65vh;
+    position: absolute;
+    display: flex;
+    z-index: 997;
+    left: 50%;
+}
+
+.checkout-section .checkout .details-checkout .checkout-part1 {
+    width: 50%;
+    padding: 5% 5%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.checkout-section .checkout .details-checkout .checkout-part2 {
+    width: 50%;
+}
+
+
+.checkout-section .checkout .details-checkout .checkout-part1 .title {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 8%;
+}
+
+.checkout-section .checkout .details-checkout .checkout-part1 .title::after {
+    content: "";
+    width: 100%;
+    height: 1px;
+    background-color: var(--secondaryColor);
+    opacity: 0.2;
+    margin-top: 8%;
+}
+
+.checkout-section .checkout .details-checkout .checkout-part1 .title .car-name p {
+    font-size: 1.2rem;
+    color: var(--secondaryColor);
+}
+
+.checkout-section .checkout .details-checkout .checkout-part1 .title .car-edition p {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--mainColor);
+}
+
+.checkout-section .checkout .details-checkout .checkout-part1 .title .car-model p{
+    font-size: 0.9rem;
+    color: hsl(0, 0%, 71%);
+}
+
+.checkout-section .checkout .details-checkout .checkout-part1 .title .car-facture {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+
+.checkout-section .checkout .details-checkout .checkout-part1 .title .car-facture .car-price p {
+    font-size: 1.2rem;
+}
+
+.checkout-section .checkout-part1 .car-facture .car-price .old-price {
+    text-decoration:line-through;
+    color: var(--secondaryColor);
+}
+
+.checkout-section .checkout-part1 .car-facture .car-price .new-price {
+    font-size: 1.7rem;
+    font-weight: 600;
+    color: var(--secondaryBackgroundColor);
+}
+
+.checkout-section .checkout-part1 .car-facture .offer-tag {
+    background-color: var(--tertiaryBackgroundColor);
+    padding: 1px 15px;
+    border-radius: 4px;
+}
+
+.checkout-section .checkout-part1 .car-facture .offer-tag p {
+    color: white;
+    font-size: 0.7rem;
+}
+
+.checkout-section .checkout-part1 .description {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 8%;
+}
+
+.checkout-section .checkout-part1 .description::after {
+    content: "";
+    width: 100%;
+    height: 1px;
+    background-color: var(--secondaryColor);
+    opacity: 0.2;
+    margin-top: 8%;
+}
+
+.checkout-section .checkout-part1 .description p {
+    font-size: 1rem;
+    color: var(--secondaryColor);
+}
+
+.checkout-section .details-checkout .checkout-part1 .color-car {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 8%;
+}
+
+
+
+.checkout-section .details-checkout .checkout-part1 .color-car .form-color {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.checkout-section .details-checkout .checkout-part1 .color-car .form-color .color {
+
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.checkout-section .details-checkout .checkout-part1 .color-car .form-color input[type="radio"]:checked + div{
+    border: 3px solid rgb(85, 85, 85);
+}
+
+.checkout-section .details-checkout .checkout-part1 .color-car .form-color .color input {
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    position: absolute;
+}
+
+.checkout-section .details-checkout .checkout-part1 .color-car .form-color .color-red-outline {
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+    background-color: red;
+}
+
+.checkout-section .details-checkout .checkout-part1 .color-car .form-color .color-blue {
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+    background-color: rgb(52, 154, 255);
+}
+
+.checkout-section .details-checkout .checkout-part1 .color-car .form-color .color-grey {
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+    background-color: rgb(148, 148, 148);
+}
+
+.checkout-section .checkout-part1 .checkout-button {
+    width: 100%;
+    height: 8vh
+}
+
+.checkout-section .checkout-part1 .checkout-button button {
+    width: 100%;
+    height: 100%;
+    background-color: var(--secondaryBackgroundColor);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.5rem;
+    font-weight: 600;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.checkout-section .checkout-part1 .checkout-button button:hover {
+background-color: hsl(204, 15%,26%);
+}
+
+.close-button {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    right: 0;
+    top: 0;
+    margin: 10px;
+    cursor: pointer;
+    filter: invert(0.5) sepia(0) saturate(40) hue-rotate(10deg);
+    z-index: 999;
+}
+
+.close-button:hover {
+    filter: invert(0.5) sepia(1) saturate(40) hue-rotate(10deg);
+}
+
+
+.checkout-section  .checkout-part2{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    padding: 5% 5%;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.checkout-section  .checkout-part2 .back-button button{
+    border: 1px solid hsl(0, 0%, 80%);
+    background-color: transparent;
+    color: hsl(0, 0%, 80%);
+    padding: 3px 30px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.checkout-section  .checkout-part2 .back-button button:hover{
+    background-color: rgba(55,64,72,255);
+    color: white;
+}
+
+.checkout-section  .checkout-part2 form {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.checkout-section  .checkout-part2 form input {
+    border: 1px solid rgba(232,238,242,255);
+    background-color: rgba(248,251,253,255);
+    padding: 10px 10px;
+    font-size: 1rem;
+    width: 100%;
+}
+
+.checkout-section  .checkout-part2 form input::placeholder {
+    color: rgba(203,212,217,255); 
+}
+.checkout-section  .checkout-part2 form .nombre {
+    display: flex;
+    gap: 2rem;
+}
+
+.checkout-section  .checkout-part2 form .direccion {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.checkout-section  .checkout-part2 form .provincia {
+    display: flex;
+    gap: 2rem;
+}
+
+.checkout-section  .checkout-part2 form .pais select{
+    border: 1px solid rgba(232,238,242,255);
+    background-color: rgba(248,251,253,255);
+    padding: 10px 10px;
+    font-size: 1rem;
+    width: 100%;
+}
+
+.checkout-section  .checkout-part2 form button {
+    background-color: var(--secondaryBackgroundColor);
+    color: white;
+    border: none;
+    height: 15%;
+    font-size: 1.5rem;
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.checkout-section  .checkout-part2 form button:hover {
+    background-color: hsl(204, 15%,26%);
+}
+
+@keyframes fadeCheckoutPart1 {
+    from {
+        left: 50%;
+    }
+    to {
+        left: 0%;
+    }
+}
+
+@keyframes fadeCheckoutPart2 {
+    from {
+        left: 0%;
+    }
+    to {
+        left: 50%;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }  
+
+    to{
+        opacity: 1;
+    }
+}
+
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }  
+
+    to{
+        opacity: 0;
+    }
+}

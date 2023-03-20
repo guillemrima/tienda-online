@@ -1,0 +1,174 @@
+.featured-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10vh 20%;
+    gap: 1rem;
+    margin-bottom: var(--marginBottomGeneral);
+    background-color: hsl(0, 3%, 93%);
+    opacity: 0;
+}
+
+.installation-featured-container {
+    display: flex;
+    gap: 2rem;
+}
+
+.card-installation-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    position: relative;
+}
+
+
+.card-installation-container:not(:last-child):after{
+    content: url(./../assets/icon/menu-right.svg);
+    width: 50px;
+    display: block;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+    top: 100px;
+    right: -45px;
+}
+
+.featured-section .maintext-featured-container {
+    text-align: center;
+}
+
+.maintext-featured-container .title-maintext-container h2{
+    font-size: 3rem;
+    color: var(--mainColor);
+}
+
+.maintext-featured-container .description-maintext-container p{
+    padding: 0 10%;
+    font-size: 1.2rem;
+    color: var(--mainColor);
+    text-align: center;
+}
+
+.featured-section .installation-featured-container {
+    display: flex;
+}
+
+.card-installation-container .image-card-container{
+    width: 70%;
+    display: flex;
+    align-items: center;
+}
+
+.text-card-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.5rem;
+}
+
+.text-card-container h3 {
+    font-size: 1.5rem;
+    color: var(--mainColor);
+}
+
+.text-card-container p {
+    color: var(--mainColor);
+}
+
+/* DETAILS SECTION STYLE */
+
+.details-section {
+    display: flex;
+    justify-content: center;
+    gap: 1%;
+    margin-bottom: var(--marginBottomGeneral);
+    opacity: 0;
+}
+
+.column-details-container {
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    gap: 5vh;
+}
+
+.right-column .element-column-container{
+    flex-direction: row-reverse;
+    text-align: right;
+}
+
+.text-element-container h4 {
+    font-size: 1.2rem;
+}
+
+.description-text-container p {
+    font-size: 1rem;
+    color: var(--mainColor);
+}
+
+.element-column-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 5%;
+}
+
+.image-element-container {
+    width: 6rem;
+}
+
+.image-element-container img {
+    width: 100%;
+    filter: invert(0.5) sepia(1) saturate(5) hue-rotate(175deg);
+}
+
+.image-details-container {
+    padding: 0 5rem;
+    width: 20%;
+}
+
+.image-details-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transform: scale(400%);
+}
+@keyframes fadeCheckoutPart1 {
+    from {
+        left: 50%;
+    }
+    to {
+        left: 0%;
+    }
+}
+
+@keyframes fadeCheckoutPart2 {
+    from {
+        left: 0%;
+    }
+    to {
+        left: 50%;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }  
+
+    to{
+        opacity: 1;
+    }
+}
+
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }  
+
+    to{
+        opacity: 0;
+    }
+}
