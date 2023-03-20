@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     gap: 1%;
-    margin-bottom: var(--marginBottomGeneral);
+    margin-bottom: $marginButtonGeneral;
     opacity: 0;
 }
 
@@ -24,7 +24,7 @@
 
 .description-text-container p {
     font-size: 1rem;
-    color: var(--mainColor);
+    color: $mainColor;
 }
 
 .element-column-container {

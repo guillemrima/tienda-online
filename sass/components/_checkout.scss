@@ -66,20 +66,20 @@
     content: "";
     width: 100%;
     height: 1px;
-    background-color: var(--secondaryColor);
+    background-color: $secondaryColor;
     opacity: 0.2;
     margin-top: 8%;
 }
 
 .checkout-section .checkout .details-checkout .checkout-part1 .title .car-name p {
     font-size: 1.2rem;
-    color: var(--secondaryColor);
+    color: $secondaryColor;
 }
 
 .checkout-section .checkout .details-checkout .checkout-part1 .title .car-edition p {
     font-size: 2rem;
     font-weight: 700;
-    color: var(--mainColor);
+    color: $mainColor;
 }
 
 .checkout-section .checkout .details-checkout .checkout-part1 .title .car-model p{
@@ -100,17 +100,17 @@
 
 .checkout-section .checkout-part1 .car-facture .car-price .old-price {
     text-decoration:line-through;
-    color: var(--secondaryColor);
+    color: $secondaryColor;
 }
 
 .checkout-section .checkout-part1 .car-facture .car-price .new-price {
     font-size: 1.7rem;
     font-weight: 600;
-    color: var(--secondaryBackgroundColor);
+    color: $secondaryBackgroundColor;
 }
 
 .checkout-section .checkout-part1 .car-facture .offer-tag {
-    background-color: var(--tertiaryBackgroundColor);
+    background-color: $tertiaryBackgroundColor;
     padding: 1px 15px;
     border-radius: 4px;
 }
@@ -130,14 +130,14 @@
     content: "";
     width: 100%;
     height: 1px;
-    background-color: var(--secondaryColor);
+    background-color: $secondaryColor;
     opacity: 0.2;
     margin-top: 8%;
 }
 
 .checkout-section .checkout-part1 .description p {
     font-size: 1rem;
-    color: var(--secondaryColor);
+    color: $secondaryColor;
 }
 
 .checkout-section .details-checkout .checkout-part1 .color-car {
@@ -203,7 +203,7 @@
 .checkout-section .checkout-part1 .checkout-button button {
     width: 100%;
     height: 100%;
-    background-color: var(--secondaryBackgroundColor);
+    background-color: $secondaryBackgroundColor;
     color: white;
     border: none;
     border-radius: 5px;
@@ -306,7 +306,7 @@ background-color: hsl(204, 15%,26%);
 }
 
 .checkout-section  .checkout-part2 form button {
-    background-color: var(--secondaryBackgroundColor);
+    background-color: $secondaryBackgroundColor;
     color: white;
     border: none;
     height: 15%;

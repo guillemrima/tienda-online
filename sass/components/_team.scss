@@ -58,12 +58,12 @@
 
 .maintext-team-container h2 {
     font-size: 3rem;
-    color: var(--mainColor);
+    color: $mainColor;
 }
 
 .maintext-team-container p {
     font-size: 1.2rem;
-    color: var(--mainColor);
+    color: $mainColor;
     text-align: center;
     padding: 0 10%;
 }

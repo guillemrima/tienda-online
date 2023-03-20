@@ -15,7 +15,7 @@
 .maintext-slider-container > .title-maintext-container > h2{
     font-size: 5.2rem;
     text-align: center;
-    color: var(--mainColor);
+    color: $mainColor;
     font-weight: 600;
 }
 
@@ -27,7 +27,7 @@
 .maintext-slider-container > .description-maintext-container > p {
     text-align: center;
     font-size: 1.5rem;
-    color: var(--secondaryColor);
+    color: $secondaryColor;
     line-height: 40px;
     font-weight: 300;
 }
@@ -41,7 +41,7 @@
     padding: 17px 80px;
     font-size: 1.7rem;
     font-weight: 500;
-    background-color: var(--secondaryBackgroundColor);
+    background-color: $secondaryBackgroundColor;
     color: white;
     border: none;
     border-radius: 50px;

@@ -8,6 +8,7 @@
     position: fixed;
     background-color: hsla(0, 0%, 100%);
     z-index: 999;
+
 }
 
 .header-section .navbar-container ul {
@@ -18,7 +19,7 @@
 
 .header-section .navbar-container ul li a{
     font-size: 1rem;
-    color: var(--mainColor);
+    color: $mainColor;
     opacity: 50%;
     transition: 0.5s;
     font-weight: 500;
@@ -38,10 +39,10 @@
 .header-section .checkout-container button {
     font-size: 1rem;
     font-weight: 500;
-    background-color: var(--tertiaryBackgroundColor);
+    background-color: $tertiaryBackgroundColor;
     color: white;
     border: none;
-    border-radius: var(--borderButton);
+    border-radius: $borderButton;
     padding: 8px 35px;
     cursor: pointer;
     transition: 0.5s;

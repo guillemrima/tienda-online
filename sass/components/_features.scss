@@ -4,7 +4,7 @@
     align-items: center;
     padding: 10vh 20%;
     gap: 1rem;
-    margin-bottom: var(--marginBottomGeneral);
+    margin-bottom: $marginButtonGeneral;
     background-color: hsl(0, 3%, 93%);
     opacity: 0;
 }
@@ -40,13 +40,13 @@
 
 .maintext-featured-container .title-maintext-container h2{
     font-size: 3rem;
-    color: var(--mainColor);
+    color: $mainColor;
 }
 
 .maintext-featured-container .description-maintext-container p{
     padding: 0 10%;
     font-size: 1.2rem;
-    color: var(--mainColor);
+    color: $mainColor;
     text-align: center;
 }
 
@@ -70,11 +70,11 @@
 
 .text-card-container h3 {
     font-size: 1.5rem;
-    color: var(--mainColor);
+    color: $mainColor;
 }
 
 .text-card-container p {
-    color: var(--mainColor);
+    color: $mainColor;
 }
 
 /* DETAILS SECTION STYLE */
@@ -83,7 +83,7 @@
     display: flex;
     justify-content: center;
     gap: 1%;
-    margin-bottom: var(--marginBottomGeneral);
+    margin-bottom: $marginButtonGeneral;
     opacity: 0;
 }
 
@@ -105,7 +105,7 @@
 
 .description-text-container p {
     font-size: 1rem;
-    color: var(--mainColor);
+    color: $mainColor;
 }
 
 .element-column-container {

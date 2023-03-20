@@ -10,6 +10,7 @@
 img {
     width: 100%;
     height: 100%;
+    object-fit: cover;
 }
 
 ul {
@@ -34,7 +35,7 @@ ul {
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: var(--secondaryBackgroundColor);
+    background-color: $secondaryBackgroundColor;
     border-radius: 20px;
 }
 
@@ -62,7 +63,7 @@ body {
 
 .header-section .navbar-container ul li a{
     font-size: 1rem;
-    color: var(--mainColor);
+    color: $mainColor;
     opacity: 50%;
     transition: 0.5s;
     font-weight: 500;
@@ -85,7 +86,7 @@ body {
     background-color: var(--tertiaryBackgroundColor);
     color: white;
     border: none;
-    border-radius: var(--borderButton);
+    border-radius: $borderButton;
     padding: 8px 35px;
     cursor: pointer;
     transition: 0.5s;
@@ -114,7 +115,7 @@ body {
 .maintext-slider-container > .title-maintext-container > h2{
     font-size: 5.2rem;
     text-align: center;
-    color: var(--mainColor);
+    color: $mainColor;
     font-weight: 600;
 }
 
@@ -126,7 +127,7 @@ body {
 .maintext-slider-container > .description-maintext-container > p {
     text-align: center;
     font-size: 1.5rem;
-    color: var(--secondaryColor);
+    color: $secondaryColor;
     line-height: 40px;
     font-weight: 300;
 }
@@ -140,7 +141,7 @@ body {
     padding: 17px 80px;
     font-size: 1.7rem;
     font-weight: 500;
-    background-color: var(--secondaryBackgroundColor);
+    background-color: $secondaryBackgroundColor;
     color: white;
     border: none;
     border-radius: 50px;
@@ -184,7 +185,7 @@ body {
     align-items: center;
     padding: 10vh 20%;
     gap: 1rem;
-    margin-bottom: var(--marginBottomGeneral);
+    margin-bottom: $marginButtonGeneral;
     background-color: hsl(0, 3%, 93%);
     opacity: 0;
 }
@@ -220,13 +221,13 @@ body {
 
 .maintext-featured-container .title-maintext-container h2{
     font-size: 3rem;
-    color: var(--mainColor);
+    color: $mainColor;
 }
 
 .maintext-featured-container .description-maintext-container p{
     padding: 0 10%;
     font-size: 1.2rem;
-    color: var(--mainColor);
+    color: $mainColor;
     text-align: center;
 }
 
@@ -250,11 +251,11 @@ body {
 
 .text-card-container h3 {
     font-size: 1.5rem;
-    color: var(--mainColor);
+    color: $mainColor;
 }
 
 .text-card-container p {
-    color: var(--mainColor);
+    color: $mainColor;
 }
 
 /* DETAILS SECTION STYLE */
@@ -263,7 +264,7 @@ body {
     display: flex;
     justify-content: center;
     gap: 1%;
-    margin-bottom: var(--marginBottomGeneral);
+    margin-bottom: $marginButtonGeneral;
     opacity: 0;
 }
 
@@ -285,7 +286,7 @@ body {
 
 .description-text-container p {
     font-size: 1rem;
-    color: var(--mainColor);
+    color: $mainColor;
 }
 
 .element-column-container {
@@ -323,8 +324,8 @@ body {
     flex-direction: column;
     align-items: center;
     gap: 4rem;
-    padding: var(--paddinGeneral);
-    margin-bottom: var(--marginBottomGeneral);
+    padding: $paddingGeneral;
+    margin-bottom: $marginButtonGeneral;
 }
 
 .faq-section .faq-main {
@@ -335,13 +336,13 @@ body {
 
 .faq-section .faq-main .main-title h2{
     font-size: 3rem;
-    color: var(--mainColor);
+    color: $mainColor;
 }
 
 .faq-section .faq-main .main-description p {
     padding: 0 10%;
     font-size: 1.2rem;
-    color: var(--mainColor);
+    color: $mainColor;
     text-align: center;
 }
 
@@ -369,7 +370,7 @@ body {
 .faq-section .faq-content .faq-item .faq-question::after {
     content: "";
     height: 1px;
-    background-color: var(--secondaryColor);
+    background-color: $secondaryColor;
     width: 100%;
     position:  absolute;
     bottom: 0;
@@ -377,7 +378,7 @@ body {
 
 .faq-section .faq-content .faq-item .faq-question h6{
     font-size: 1.5rem;
-    color: var(--mainColor);
+    color: $mainColor;
 }
 
 .faq-section .faq-content .faq-item .faq-question .button-question {
@@ -397,7 +398,7 @@ body {
 }
 
 .faq-section .faq-content .faq-item .faq-answer p{
-    color: var(--secondaryColor);
+    color: $secondaryColor;
     font-size: 1rem;
 }
 
@@ -463,12 +464,12 @@ body {
 
 .maintext-team-container h2 {
     font-size: 3rem;
-    color: var(--mainColor);
+    color: $mainColor;
 }
 
 .maintext-team-container p {
     font-size: 1.2rem;
-    color: var(--mainColor);
+    color: $mainColor;
     text-align: center;
     padding: 0 10%;
 }
@@ -609,7 +610,7 @@ body {
 .button-contact-container button {
     width: 100%;
     height: 100%;
-    background-color: var(--secondaryBackgroundColor);
+    background-color: $secondaryBackgroundColor;
     color: white;
     border: none;
     font-weight: 600;
@@ -620,7 +621,7 @@ body {
 }
 
 .button-contact-container button:hover {
-    background-color: var(--hoverButton);
+    background-color: $hoverButton;
 }
 
 .back {
@@ -669,7 +670,7 @@ body {
 .back button {
     width: 100%;
     height: 100%;
-    background-color: var(--secondaryBackgroundColor);
+    background-color: $secondaryBackgroundColor;
     color: white;
     border: none;
     font-weight: 600;
@@ -680,7 +681,7 @@ body {
 }
 
 .back button:hover {
-    background-color: var(--hoverButton);  
+    background-color: $hoverButton;  
 }
 /* FOOTER SECTION STYLE */
 
@@ -726,7 +727,7 @@ body {
 }
 
 .footer-section .information-footer-container ul li a{
-    color: var(--mainColor);
+    color: $mainColor;
     opacity: 50%;
     font-size: 1rem;
 }
@@ -811,20 +812,20 @@ body {
     content: "";
     width: 100%;
     height: 1px;
-    background-color: var(--secondaryColor);
+    background-color: $secondaryColor;
     opacity: 0.2;
     margin-top: 8%;
 }
 
 .checkout-section .checkout .details-checkout .checkout-part1 .title .car-name p {
     font-size: 1.2rem;
-    color: var(--secondaryColor);
+    color: $secondaryColor;
 }
 
 .checkout-section .checkout .details-checkout .checkout-part1 .title .car-edition p {
     font-size: 2rem;
     font-weight: 700;
-    color: var(--mainColor);
+    color: $mainColor;
 }
 
 .checkout-section .checkout .details-checkout .checkout-part1 .title .car-model p{
@@ -845,13 +846,13 @@ body {
 
 .checkout-section .checkout-part1 .car-facture .car-price .old-price {
     text-decoration:line-through;
-    color: var(--secondaryColor);
+    color: $secondaryColor;
 }
 
 .checkout-section .checkout-part1 .car-facture .car-price .new-price {
     font-size: 1.7rem;
     font-weight: 600;
-    color: var(--secondaryBackgroundColor);
+    color: $secondaryBackgroundColor;
 }
 
 .checkout-section .checkout-part1 .car-facture .offer-tag {
@@ -875,14 +876,14 @@ body {
     content: "";
     width: 100%;
     height: 1px;
-    background-color: var(--secondaryColor);
+    background-color: $secondaryColor;
     opacity: 0.2;
     margin-top: 8%;
 }
 
 .checkout-section .checkout-part1 .description p {
     font-size: 1rem;
-    color: var(--secondaryColor);
+    color: $secondaryColor;
 }
 
 .checkout-section .details-checkout .checkout-part1 .color-car {
@@ -948,7 +949,7 @@ body {
 .checkout-section .checkout-part1 .checkout-button button {
     width: 100%;
     height: 100%;
-    background-color: var(--secondaryBackgroundColor);
+    background-color: $secondaryBackgroundColor;
     color: white;
     border: none;
     border-radius: 5px;
@@ -1051,7 +1052,7 @@ background-color: hsl(204, 15%,26%);
 }
 
 .checkout-section  .checkout-part2 form button {
-    background-color: var(--secondaryBackgroundColor);
+    background-color: $secondaryBackgroundColor;
     color: white;
     border: none;
     height: 15%;

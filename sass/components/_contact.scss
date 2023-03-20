@@ -86,7 +86,7 @@
 .button-contact-container button {
     width: 100%;
     height: 100%;
-    background-color: var(--secondaryBackgroundColor);
+    background-color: $secondaryBackgroundColor;
     color: white;
     border: none;
     font-weight: 600;
@@ -97,7 +97,7 @@
 }
 
 .button-contact-container button:hover {
-    background-color: var(--hoverButton);
+    background-color: $hoverButton;
 }
 
 .back {
@@ -146,7 +146,7 @@
 .back button {
     width: 100%;
     height: 100%;
-    background-color: var(--secondaryBackgroundColor);
+    background-color: $secondaryBackgroundColor;
     color: white;
     border: none;
     font-weight: 600;
@@ -157,7 +157,7 @@
 }
 
 .back button:hover {
-    background-color: var(--hoverButton);  
+    background-color: $hoverButton;  
 }
 @keyframes fadeCheckoutPart1 {
     from {
