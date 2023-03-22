@@ -49,6 +49,7 @@ function showCheckoutBox() {
     detailsCheckout.style.left = "50%"
     checkoutPart1.style.animation = ""
     checkoutPart2.style.animation = ""
+    console.log("hola")
 }
 function hideCheckoutButton() {
     checkoutBox.style.display = "none"
