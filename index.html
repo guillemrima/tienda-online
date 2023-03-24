@@ -13,7 +13,7 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-        <script type="module" src="./index.js" defer></script>
+        <script type="module" src="./js/app.js" defer></script>
 
     </head>
     <body>
@@ -44,7 +44,7 @@
                 </ul>
             </nav>
             <div class="checkout-container">
-                <a href="#slider"><button type="button" id="checkoutButtonHeader">BUY IT NOW</button></a>
+                <a href="#slider"><button type="button" class="button-show-modal" id="checkoutButtonHeader">BUY IT NOW</button></a>
             </div>
         </header>
 
@@ -59,7 +59,7 @@
                 </div>
             </div>
             <div class="button-slider-container">
-                <button type="button" id="checkoutButtonSlider">HAZTE CON EL TUYO</button>
+                <button type="button" class="button-show-modal" id="checkoutButtonSlider">HAZTE CON EL TUYO</button>
             </div>
             <div class="image-slider-container">
                 <img src="./assets/product.png" alt="product-image">
@@ -613,7 +613,7 @@
                         </form>
                     </div>
                 </div>  
-                <div class="close-button" id="closeButton">
+                <div class="close-button button-close-modal" id="closeButton">
                     <img src="./assets/icon/close.svg" />
                 </div>            
             </div>

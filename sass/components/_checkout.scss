@@ -48,10 +48,12 @@
     display: flex;
     flex-direction: column;
     position: relative;
+    justify-content: space-between;
 }
 
 .checkout-section .checkout .details-checkout .checkout-part2 {
     width: 50%;
+
 }
 
 
@@ -59,7 +61,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    margin-bottom: 8%;
+
 }
 
 .checkout-section .checkout .details-checkout .checkout-part1 .title::after {
@@ -123,7 +125,7 @@
 .checkout-section .checkout-part1 .description {
     display: flex;
     flex-direction: column;
-    margin-bottom: 8%;
+
 }
 
 .checkout-section .checkout-part1 .description::after {
@@ -273,7 +275,7 @@ background-color: hsl(204, 15%,26%);
 .checkout-section  .checkout-part2 form input {
     border: 1px solid rgba(232,238,242,255);
     background-color: rgba(248,251,253,255);
-    padding: 10px 10px;
+    padding: 15px 10px;
     font-size: 1rem;
     width: 100%;
 }
@@ -319,6 +321,13 @@ background-color: hsl(204, 15%,26%);
 
 .checkout-section  .checkout-part2 form button:hover {
     background-color: hsl(204, 15%,26%);
+}
+
+.checkout-section.active {
+display : flex;
+animation : fadeIn 0.2s ease-in;
+z-index: 999;
+left : 0%;
 }
 
 @keyframes fadeCheckoutPart1 {

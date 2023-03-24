@@ -1,7 +1,9 @@
+import './js/app.js';
+
 //SECTION FAQ FUNCTIONALITY
 const buttonsQuestion = document.querySelectorAll(".button-question")
 const answerFAQ = document.querySelectorAll(".faq-answer")
-function showAnswer(event) {
+function showOrHideAnswer(event) {
     for (let i = 0; i < answerFAQ.length; i++){
         if (buttonsQuestion[i].getAttribute("value") === "false") {
          
@@ -22,9 +24,8 @@ function showAnswer(event) {
     }
 }
 buttonsQuestion.forEach(buttonQuestion => {
-    buttonQuestion.addEventListener("click", showAnswer)
+    buttonQuestion.addEventListener("click", showOrHideAnswer)
 })
-
 
 
 
