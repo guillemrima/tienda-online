@@ -286,7 +286,6 @@ video {
   gap: 1rem;
   margin-bottom: 10vh;
   background-color: hsl(0, 3%, 93%);
-  opacity: 0;
 }
 
 .installation-featured-container {
@@ -450,7 +449,7 @@ video {
   justify-content: center;
   gap: 1%;
   margin-bottom: 100px;
-  opacity: 0;
+  opacity: 1;
 }
 
 .column-details-container {
