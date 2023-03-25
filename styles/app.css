@@ -225,6 +225,20 @@ video {
   max-width: 40%;
   position: absolute;
   bottom: 0;
+  visibility: visible;
+  opacity: 1;
+  animation-delay: 0s;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+  animation-name: fadeIn;
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .image-slider-container > img {
@@ -286,6 +300,7 @@ video {
   gap: 1rem;
   margin-bottom: 10vh;
   background-color: hsl(0, 3%, 93%);
+  padding-top: 20vh;
 }
 
 .installation-featured-container {
@@ -450,6 +465,7 @@ video {
   gap: 1%;
   margin-bottom: 100px;
   opacity: 1;
+  padding-top: 15vh;
 }
 
 .column-details-container {
@@ -497,7 +513,7 @@ video {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  transform: scale(400%);
+  transform: scale(300%);
 }
 
 @keyframes fadeCheckoutPart1 {
@@ -539,6 +555,7 @@ video {
   gap: 4rem;
   padding: 0 20%;
   margin-bottom: 10vh;
+  padding-top: 15vh;
 }
 
 .faq-section .faq-main {
@@ -653,7 +670,7 @@ video {
   align-items: center;
   gap: 5rem;
   background-color: hsl(0, 0%, 94%);
-  padding: 10vh 10%;
+  padding: 15vh 10%;
 }
 
 .team-section .teamcard-team-container .card-teamcard-container .expand-card-container {
@@ -983,7 +1000,7 @@ video {
     opacity: 0;
   }
 }
-.checkout-section {
+.modal-section {
   position: fixed;
   width: 100%;
   height: 90vh;
@@ -994,7 +1011,14 @@ video {
   z-index: -999;
 }
 
-.checkout-section .checkout {
+.modal-section::after {
+  content: "";
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+}
+
+.modal-section .modal {
   background-color: rgb(93, 93, 93);
   width: 60rem;
   height: 65vh;
@@ -1006,18 +1030,18 @@ video {
   overflow: hidden;
 }
 
-.checkout-section .checkout .image-carrousel {
+.modal-section .modal .image-carrousel {
   background-color: rgb(255, 255, 255);
   width: 50%;
   height: 100%;
   z-index: 998;
 }
 
-.checkout-section .checkout .image-carrousel img {
+.modal-section .modal .image-carrousel img {
   object-fit: cover;
 }
 
-.checkout-section .checkout .details-checkout {
+.details-modal {
   background-color: rgb(255, 255, 255);
   width: 100%;
   height: 65vh;
@@ -1025,9 +1049,10 @@ video {
   display: flex;
   z-index: 997;
   left: 50%;
+  transition: 0.5s;
 }
 
-.checkout-section .checkout .details-checkout .checkout-part1 {
+.modal-section .modal .details-modal .modal-part1 {
   width: 50%;
   padding: 5% 5%;
   display: flex;
@@ -1036,17 +1061,17 @@ video {
   justify-content: space-between;
 }
 
-.checkout-section .checkout .details-checkout .checkout-part2 {
+.modal-section .modal .details-modal .modal-part2 {
   width: 50%;
 }
 
-.checkout-section .checkout .details-checkout .checkout-part1 .title {
+.modal-section .modal .details-modal .modal-part1 .title {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
 
-.checkout-section .checkout .details-checkout .checkout-part1 .title::after {
+.modal-section .modal .details-modal .modal-part1 .title::after {
   content: "";
   width: 100%;
   height: 1px;
@@ -1055,60 +1080,60 @@ video {
   margin-top: 8%;
 }
 
-.checkout-section .checkout .details-checkout .checkout-part1 .title .car-name p {
+.modal-section .modal .details-modal .modal-part1 .title .car-name p {
   font-size: 1.2rem;
   color: hsl(0, 0%, 55%);
 }
 
-.checkout-section .checkout .details-checkout .checkout-part1 .title .car-edition p {
+.modal-section .modal .details-modal .modal-part1 .title .car-edition p {
   font-size: 2rem;
   font-weight: 700;
   color: hsl(0, 0%, 25%);
 }
 
-.checkout-section .checkout .details-checkout .checkout-part1 .title .car-model p {
+.modal-section .modal .details-modal .modal-part1 .title .car-model p {
   font-size: 0.9rem;
   color: hsl(0, 0%, 71%);
 }
 
-.checkout-section .checkout .details-checkout .checkout-part1 .title .car-facture {
+.modal-section .modal .details-modal .modal-part1 .title .car-facture {
   display: flex;
   align-items: center;
   gap: 1rem;
 }
 
-.checkout-section .checkout .details-checkout .checkout-part1 .title .car-facture .car-price p {
+.modal-section .modal .details-modal .modal-part1 .title .car-facture .car-price p {
   font-size: 1.2rem;
 }
 
-.checkout-section .checkout-part1 .car-facture .car-price .old-price {
+.modal-section .modal-part1 .car-facture .car-price .old-price {
   text-decoration: line-through;
   color: hsl(0, 0%, 55%);
 }
 
-.checkout-section .checkout-part1 .car-facture .car-price .new-price {
+.modal-section .modal-part1 .car-facture .car-price .new-price {
   font-size: 1.7rem;
   font-weight: 600;
   color: hsl(209, 100%, 50%);
 }
 
-.checkout-section .checkout-part1 .car-facture .offer-tag {
+.modal-section .modal-part1 .car-facture .offer-tag {
   background-color: hsl(18, 100%, 57%);
   padding: 1px 15px;
   border-radius: 4px;
 }
 
-.checkout-section .checkout-part1 .car-facture .offer-tag p {
+.modal-section .modal-part1 .car-facture .offer-tag p {
   color: white;
   font-size: 0.7rem;
 }
 
-.checkout-section .checkout-part1 .description {
+.modal-section .modal-part1 .description {
   display: flex;
   flex-direction: column;
 }
 
-.checkout-section .checkout-part1 .description::after {
+.modal-section .modal-part1 .description::after {
   content: "";
   width: 100%;
   height: 1px;
@@ -1117,23 +1142,23 @@ video {
   margin-top: 8%;
 }
 
-.checkout-section .checkout-part1 .description p {
+.modal-section .modal-part1 .description p {
   font-size: 1rem;
   color: hsl(0, 0%, 55%);
 }
 
-.checkout-section .details-checkout .checkout-part1 .color-car {
+.modal-section .details-modal .modal-part1 .color-car {
   display: flex;
   flex-direction: column;
   margin-bottom: 8%;
 }
 
-.checkout-section .details-checkout .checkout-part1 .color-car .form-color {
+.modal-section .details-modal .modal-part1 .color-car .form-color {
   display: flex;
   gap: 0.5rem;
 }
 
-.checkout-section .details-checkout .checkout-part1 .color-car .form-color .color {
+.modal-section .details-modal .modal-part1 .color-car .form-color .color {
   width: 30px;
   height: 30px;
   display: flex;
@@ -1141,11 +1166,11 @@ video {
   position: relative;
 }
 
-.checkout-section .details-checkout .checkout-part1 .color-car .form-color input[type=radio]:checked + div {
+.modal-section .details-modal .modal-part1 .color-car .form-color input[type=radio]:checked + div {
   border: 3px solid rgb(85, 85, 85);
 }
 
-.checkout-section .details-checkout .checkout-part1 .color-car .form-color .color input {
+.modal-section .details-modal .modal-part1 .color-car .form-color .color input {
   cursor: pointer;
   width: 100%;
   height: 100%;
@@ -1153,33 +1178,33 @@ video {
   position: absolute;
 }
 
-.checkout-section .details-checkout .checkout-part1 .color-car .form-color .color-red-outline {
+.modal-section .details-modal .modal-part1 .color-car .form-color .color-red-outline {
   width: 100%;
   height: 100%;
   border-radius: 100%;
   background-color: red;
 }
 
-.checkout-section .details-checkout .checkout-part1 .color-car .form-color .color-blue {
+.modal-section .details-modal .modal-part1 .color-car .form-color .color-blue {
   width: 100%;
   height: 100%;
   border-radius: 100%;
   background-color: rgb(52, 154, 255);
 }
 
-.checkout-section .details-checkout .checkout-part1 .color-car .form-color .color-grey {
+.modal-section .details-modal .modal-part1 .color-car .form-color .color-grey {
   width: 100%;
   height: 100%;
   border-radius: 100%;
   background-color: rgb(148, 148, 148);
 }
 
-.checkout-section .checkout-part1 .checkout-button {
+.modal-section .modal-part1 .modal-button {
   width: 100%;
   height: 8vh;
 }
 
-.checkout-section .checkout-part1 .checkout-button button {
+.modal-section .modal-part1 .modal-button button {
   width: 100%;
   height: 100%;
   background-color: hsl(209, 100%, 50%);
@@ -1192,7 +1217,7 @@ video {
   cursor: pointer;
 }
 
-.checkout-section .checkout-part1 .checkout-button button:hover {
+.modal-section .modal-part1 .modal-button button:hover {
   background-color: hsl(204, 15%, 26%);
 }
 
@@ -1212,7 +1237,7 @@ video {
   filter: invert(0.5) sepia(1) saturate(40) hue-rotate(10deg);
 }
 
-.checkout-section .checkout-part2 {
+.modal-section .modal-part2 {
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -1224,7 +1249,7 @@ video {
   gap: 2rem;
 }
 
-.checkout-section .checkout-part2 .back-button button {
+.modal-section .modal-part2 .back-button button {
   border: 1px solid hsl(0, 0%, 80%);
   background-color: transparent;
   color: hsl(0, 0%, 80%);
@@ -1235,12 +1260,12 @@ video {
   transition: 0.5s;
 }
 
-.checkout-section .checkout-part2 .back-button button:hover {
+.modal-section .modal-part2 .back-button button:hover {
   background-color: rgb(55, 64, 72);
   color: white;
 }
 
-.checkout-section .checkout-part2 form {
+.modal-section .modal-part2 form {
   width: 100%;
   height: 100%;
   display: flex;
@@ -1248,7 +1273,7 @@ video {
   justify-content: space-between;
 }
 
-.checkout-section .checkout-part2 form input {
+.modal-section .modal-part2 form input {
   border: 1px solid rgb(232, 238, 242);
   background-color: rgb(248, 251, 253);
   padding: 15px 10px;
@@ -1256,27 +1281,27 @@ video {
   width: 100%;
 }
 
-.checkout-section .checkout-part2 form input::placeholder {
+.modal-section .modal-part2 form input::placeholder {
   color: rgb(203, 212, 217);
 }
 
-.checkout-section .checkout-part2 form .nombre {
+.modal-section .modal-part2 form .nombre {
   display: flex;
   gap: 2rem;
 }
 
-.checkout-section .checkout-part2 form .direccion {
+.modal-section .modal-part2 form .direccion {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
 }
 
-.checkout-section .checkout-part2 form .provincia {
+.modal-section .modal-part2 form .provincia {
   display: flex;
   gap: 2rem;
 }
 
-.checkout-section .checkout-part2 form .pais select {
+.modal-section .modal-part2 form .pais select {
   border: 1px solid rgb(232, 238, 242);
   background-color: rgb(248, 251, 253);
   padding: 10px 10px;
@@ -1284,7 +1309,7 @@ video {
   width: 100%;
 }
 
-.checkout-section .checkout-part2 form button {
+.modal-section .modal-part2 form button {
   background-color: hsl(209, 100%, 50%);
   color: white;
   border: none;
@@ -1296,47 +1321,97 @@ video {
   transition: 0.5s;
 }
 
-.checkout-section .checkout-part2 form button:hover {
+.modal-section .modal-part2 form button:hover {
   background-color: hsl(204, 15%, 26%);
 }
 
-.checkout-section.active {
+.modal-section.active {
+  visibility: visible;
+  opacity: 1;
+  animation-delay: 0s;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+  animation-name: fadeIn;
   display: flex;
-  animation: fadeIn 0.2s ease-in;
   z-index: 999;
+  backdrop-filter: blur(5px) grayscale(100%);
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.details-modal.active {
   left: 0%;
 }
 
-@keyframes fadeCheckoutPart1 {
-  from {
-    left: 50%;
-  }
-  to {
-    left: 0%;
-  }
-}
-@keyframes fadeCheckoutPart2 {
-  from {
-    left: 0%;
-  }
-  to {
-    left: 50%;
-  }
-}
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+.modal-part1.fadeOut {
+  opacity: 1;
+  animation-delay: 0s;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+  animation-name: fadeOut;
 }
 @keyframes fadeOut {
-  from {
+  0% {
     opacity: 1;
   }
-  to {
+  100% {
     opacity: 0;
+  }
+}
+
+.modal-part2.fadeOut {
+  opacity: 1;
+  animation-delay: 0s;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+  animation-name: fadeOut;
+}
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.modal-part1.fadeIn {
+  visibility: visible;
+  opacity: 1;
+  animation-delay: 0s;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-name: fadeIn;
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.modal-part2.fadeIn {
+  visibility: visible;
+  opacity: 1;
+  animation-delay: 0s;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-name: fadeIn;
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
 
