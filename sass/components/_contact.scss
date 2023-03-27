@@ -49,9 +49,14 @@
 
 }
 
-.card .back {
-    transform: perspective(1000px) rotateZ(0deg);
+.card-contact-container.active .front {
+    transform: perspective(1000px) rotateY(180deg);
 }
+
+.card-contact-container.active .back {
+    transform: perspective(1000px) rotateY(360deg);
+}
+
 
 .card-contact-container .icon-contact-container {
     width: 2rem;
@@ -159,41 +164,4 @@
 .back button:hover {
     background-color: $hoverButton;  
 }
-@keyframes fadeCheckoutPart1 {
-    from {
-        left: 50%;
-    }
-    to {
-        left: 0%;
-    }
-}
 
-@keyframes fadeCheckoutPart2 {
-    from {
-        left: 0%;
-    }
-    to {
-        left: 50%;
-    }
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }  
-
-    to{
-        opacity: 1;
-    }
-}
-
-
-@keyframes fadeOut {
-    from {
-        opacity: 1;
-    }  
-
-    to{
-        opacity: 0;
-    }
-}

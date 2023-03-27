@@ -4,8 +4,7 @@
     align-items: center;
     gap: 4rem;
     padding: $paddingGeneral;
-    margin-bottom: $marginButtonGeneral;
-    padding-top: 15vh;
+    margin-bottom: $marginButtonGeneral;;
 }
 
 .faq-section .faq-main {
@@ -81,41 +80,8 @@
     color: $secondaryColor;
     font-size: 1rem;
 }
-@keyframes fadeCheckoutPart1 {
-    from {
-        left: 50%;
-    }
-    to {
-        left: 0%;
-    }
-}
 
-@keyframes fadeCheckoutPart2 {
-    from {
-        left: 0%;
-    }
-    to {
-        left: 50%;
-    }
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }  
-
-    to{
-        opacity: 1;
-    }
-}
-
-
-@keyframes fadeOut {
-    from {
-        opacity: 1;
-    }  
-
-    to{
-        opacity: 0;
-    }
+.faq-section .faq-content .faq-item .faq-answer.active{
+    display: flex;
+    @include fadeIn(0s, 1s);
 }

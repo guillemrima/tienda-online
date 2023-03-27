@@ -223,6 +223,7 @@ video {
 
 .slider-section .image-slider-container {
   max-width: 40%;
+  min-width: 40%;
   position: absolute;
   bottom: 0;
   visibility: visible;
@@ -300,7 +301,6 @@ video {
   gap: 1rem;
   margin-bottom: 10vh;
   background-color: hsl(0, 3%, 93%);
-  padding-top: 20vh;
 }
 
 .installation-featured-container {
@@ -465,7 +465,6 @@ video {
   gap: 1%;
   margin-bottom: 100px;
   opacity: 1;
-  padding-top: 15vh;
 }
 
 .column-details-container {
@@ -555,7 +554,6 @@ video {
   gap: 4rem;
   padding: 0 20%;
   margin-bottom: 10vh;
-  padding-top: 15vh;
 }
 
 .faq-section .faq-main {
@@ -632,38 +630,24 @@ video {
   font-size: 1rem;
 }
 
-@keyframes fadeCheckoutPart1 {
-  from {
-    left: 50%;
-  }
-  to {
-    left: 0%;
-  }
-}
-@keyframes fadeCheckoutPart2 {
-  from {
-    left: 0%;
-  }
-  to {
-    left: 50%;
-  }
+.faq-section .faq-content .faq-item .faq-answer.active {
+  display: flex;
+  visibility: visible;
+  opacity: 1;
+  animation-delay: 0s;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-name: fadeIn;
 }
 @keyframes fadeIn {
-  from {
+  0% {
     opacity: 0;
   }
-  to {
+  100% {
     opacity: 1;
   }
 }
-@keyframes fadeOut {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
+
 .team-section {
   display: flex;
   flex-direction: column;
@@ -677,19 +661,15 @@ video {
   position: absolute;
   right: 0;
   margin: 20px;
-  width: 30px;
+  width: 2rem;
   min-height: 15vh;
   border-radius: 20px;
   overflow: hidden;
 }
 
-.expand-card-container:hover .expanded-card-container {
-  transform: translateY(15vh);
-}
-
 .team-section .expand-card-container .contracted-card-container {
-  width: 30px;
-  height: 30px;
+  width: 2rem;
+  height: 2rem;
   background-color: white;
   border-radius: 100%;
   cursor: pointer;
@@ -705,15 +685,20 @@ video {
   padding-top: 100%;
   background-color: white;
   top: -100%;
-  transition: all 1s;
+  transition: all 0.5s ease-in-out;
+}
+
+.team-section .expand-card-container .expanded-card-container.active {
+  top: 0;
 }
 
 .expanded-card-container img {
-  transform: scale(70%);
+  transform: scale(65%);
+  cursor: pointer;
 }
 
 .team-section .contracted-card-container img {
-  transform: scale(70%);
+  transform: scale(60%);
 }
 
 .team-section .maintext-team-container {
@@ -778,38 +763,6 @@ video {
   font-size: 0.8rem;
 }
 
-@keyframes fadeCheckoutPart1 {
-  from {
-    left: 50%;
-  }
-  to {
-    left: 0%;
-  }
-}
-@keyframes fadeCheckoutPart2 {
-  from {
-    left: 0%;
-  }
-  to {
-    left: 50%;
-  }
-}
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-@keyframes fadeOut {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
 .contact-section {
   display: flex;
   justify-content: center;
@@ -859,8 +812,12 @@ video {
   transform: perspective(1000px) rotateY(180deg);
 }
 
-.card .back {
-  transform: perspective(1000px) rotateZ(0deg);
+.card-contact-container.active .front {
+  transform: perspective(1000px) rotateY(180deg);
+}
+
+.card-contact-container.active .back {
+  transform: perspective(1000px) rotateY(360deg);
 }
 
 .card-contact-container .icon-contact-container {
@@ -968,38 +925,6 @@ video {
   background-color: hsl(204, 15%, 26%);
 }
 
-@keyframes fadeCheckoutPart1 {
-  from {
-    left: 50%;
-  }
-  to {
-    left: 0%;
-  }
-}
-@keyframes fadeCheckoutPart2 {
-  from {
-    left: 0%;
-  }
-  to {
-    left: 50%;
-  }
-}
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-@keyframes fadeOut {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
 .modal-section {
   position: fixed;
   width: 100%;
