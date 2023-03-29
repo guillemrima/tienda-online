@@ -5,6 +5,7 @@ export const openModal = () => {
     modalButtonsOpen.forEach((modalButtonOpen) => {
         modalButtonOpen.addEventListener("click", () => {
             modal.classList.add("active")
+            modalButtonOpen.closest("body").classList.add("blocked")
         })
     })
 }
@@ -21,6 +22,7 @@ export const closeModal = () => {
         modalPart1.classList.remove("fadeOut")
         modalPart2.classList.remove("fadeOut");
         modalPart1.classList.remove("fadeIn")
+        modalButtonClose.closest("body").classList.remove("blocked")
     })
 }
 
@@ -52,5 +54,16 @@ export const quitCheckoutSectionModal = () => {
         modalPart1.classList.add("fadeIn")
         modalPart2.classList.remove("fadeIn");
         modalPart1.classList.remove("fadeOut")
+    })
+}
+
+export const setCarrouselImages = () => {
+    let counter = 0;
+    const carrouselImages = document.querySelectorAll("#carrousel-container img");
+    const modalButtonsOpen = document.querySelectorAll(".button-show-modal");
+    modalButtonsOpen.forEach((modalButtonOpen) => {
+        modalButtonOpen.addEventListener("click", () => {
+            console.log(carrouselImages);
+        })
     })
 }

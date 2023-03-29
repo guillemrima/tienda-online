@@ -60,7 +60,6 @@
     min-width: 40%;
     position: absolute;
     bottom: 0;
-    @include fadeIn(0s, 2s)
 }
 
 .image-slider-container > img {

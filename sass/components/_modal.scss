@@ -36,9 +36,13 @@
 }
 
 .modal-section .modal .image-carrousel img {
+    display: none;
     object-fit: cover;
 }
 
+.modal-section .modal .image-carrousel img[class="active"] {
+    display: flex;
+}
 
 .details-modal {
     background-color: rgb(255, 255, 255);
@@ -153,27 +157,42 @@
 .modal-section .details-modal .modal-part1 .color-car {
     display: flex;
     flex-direction: column;
+    gap: 1rem;
     margin-bottom: 8%;
 }
 
-
+.modal-section .details-modal .modal-part1 .color-car p {
+    color: $secondaryColor;
+}
 
 .modal-section .details-modal .modal-part1 .color-car .form-color {
     display: flex;
+    width: 100%;
+    height: 10vh;
     gap: 0.5rem;
 }
 
 .modal-section .details-modal .modal-part1 .color-car .form-color .color {
 
-    width: 30px;
-    height: 30px;
+    width: 100%;
+    height: 100%;
     display: flex;
     justify-content: center;
     position: relative;
 }
 
-.modal-section .details-modal .modal-part1 .color-car .form-color input[type="radio"]:checked + div{
-    border: 3px solid rgb(85, 85, 85);
+.modal-section .details-modal .modal-part1 .color-car .form-color .color .car-image {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    transition: 0.5s;
+}
+
+.modal-section .details-modal .modal-part1 .color-car .form-color .color .car-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: 0.5s;
 }
 
 .modal-section .details-modal .modal-part1 .color-car .form-color .color input {
@@ -184,27 +203,13 @@
     position: absolute;
 }
 
-.modal-section .details-modal .modal-part1 .color-car .form-color .color-red-outline {
-    width: 100%;
-    height: 100%;
-    border-radius: 100%;
-    background-color: red;
+.modal-section .details-modal .modal-part1 .color-car .form-color input[type="radio"]:checked + div{
+    box-shadow: inset 5px 5px 10px #d5d5d5,
+    inset -5px -5px 10px #ebebeb;
 }
-
-.modal-section .details-modal .modal-part1 .color-car .form-color .color-blue {
-    width: 100%;
-    height: 100%;
-    border-radius: 100%;
-    background-color: rgb(52, 154, 255);
+.modal-section .details-modal .modal-part1 .color-car .form-color input[type="radio"]:checked +  .car-image img{
+    transform: scale(110%);
 }
-
-.modal-section .details-modal .modal-part1 .color-car .form-color .color-grey {
-    width: 100%;
-    height: 100%;
-    border-radius: 100%;
-    background-color: rgb(148, 148, 148);
-}
-
 .modal-section .modal-part1 .modal-button {
     width: 100%;
     height: 8vh

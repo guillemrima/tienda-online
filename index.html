@@ -325,7 +325,7 @@
                     </div>
                     <div class="expand-card-container">
                         <div class="contracted-card-container">
-                            <img src="./assets//icon/menu.svg" />                
+                            <img src="./assets/icon/menu.svg" />                
                         </div>
                         <div class="expanded-card-container">
                             <ul>
@@ -521,8 +521,9 @@
 
         <section class="modal-section" id="modal">
             <div class="modal">
-                <div class="image-carrousel">
-                    <img src="./assets/checkout-carrousel/carrousel-2.webp" id="imagenmodal">
+                <div class="image-carrousel" id="carrousel-container">
+                    <img src="./assets/checkout-carrousel/carrousel-1.webp"class="active">
+                    <img src="./assets/checkout-carrousel/carrousel-2.webp">
                 </div>
                 <div class="details-modal" id="detailsModal">
                     <div class="modal-part1" id="modalPart1">
@@ -562,15 +563,21 @@
                             <form class="form-color">
                                 <div class="color">
                                     <input type="radio" name="color" value="red" />
-                                    <div class="color-red-outline"></div>
+                                    <div class="car-image">
+                                        <img src="./assets/car-images/car-image-red.webp" />
+                                    </div>
                                 </div>
                                 <div class="color">
                                     <input type="radio" name="color" value="blue" />
-                                    <div class="color-blue"></div>
+                                    <div class="car-image">
+                                        <img src="./assets/car-images/car-image-black.webp" />
+                                    </div>
                                 </div>
                                 <div class="color">
                                     <input type="radio" name="color" value="grey" />
-                                    <div class="color-grey"></div>
+                                    <div class="car-image">
+                                        <img src="./assets/car-images/car-image-blue.webp" />
+                                    </div>
                                 </div>
                             </form>
                         </div>
