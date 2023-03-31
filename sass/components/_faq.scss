@@ -44,7 +44,9 @@
     position: relative;
     padding-bottom: 1rem;
     margin-bottom: 1rem;
+    position: relative
 }
+
 
 .faq-section .faq-content .faq-item .faq-question::after {
     content: "";
@@ -64,8 +66,35 @@
     width: 1.5rem;
     height: 1.5rem;
     cursor: pointer;
+    position: relative;
+    display: flex;
+    justify-content: center;
 }
 
+.button-question::after {
+    content: "";
+    width: 80%;
+    height: 2px;
+    background-color: black;
+    position: absolute;
+    top: 45%;
+}
+
+.button-question::before {
+    content: "";
+    width: 80%;
+    height: 2px;
+    background-color: black;
+    position: absolute;
+    top: 45%;
+    transform: rotate(90deg) scale(100%);
+    transition: 0.3s;
+}
+
+.button-question.active::before {
+    transform: rotate(90deg) scale(0%);
+    transition: 0.4s;
+}
 .faq-section .faq-content .faq-item .faq-question .button-question img {
     width: 100%;
     height: 100%;

@@ -26,6 +26,25 @@
     cursor: pointer;
     position: absolute;
     z-index: 99;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.2rem;
+}
+
+.contracted-card-container.active .bot{
+    transform: rotate(45deg);
+    position: absolute;
+}
+
+.contracted-card-container.active .top{
+    transform: rotate(-45deg);
+    position: absolute;
+}
+
+.contracted-card-container.active .mid{
+    display: none;
 }
 
 .team-section .expand-card-container .expanded-card-container {
@@ -50,6 +69,12 @@
 
 .team-section .contracted-card-container img {
     transform: scale(60%)
+}
+
+.contracted-card-container div {
+    width: 50%;
+    border-bottom: 2px solid rgb(6, 6, 6);
+    transition: 0.5s;
 }
 
 .team-section .maintext-team-container {
