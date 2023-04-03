@@ -18,10 +18,7 @@ export const closeModal = () => {
     modalButtonClose.addEventListener("click",  () => {
         modal.classList.remove("active")
         modalInformation.classList.remove("active")
-        modalPart2.classList.remove("fadeIn");
         modalPart1.classList.remove("fadeOut")
-        modalPart2.classList.remove("fadeOut");
-        modalPart1.classList.remove("fadeIn")
         modalButtonClose.closest("body").classList.remove("blocked")
     })
 }
@@ -34,10 +31,10 @@ export const setCheckoutSectionModal = () => {
 
     checkoutButton.addEventListener("click", () => {
         modalInformation.classList.add("active");
+        modalPart1.classList.add("fadeOut");
+        modalPart1.classList .remove("fadeIn")
         modalPart2.classList.add("fadeIn");
-        modalPart1.classList.add("fadeOut")
-        modalPart2.classList.remove("fadeOut");
-        modalPart1.classList.remove("fadeIn")
+        modalPart2.classList .remove("fadeOut")
     })
 }
 
@@ -50,10 +47,10 @@ export const quitCheckoutSectionModal = () => {
 
     closeButton.addEventListener("click", () => {
         modalInformation.classList.remove("active");
+        modalPart1.classList.add("fadeIn");
+        modalPart1.classList.remove("fadeOut");
         modalPart2.classList.add("fadeOut");
-        modalPart1.classList.add("fadeIn")
         modalPart2.classList.remove("fadeIn");
-        modalPart1.classList.remove("fadeOut")
     })
 }
 

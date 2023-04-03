@@ -1,7 +1,7 @@
 .modal-section {
     position: fixed;
     width: 100%;
-    height: 90vh;
+    height: 100vh;
     bottom: 0;
     display: none;
     justify-content: center;
@@ -18,7 +18,7 @@
 
 .modal-section .modal { 
     background-color: rgb(93, 93, 93);
-    width: 60rem;
+    width: 50%;
     height: 65vh;
     display: flex;
     -webkit-box-shadow: 10px 10px 58px -6px rgba(0,0,0,0.75);
@@ -26,6 +26,7 @@
     box-shadow: 10px 10px 58px -6px rgba(0,0,0,0.75);
     position: relative;
     overflow: hidden;
+
 }
 
 .modal-section .modal .image-carrousel {
@@ -127,6 +128,9 @@
     background-color: $tertiaryBackgroundColor;
     padding: 1px 15px;
     border-radius: 4px;
+    height: 2vh;
+    display: flex;
+    align-items: center;
 }
 
 .modal-section .modal-part1 .car-facture .offer-tag p {
