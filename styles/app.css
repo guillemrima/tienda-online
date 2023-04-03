@@ -969,6 +969,44 @@ video {
   background-color: hsl(204, 15%, 26%);
 }
 
+.contact-form.submitted {
+  opacity: 1;
+  animation-delay: 0s;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-name: fadeOut;
+}
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.submitted-form {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: 2s;
+  opacity: 0;
+  z-index: -1;
+}
+
+.submitted-form svg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  fill: rgb(14, 225, 11);
+}
+
+.submitted-form.active {
+  opacity: 1;
+}
+
 .modal-section {
   position: fixed;
   width: 100%;

@@ -1,4 +1,4 @@
-export const openAndCloseHambgurger = () => {
+export const openAndCloseHamburger = () => {
     const buttonsHamburger = document.querySelectorAll('.contracted-card-container');
 
     buttonsHamburger.forEach(buttonHamburguer => {

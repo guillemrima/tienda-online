@@ -1,6 +1,6 @@
-import { openAndCloseHambgurger } from './contact.js';
+import {openAndCloseHamburger} from './team.js';
 import {openModal, closeModal, setCheckoutSectionModal, quitCheckoutSectionModal, setCarrouselImages} from'./modal.js';
-import {flipCardToFront, flipCardToBack} from './swipeable-element.js';
+import {flipCardToFront, flipCardToBack,sendForm} from './swipeable-element.js';
 import {openAndCloseFAQ} from './faq.js';
 import './slider.js';
 
@@ -13,7 +13,8 @@ setCarrouselImages();
 
 flipCardToFront();
 flipCardToBack();
+sendForm();
 
 openAndCloseFAQ();
 
-openAndCloseHambgurger();
+openAndCloseHamburger();

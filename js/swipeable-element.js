@@ -13,3 +13,23 @@ export const flipCardToBack =  (()=> {
        card.classList.remove('active');
     })
 });
+
+export const sendForm = (() => {
+    const form = document.querySelector('#contact-form');
+    const submittedForm = document.querySelector('.submitted-form');
+
+    form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        let formData = new FormData(form);
+        const res = {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                subject: formData.get('subject'),
+                message: formData.get('message')
+        }
+        console.log(res);
+        form.classList.add('submitted');
+        submittedForm.classList.add('active');
+    })
+        
+})

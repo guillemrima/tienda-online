@@ -306,14 +306,17 @@
     }
 }
 
-@mixin flipCard() {
-
-    @keyframes flipCard {
+@mixin DisplayNone($delay) {
+    animation-delay: $delay;
+    animation-name: display;
+    animation-fill-mode: forwards;
+    
+    @keyframes display {
         from {
-
+            display: flex;
         }
         to {
-            
+            display: none;
         }
     }
 }

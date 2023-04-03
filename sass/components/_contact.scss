@@ -165,3 +165,31 @@
     background-color: $hoverButton;  
 }
 
+
+.contact-form.submitted {
+    @include fadeOut(0s,1s);
+}
+
+.submitted-form {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0  ;
+    left: 0;
+    transition: 2s;
+    opacity: 0;
+    z-index: -1;
+}
+
+
+.submitted-form svg{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    fill: rgb(14, 225, 11);
+}
+
+.submitted-form.active {
+    opacity: 1;
+}
+
