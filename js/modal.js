@@ -60,7 +60,6 @@ export const setCarrouselImages = () => {
     const modalButtonsOpen = document.querySelectorAll(".button-show-modal");
     modalButtonsOpen.forEach((modalButtonOpen) => {
         modalButtonOpen.addEventListener("click", () => {
-            console.log(carrouselImages);
         })
     })
 }

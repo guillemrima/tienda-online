@@ -28,8 +28,6 @@ export const sendForm = (() => {
                 message: formData.get('message')
         }
         console.log(res);
-        form.classList.add('submitted');
-        submittedForm.classList.add('active');
     })
         
 })

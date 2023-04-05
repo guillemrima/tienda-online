@@ -452,9 +452,9 @@
                     <div class="close-button flip-card-back-button" id="buttonBack">
                         <img src="./assets/icon/close.svg" />
                     </div>
-                    <div class="submitted-form" id="submitted-form">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12S6.5 22 12 22 22 17.5 22 12 17.5 2 12 2M10 17L5 12L6.41 10.59L10 14.17L17.59 6.58L19 8L10 17Z" /></svg>                    </div>
-                </div>
+                    <div class="submitted-form">
+                        
+                    </div>
             </div>
             
         </section>
@@ -560,33 +560,40 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="description">
-                            <p>El nuevo modelo de coche 4x4 cuenta con una potente suspensión, tracción en las cuatro ruedas y un diseño deportivo y elegante.</p>
-                        </div>
-                        <div class="color-car">
-                            <div class="title-color">
-                                <p>Acabados disponibles:</p>
+                        <div class="tab-modal" id="tabModal">
+                            <div class="tabs">
+                                <div class="tab">
+                                    <p>Descripción</p>
+                                </div>
+                                <div class="tab">
+                                    <p>Seguro</p>                                        
+                                </div>
+                                <div class="tab">
+                                    <p>Financiación</p>
+                                </div>
+                                <div class="tab">
+                                    <p>Entrega</p>
+                                </div>
                             </div>
-                            <form class="form-color">
-                                <div class="color">
-                                    <input type="radio" name="color" value="red" />
-                                    <div class="car-image">
-                                        <img src="./assets/car-images/car-image-red.webp" />
-                                    </div>
+                            <div class="tab-content">
+                                <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio ipsam omnis, animi totam eius iure beatae quod minima repellendus expedita odit perspiciatis nam nisi id unde ipsum? Aperiam, saepe maiores?</p>
+                            </div>
+                        </div>
+                        <div class="amount-product" id="amount-product">
+                            <div class="amount-description">
+                                <p>Seleciona una cantidad de coches 🤑</p>
+                            </div>
+                            <div class="amount-input">
+                                <div class="minus-amount button-amount-container">
+                                    <button class="minus button-amount" type="button" id="minus-amount" data-action = "minus">-</button>
                                 </div>
-                                <div class="color">
-                                    <input type="radio" name="color" value="blue" />
-                                    <div class="car-image">
-                                        <img src="./assets/car-images/car-image-black.webp" />
-                                    </div>
+                                <div class="input-amount">
+                                    <input type="number" id="inputAmount" value="1" /> 
                                 </div>
-                                <div class="color">
-                                    <input type="radio" name="color" value="grey" />
-                                    <div class="car-image">
-                                        <img src="./assets/car-images/car-image-blue.webp" />
-                                    </div>
+                                <div class="plus-amount button-amount-container">
+                                    <button class="plus button-amount" type="button" id="plus-amount" data-action = "plus">+</button>
                                 </div>
-                            </form>
+                            </div>
                         </div>
                         <div class="modal-button">
                             <button type="button" id="buttonToCheckoutModal">CHECKOUT</button>
