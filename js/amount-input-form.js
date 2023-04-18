@@ -8,11 +8,23 @@ export const changeAmountValue = () => {
             
             if (button.classList.contains('minus') && inputAmountForm.value > 1) {
                 inputAmountForm.value = parseInt(inputAmountForm.value) - 1;
+
+                document.dispatchEvent(new CustomEvent("showMessage",{
+                    detail: {
+                        description : "¡Producto descartado correctamente!"
+                    }
+                
+                }))
             }
             else if (button.classList.contains('plus')){
                 inputAmountForm.value = parseInt(inputAmountForm.value) + 1;
-            }
+
+                document.dispatchEvent(new CustomEvent("showMessage",{
+                    detail: {
+                        description : "¡Producto añadido correctamente!"
+                    }
+                }))
+            }   
         })
     })
-
 }

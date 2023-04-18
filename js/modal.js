@@ -54,12 +54,28 @@ export const quitCheckoutSectionModal = () => {
     })
 }
 
-export const setCarrouselImages = () => {
-    let counter = 0;
-    const carrouselImages = document.querySelectorAll("#carrousel-container img");
-    const modalButtonsOpen = document.querySelectorAll(".button-show-modal");
-    modalButtonsOpen.forEach((modalButtonOpen) => {
-        modalButtonOpen.addEventListener("click", () => {
+export const setModalTabDescription = () => {
+    const tabModal = document.querySelector("#tabModal");
+    
+    const tabs = tabModal.querySelectorAll(".tab");
+    const tabContents = tabModal.querySelectorAll(".tab-content");
+
+    tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+            for(let i = 0; i < tabs.length; i++){
+                tabs[i].classList.remove("active");
+            }
+            tab.classList.add("active");
+            
+            for (let i = 0; i < tabContents.length; i++) {
+                if(tabContents[i].classList.contains("active")) {
+                    tabContents[i].classList.remove("active");
+
+                }
+                if(tab.dataset.tab === tabContents[i].dataset.tab) {
+                    tabContents[i].classList.add("active");
+                }
+            }
         })
     })
 }
