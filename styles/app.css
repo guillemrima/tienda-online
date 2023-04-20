@@ -1629,6 +1629,7 @@ header div h1 {
   background-color: rgb(109, 183, 243);
   display: flex;
   justify-content: flex-end;
+  gap: 0.5rem;
 }
 
 .tab-options div {
@@ -1653,7 +1654,6 @@ header div h1 {
 .tab-information div p {
   color: white;
   font-size: 1.1rem;
-  font-weight: 600;
 }
 
 .tab-information div .label {
@@ -1743,6 +1743,7 @@ header div h1 {
 form div {
   display: flex;
   flex-direction: column;
+  gap: 0.5rem;
 }
 
 form div label {
