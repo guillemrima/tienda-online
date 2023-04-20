@@ -137,10 +137,12 @@
 
 .back .message {
     height: 100%;
+    border: 1px solid red;
 }
 
 .back .message input {
     position: relative;
+    border: 1px solid red;
 }
 
 .back input::placeholder {

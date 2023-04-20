@@ -19,6 +19,7 @@
     border: 2px solid $tertiaryBackgroundColor;
     border-radius: 15px;
     gap: 1rem;
+    display: none;
 }
 
 .message .message-image {
@@ -33,4 +34,9 @@
     font-size: 1.2rem;
     text-align: center;
 
+}
+
+.message.active {
+    display: flex;
+    @include translateXInScreen(0s,1s);
 }

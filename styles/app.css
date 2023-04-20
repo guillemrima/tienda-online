@@ -947,10 +947,12 @@ video {
 
 .back .message {
   height: 100%;
+  border: 1px solid red;
 }
 
 .back .message input {
   position: relative;
+  border: 1px solid red;
 }
 
 .back input::placeholder {
@@ -1086,15 +1088,7 @@ video {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-}
-
-.modal-section .modal .details-modal .modal-part1 .title::after {
-  content: "";
-  width: 100%;
-  height: 1px;
-  background-color: hsl(0, 0%, 55%);
-  opacity: 0.2;
-  margin-top: 8%;
+  margin-bottom: 2rem;
 }
 
 .modal-section .modal .details-modal .modal-part1 .title .car-name p {
@@ -1151,15 +1145,6 @@ video {
 .modal-section .modal-part1 .description {
   display: flex;
   flex-direction: column;
-}
-
-.modal-section .modal-part1 .description::after {
-  content: "";
-  width: 100%;
-  height: 1px;
-  background-color: hsl(0, 0%, 55%);
-  opacity: 0.2;
-  margin-top: 8%;
 }
 
 .modal-section .modal-part1 .description p {
@@ -1435,12 +1420,10 @@ video {
 .tab-content {
   display: none;
   height: 15vh;
-  overflow: scroll;
   border-radius: 5px;
   border-top-left-radius: 0px;
-  padding: 10px;
+  padding: 5px 10px;
   color: hsl(0, 0%, 25%);
-  overflow-x: hidden;
 }
 
 .tab-content p {
@@ -1537,6 +1520,7 @@ video {
   border: 2px solid hsl(18, 100%, 57%);
   border-radius: 15px;
   gap: 1rem;
+  display: none;
 }
 
 .message .message-image {
@@ -1550,6 +1534,22 @@ video {
   font-weight: 600;
   font-size: 1.2rem;
   text-align: center;
+}
+
+.message.active {
+  display: flex;
+  animation-name: translateXOutScreen;
+  animation-duration: 1s;
+  animation-delay: 0s;
+  animation-fill-mode: forwards;
+}
+@keyframes translateXOutScreen {
+  0% {
+    transform: translateX(150%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
 }
 
 /*# sourceMappingURL=app.css.map */
