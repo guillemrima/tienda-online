@@ -4,6 +4,7 @@ import {flipCardToFront, flipCardToBack,sendForm} from './swipeable-element.js';
 import {openAndCloseFAQ} from './faq.js';
 import { changeAmountValue } from './amount-input-form.js';
 import {showMessage} from './message.js';
+import { countInputCharacters } from './inputCounter.js';
 import './slider.js';
 
 
@@ -24,3 +25,5 @@ openAndCloseHamburger();
 changeAmountValue();
 
 showMessage();
+
+countInputCharacters();

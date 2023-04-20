@@ -238,10 +238,6 @@ background-color: hsl(204, 15%,26%);
 .modal-section  .modal-part2 form input::placeholder {
     color: rgba(203,212,217,255); 
 }
-.modal-section  .modal-part2 form .nombre {
-    display: flex;
-    gap: 2rem;
-}
 
 .modal-section  .modal-part2 form .direccion {
     display: flex;
@@ -249,10 +245,10 @@ background-color: hsl(204, 15%,26%);
     gap: 1.5rem;
 }
 
-.modal-section  .modal-part2 form .provincia {
-    display: flex;
-    gap: 2rem;
+.modal-section  .modal-part2 form .email {
+    position: relative;
 }
+
 
 .modal-section  .modal-part2 form .pais select{
     border: 1px solid rgba(232,238,242,255);

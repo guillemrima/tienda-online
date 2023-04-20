@@ -135,14 +135,25 @@
 }
 
 
-.back .message {
+.message-input {
     height: 100%;
-    border: 1px solid red;
+    position: relative;
 }
 
-.back .message input {
-    position: relative;
-    border: 1px solid red;
+.message-input input {
+    height: 100%;
+}
+
+.input-counter {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 10px;
+    display: flex;
+}
+
+.input-counter .counter.limit {
+    color: red;
 }
 
 .back input::placeholder {
