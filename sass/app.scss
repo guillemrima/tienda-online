@@ -1,21 +1,20 @@
 @charset "utf-8";
 
-@import "helpers/mixins";
-@import "helpers/variables";
-@import "layout/master";
-@import "base/content";
-@import "base/typography";
-@import "layout/header";
-@import "layout/footer";
-@import "components/slider";
-@import "components/features";
-@import "components/details";
-@import "components/faq";
-@import "components/team";
-@import "components/contact";
-@import "components/modal";
-@import "components/amount-input";
-@import "components/message";
-@import "components/admin";
+@import "front/helpers/mixins";
+@import "front/helpers/variables";
+@import "front/layout/master";
+@import "front/base/content";
+@import "front/base/typography";
+@import "front/layout/header";
+@import "front/layout/footer";
+@import "front/components/slider";
+@import "front/components/features";
+@import "front/components/details";
+@import "front/components/faq";
+@import "front/components/team";
+@import "front/components/contact";
+@import "front/components/modal";
+@import "front/components/amount-input";
+@import "front/components/message";
 
 

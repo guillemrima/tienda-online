@@ -1,0 +1,266 @@
+body.blocked {
+  overflow: hidden;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+:root {
+  --paddinGeneral: 0 20%;
+  --marginBottomGeneral: 10vh;
+  --mainColor: hwb(0 25% 75%);
+  --secondaryColor: hsl(0, 0%, 55%);
+  --secondaryBackgroundColor: hsl(209, 100%, 50%);
+  --tertiaryBackgroundColor: hsl(18, 100%, 57%);
+  --borderButton: 20px;
+  --backGroundPrincipal: hsl(0,9%,96%);
+  --hoverButton: hsl(204, 15%,26%);
+}
+
+::-webkit-scrollbar {
+  background-color: rgb(232, 232, 232);
+  width: 0.5rem;
+}
+
+* {
+  font-family: "Popins", sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: rgb(42, 76, 187);
+  padding: 0 5%;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  margin: 2rem 0rem;
+  align-items: center;
+}
+
+button {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+}
+
+header div {
+  display: flex;
+}
+
+header div h1 {
+  color: white;
+  font-size: 2.5rem;
+}
+
+.hamburger-button {
+  width: 2rem;
+  height: 2.5rem;
+  fill: white;
+  display: flexs;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.hamburger-button span {
+  width: 100%;
+  height: 0.2rem;
+  background-color: white;
+}
+
+.filter-section {
+  width: 100%;
+  height: 3rem;
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0rem;
+  background-color: white;
+}
+
+.filter-section div {
+  width: 2rem;
+}
+
+.filter-section div svg {
+  width: 100%;
+  height: 100%;
+  fill: rgb(109, 183, 243);
+}
+
+.panel {
+  display: flex;
+  gap: 3rem;
+}
+
+.tab-section {
+  width: 40%;
+  border: 1px solidd red;
+}
+
+.tab-section li {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.tab-element .tab-options {
+  background-color: rgb(109, 183, 243);
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+.tab-options div {
+  width: 2.5rem;
+  height: 2.5rem;
+  fill: white;
+}
+
+.tab-element .tab-information {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(113, 139, 224);
+  padding: 15px;
+}
+
+.tab-information div {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.tab-information div p {
+  color: white;
+  font-size: 1.1rem;
+}
+
+.tab-information div .label {
+  font-weight: 800;
+}
+
+.form-section {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.form-section .form-selector {
+  width: 100%;
+  height: 5vh;
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.form-selector .selector {
+  display: flex;
+  height: 100%;
+}
+
+.selector div {
+  height: 100%;
+  width: 100%;
+  padding: 0 1rem;
+}
+
+.selector div button {
+  height: 5vh;
+  width: 100%;
+  background-color: transparent;
+  border: none;
+}
+
+.selector div p {
+  color: rgb(133, 133, 133);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.selector div.active {
+  background-color: rgb(109, 183, 243);
+}
+
+.selector div.active p {
+  color: white;
+}
+
+.form-selector .options {
+  height: 100%;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.options div {
+  height: 2.5rem;
+  width: 2.5rem;
+  display: flex;
+}
+
+.options div button {
+  width: 100%;
+  height: 100%;
+}
+
+.options div svg {
+  fill: rgb(109, 183, 243);
+}
+
+.form-principal form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  gap: 1rem;
+}
+
+form div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+form div label {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+form div input {
+  background-color: rgb(113, 139, 224);
+  font-size: 1.5rem;
+  color: white;
+  border: none;
+  border-bottom: 1px solid white;
+}
+
+/*# sourceMappingURL=admin.css.map */

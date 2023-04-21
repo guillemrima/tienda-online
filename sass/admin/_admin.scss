@@ -1,6 +1,12 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     background-color: rgba(42,76,187,255);
-    padding: 0px 5%;
+    padding: 0 5%;
 }
 
 header{
@@ -13,9 +19,9 @@ header{
 button {
     width: 100%;
     height: 100%;
+    cursor: pointer;
     background-color: transparent;
     border: none;
-    cursor: pointer;
 }
 
 header div{
@@ -28,8 +34,20 @@ header div h1 {
 }
 
 .hamburger-button {
-    width: 2.5rem;
+    width: 2rem;
+    height: 2.5rem;
     fill: white;
+    display: flexs;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.5rem;
+    cursor: pointer;
+}
+
+.hamburger-button span {
+    width: 100%;
+    height: 0.2rem;
+    background-color: white;
 }
 
 .filter-section {
@@ -58,6 +76,7 @@ header div h1 {
 
 .tab-section {
     width:40%;
+    border: 1px solidd red;
 }
 
 .tab-section li {
@@ -126,14 +145,12 @@ header div h1 {
 .selector div {
     height: 100%;
     width: 100%;
-    display: flex;
-    align-items: center;
+    padding: 0 1rem;
 }
 
 .selector div button {
     height: 5vh;
     width: 100%;
-    padding: 1rem;
     background-color: transparent;
     border: none;
 }
