@@ -13,7 +13,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <script type="module" src="./js/app.js" defer></script>
+    <script type="module" src="./admin/js/admin.js" defer></script>
 </head>
 <body>
     <header>
@@ -29,11 +29,19 @@
             <span class="bot"></span>
         </div>
     </header>
-        <section class="filter-section">
+        <section class="filter-section" id="filter-section">
             <div>
-                <button>
+                <button id="filter-button" class="plus">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 11L16.76 3.62A1 1 0 0 0 16.59 2.22A1 1 0 0 0 16 2H2A1 1 0 0 0 1.38 2.22A1 1 0 0 0 1.21 3.62L7 11V16.87A1 1 0 0 0 7.29 17.7L9.29 19.7A1 1 0 0 0 10.7 19.7A1 1 0 0 0 11 18.87V11M13 16L18 21L23 16Z" /></svg>
                 </button>
+            </div>
+            <div class="filter-options">
+                <ul>
+                    <li>Nombres</li>
+                    <li>Emails</li>
+                    <li>Imagenes</li>
+                    <li>Contraseñas</li>
+                </ul>
             </div>
         </section>
     <div class="panel">    
@@ -94,12 +102,12 @@
         <section class="form-section">
             <div class="form-selector">
                 <div class="selector">
-                    <div class="active">
+                    <div class="active" data-form="principal">
                         <button>
                             <p>Principal</p>
                         </button>
                     </div>
-                    <div>
+                    <div data-form="image">
                         <button>
                             <p>Imágenes</p>
                         </button>
@@ -107,20 +115,19 @@
                 </div>
                 <div class="options">
                     <div>
-                        <button>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12.5,8C9.85,8 7.45,9 5.6,10.6L2,7V16H11L7.38,12.38C8.77,11.22 10.54,10.5 12.5,10.5C16.04,10.5 19.05,12.81 20.1,16L22.47,15.22C21.08,11.03 17.15,8 12.5,8Z" /></svg>
-                        </button>
+                        <button type="button" id="resetButton">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>broom</title><path d="M19.36,2.72L20.78,4.14L15.06,9.85C16.13,11.39 16.28,13.24 15.38,14.44L9.06,8.12C10.26,7.22 12.11,7.37 13.65,8.44L19.36,2.72M5.93,17.57C3.92,15.56 2.69,13.16 2.35,10.92L7.23,8.83L14.67,16.27L12.58,21.15C10.34,20.81 7.94,19.58 5.93,17.57Z" /></svg>                        </button>
                     </div>
                     <div>
-                        <button>
+                        <button type="button" id="submitButton">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15,8V4H5V8H15M12,18A3,3 0 0,0 15,15A3,3 0 0,0 12,12A3,3 0 0,0 9,15A3,3 0 0,0 12,18M17,2L21,6V18A2,2 0 0,1 19,20H5C3.89,20 3,19.1 3,18V4A2,2 0 0,1 5,2H17M11,22H13V24H11V22M7,22H9V24H7V22M15,22H17V24H15V22Z" /></svg>
                         </button>
                     </div>
                 </div>
             </div>
             <div class="form-container">
-                <div class="form-principal">
-                    <form>
+                <div class="form active" data-form="principal">
+                    <form id="form-principal">
                         <div>
                             <label>Nombre</label>
                             <input type="text"></input>
@@ -136,6 +143,14 @@
                         <div>
                             <label>Confirme contraseña</label>
                             <input type="text"></input>
+                        </div>
+                    </form>
+                </div>
+                <div class="form" data-form="image">
+                    <form id="form-images">
+                        <div class="input-image">
+                            <label>Seleccione una imagen</label>
+                            <input type="file">
                         </div>
                     </form>
                 </div>
