@@ -52,8 +52,19 @@ header div h1 {
     width: 100%;
     height: 0.2rem;
     background-color: white;
+    transition: 0.5s;
 }
 
+.hamburger-button.active .top{
+    transform: rotateY(360deg) translateY(11px) rotate(45deg)
+}
+
+.hamburger-button.active .mid{
+    transform: rotateY(360deg) scale(0%)
+}
+.hamburger-button.active .bot{
+    transform: rotateY(360deg) translateY(-11px) rotate(-45deg)
+}
 .filter-section {
     width: 100%;
     height: 3rem;
