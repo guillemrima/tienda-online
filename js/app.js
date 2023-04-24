@@ -6,6 +6,8 @@ import { changeAmountValue } from './amount-input-form.js';
 import {showMessage} from './message.js';
 import { countInputCharacters } from './inputCounter.js';
 import './slider.js';
+import './submit-form.js';
+
 
 
 openModal();
@@ -27,3 +29,4 @@ changeAmountValue();
 showMessage();
 
 countInputCharacters();
+

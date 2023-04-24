@@ -622,11 +622,15 @@
                         </div>
                         <form id="modalForm" class="form">
                             <div class="nombre">
-                                <input type="text" placeholder="Nombre" />
-                                <input type="text" placeholder="Apellidos" />
+                                <div class="inputDiv">
+                                    <input type="text" placeholder="Nombre" data-validate = "onlyletters"/>
+                                </div>
+                                <div class="inputDiv">
+                                    <input type="text" placeholder="Apellidos" data-validate = "onlyletters"/>
+                                </div>
                             </div>
-                            <div class="email limited-input">
-                                <input type="text" placeholder="Correo electrónico" />
+                            <div class="email limited-input inputDiv">
+                                <input type="text" placeholder="Correo electrónico" data-validate = "email"/>
                                 <div class="input-counter">
                                     <div class="counter">
                                         0
@@ -637,15 +641,23 @@
                                 </div>
                             </div>
                             <div class="direccion">
-                                <input type="text" placeholder="Dirección 1" />
-                                <input type="text" placeholder="Dirección 2" />
+                                <div class="inputDiv">
+                                    <input type="text" placeholder="Dirección 1"  data-validate="street"/>
+                                </div>
+                                <div class="inputDiv">
+                                    <input type="number" placeholder="Número de móvil" data-validate = "telephone"/>
+                                </div>
                             </div>
                             <div class="provincia">
-                                <input type="text" placeholder="Provincia" />
-                                <input type="text" placeholder="Código postal" />
+                                <div class="inputDiv">
+                                    <input type="text" placeholder="Provincia" data-validate ="onlyletters"/>
+                                </div>
+                                <div class="inputDiv">
+                                    <input type="text" placeholder="Código postal" data-validate ="onlynumbers"/>
+                                </div>
                             </div>
-                            <div class="pais">
-                                <select name="pais" id="paisInput">
+                            <div class="pais inputDiv">
+                                <select name="pais" id="paisInput" data-validate="onlyletters">
                                     <option value="default">-Seleccione un País-</option>
                                     <option value="España">España</option> 
                                     <option value="Reino Unido">Reino Unido</option>
@@ -655,7 +667,7 @@
                                     <option value="Dinamarca">Dinamarca</option>
                                 </select>
                             </div>
-                            <button type="submit">FINALIZAR COMPRA</button>
+                            <button type="submit" class="submitButton">FINALIZAR COMPRA</button>
                         </form>
                     </div>
                 </div>  

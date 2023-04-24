@@ -1260,9 +1260,23 @@ video {
   color: rgb(203, 212, 217);
 }
 
+.modal-section .modal-part2 form input.empty {
+  border: 1px solid red;
+}
+
 .modal-section .modal-part2 form .direccion {
   display: flex;
   flex-direction: column;
+  gap: 1.5rem;
+}
+
+.modal-section .modal-part2 form .nombre {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.modal-section .modal-part2 form .provincia {
+  display: flex;
   gap: 1.5rem;
 }
 
@@ -1439,6 +1453,23 @@ video {
 .tab-content.active {
   display: flex;
   border: 1px solid hsl(209, 100%, 50%);
+}
+
+.inputDiv {
+  position: relative;
+}
+
+.wrong-input-hide {
+  display: none;
+}
+
+.wrong-input {
+  display: flex;
+  position: absolute;
+  color: red;
+  font-size: 0.7rem;
+  bottom: 0;
+  left: 5px;
 }
 
 .amount-product {
