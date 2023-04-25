@@ -28,5 +28,5 @@ changeAmountValue();
 
 showMessage();
 
-countInputCharacters();
+countInputCharacters(); 
 
