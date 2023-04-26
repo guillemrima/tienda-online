@@ -38,7 +38,16 @@ class ContactForm extends HTMLElement {
                     height: 100%;
                     padding-top: 3rem;
                 }
-                              
+
+                .back{
+                    transform: perspective(1000px) rotateY(180deg);
+                }
+                form {
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                }
                 .back .name-email {
                     display: flex;
                     gap: 1rem;
@@ -55,7 +64,7 @@ class ContactForm extends HTMLElement {
                 
                 
                 .message-input {
-                    height: 100%;
+                    height: 50%;
                     position: relative;
                 }
                 
@@ -96,6 +105,25 @@ class ContactForm extends HTMLElement {
                 .back button:hover {
                     background-color: $hoverButton;  
                 }
+                .close-button {
+                    position: absolute;
+                    width: 25px;
+                    height: 25px;
+                    right: 0;
+                    top: 0;
+                    margin: 10px;
+                    cursor: pointer;
+                    filter: invert(0.5) sepia(0) saturate(40) hue-rotate(10deg);
+                    z-index: 999;
+                }
+                
+                img {
+                    width:100%;
+                    height:100%;
+                }
+                .close-button:hover {
+                    filter: invert(0.5) sepia(1) saturate(40) hue-rotate(10deg);
+                }
         }
         </style>
         <div class="card back" id="backContact">
@@ -122,6 +150,9 @@ class ContactForm extends HTMLElement {
                     <button type="submit">ENVIAR MENSAJE</button>
                 </div>
             </form>
+            <div class="close-button flip-card-back-button" id="buttonBack">
+                <img src="./assets/icon/close.svg" />
+            </div>
         </div>
         `;
         

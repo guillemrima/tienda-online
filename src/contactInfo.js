@@ -78,19 +78,24 @@ class ContactInfo extends HTMLElement {
             .button-contact-container button:hover {
                 background-color: hsl(204, 15%,26%);
             }
+
+            .title-card-container h4 {
+                font-size: 1.5rem;
+                text-align: center;
+            }
         </style>
 
 
         <div class="card front" id="frontContact" slot="fron">
             <div class="title-card-container">
-                <h4>TITLE CARD</h4>
+                <h4>CONTACTA CON NOSOTROS</h4>
             </div>
             <div class="location-contact-container item-contact-container">
                 <div class="icon-contact-container">
                     <img src="./assets/icon/location.svg" alt="location-icon">
                 </div>
                 <div class="text-contact-container">
-                    <p>Country</p>
+                    <p>Marratxí, Mallorca. Illes Balears</p>
                 </div>
             </div>
             <div class="phone-contact-container item-contact-container">
@@ -98,7 +103,7 @@ class ContactInfo extends HTMLElement {
                     <img src="./assets/icon/phone.svg" alt="phone-icon">
                 </div>
                 <div class="text-contact-container">
-                    <p>Phone Number</p>
+                    <p>(+34) 692 18 89 88</p>
                 </div>
             </div>
             <div class="email-contact-container item-contact-container">
@@ -106,7 +111,7 @@ class ContactInfo extends HTMLElement {
                     <img src="./assets/icon/email.svg" alt="email-icon">
                 </div>
                 <div class="text-contact-container">
-                    <p>email</p>
+                    <p>rivasmartorellguillem@gmail.com</p>
                 </div>
             </div>
             <div class="button-contact-container flip-card-front-button" id="buttonFront">
