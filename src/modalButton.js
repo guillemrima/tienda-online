@@ -14,10 +14,10 @@ class modalButton extends HTMLElement {
         this.shadow.innerHTML = 
         `
         <style>
-            button {
+            .button-show-modal {
                 font-size: 1rem;
                 font-weight: 500;
-                background-color: ${backgroundcolor});
+                background-color: ${backgroundcolor};
                 color: white;
                 border: none;
                 border-radius: 20px;

@@ -39,22 +39,6 @@
     justify-content: center;
 }
 
-.slider-section > .button-slider-container > button {
-    padding: 17px 80px;
-    font-size: 1.7rem;
-    font-weight: 500;
-    background-color: $secondaryBackgroundColor;
-    color: white;
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: 0.5s;
-}
-
-.slider-section > .button-slider-container > button:hover {
-    background-color: hsl(204, 15%,26%);
-}
-
 .slider-section .image-slider-container {
     max-width: 40%; 
     min-width: 40%;
