@@ -9,4 +9,7 @@ import "./details.js";
 import "./faqs.js";
 import "./team.js";
 import "./contact.js";
+import "./flipCard.js";
+import "./contactInfo.js"
+import "./contactForm.js"
 import "./footer.js";

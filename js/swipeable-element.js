@@ -16,7 +16,6 @@ export const flipCardToBack =  (()=> {
 
 export const sendForm = (() => {
     const form = document.querySelector('#contact-form');
-    const submittedForm = document.querySelector('.submitted-form');
 
     form.addEventListener("submit", (e) => {
         e.preventDefault();
