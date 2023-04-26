@@ -35,18 +35,6 @@ class Header extends HTMLElement {
                 list-style: none;
             }
             
-            .header-section .navbar-container ul li a{
-                font-size: 0.8rem;
-                color: $mainColor;
-                opacity: 50%;
-                transition: 0.5s;
-                font-weight: 500;
-            }
-            
-            .header-section .navbar-container ul li a:hover {
-                opacity: 100%;
-            }
-            
             .header-section .logo-container {
                 min-width: 8rem;
                 max-width: 8rem;
@@ -75,14 +63,14 @@ class Header extends HTMLElement {
             <logo-component></logo-component>
             <nav  class="navbar-container">
                 <ul>
-                    <navsection-component sectionRef="HOME"></navsection-component>
-                    <navsection-component sectionRef="FEATURE"></navsection-component>
-                    <navsection-component sectionRef="INSTALLATION"></navsection-component>
-                    <navsection-component sectionRef="CONTACT"></navsection-component>
-                    <navsection-component sectionRef="ABOUT US"></navsection-component>
+                    <navsection-component sectionRef="Home"></navsection-component>
+                    <navsection-component sectionRef="Feature"></navsection-component>
+                    <navsection-component sectionRef="Installation"></navsection-component>
+                    <navsection-component sectionRef="Contact"></navsection-component>
+                    <navsection-component sectionRef="About us"></navsection-component>
                 </ul>
             </nav>
-            <modalbutton-component text="Buy it Now" backgroundcolor=" hsl(18, 100%, 57%)"></modalbutton-component>
+            <modalbutton-component text="Buy it Now" backgroundcolor=" hsl(18, 100%, 57%)" fontSize="1rem"></modalbutton-component>
         </header>
         `;
         

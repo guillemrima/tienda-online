@@ -232,14 +232,14 @@ class Contact extends HTMLElement {
             <div class="card-contact-container">
                 <div class="card front" id="frontContact">
                     <div class="title-card-container">
-                        <h4>CONTACTA CON NOSOTROS</h4>
+                        <h4><slot name="title">TITLE CARD<slot></h4>
                     </div>
                     <div class="location-contact-container item-contact-container">
                         <div class="icon-contact-container">
                             <img src="./assets/icon/location.svg" alt="location-icon">
                         </div>
                         <div class="text-contact-container">
-                            <p>Marratxí, Mallorca</p>
+                            <p><slot name="country">Country</slot></p>
                         </div>
                     </div>
                     <div class="phone-contact-container item-contact-container">
@@ -247,7 +247,7 @@ class Contact extends HTMLElement {
                             <img src="./assets/icon/phone.svg" alt="phone-icon">
                         </div>
                         <div class="text-contact-container">
-                            <p>(+34) 692 18 89 89</p>
+                            <p><slot name="phoneNumber">Phone Number</<slot></p>
                         </div>
                     </div>
                     <div class="email-contact-container item-contact-container">
@@ -255,11 +255,11 @@ class Contact extends HTMLElement {
                             <img src="./assets/icon/email.svg" alt="email-icon">
                         </div>
                         <div class="text-contact-container">
-                            <p>rivasmartorellguillem@gmail.com</p>
+                            <p><slot name="email">email</slot></p>
                         </div>
                     </div>
                     <div class="button-contact-container flip-card-front-button" id="buttonFront">
-                        <button type="button">CONTÁCTANOS</button>
+                        <button type="button"><slot name="button">BUTTON</slot></button>
                     </div>
                 </div>
                 <div class="card back" id="backContact">

@@ -13,7 +13,7 @@ class NavSection extends HTMLElement {
         `
         <style>
             li a{
-                font-size: 0.8rem;
+                font-size: 1rem;
                 color: $mainColor;
                 opacity: 50%;
                 transition: 0.5s;

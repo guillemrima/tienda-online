@@ -5,17 +5,18 @@ class modalButton extends HTMLElement {
         this.shadow = this.attachShadow({mode: 'open'});
         const text = this.attributes.getNamedItem("text").value;
         const backgroundcolor = this.attributes.getNamedItem("backgroundcolor").value;
+        const fontSize = this.attributes.getNamedItem("fontsize").value;
         console.log(backgroundcolor)
-        this.render(text,backgroundcolor);
+        this.render(text,backgroundcolor, fontSize);
     }
 
-    render(text,backgroundcolor) {
+    render(text,backgroundcolor, fontSize) {
 
         this.shadow.innerHTML = 
         `
         <style>
             .button-show-modal {
-                font-size: 1rem;
+                font-size: ${fontSize};
                 font-weight: 500;
                 background-color: ${backgroundcolor};
                 color: white;
@@ -25,7 +26,7 @@ class modalButton extends HTMLElement {
                 cursor: pointer;
                 transition: 0.5s;
             }
-            .checkout-container button:hover {
+            .button-show-modal:hover {
                 background-color: hsl(204, 15%,26%);
             }
         </style>
