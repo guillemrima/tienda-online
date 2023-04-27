@@ -86,6 +86,7 @@ class Header extends HTMLElement {
         //FUNCIÓN PARA ANIMAR EL HAMBURGER BUTTON
         hamburgerButton.addEventListener("click", () => {
         hamburgerButton.classList.toggle("active");
+        
     })
         
     }

@@ -10,6 +10,7 @@
 body {
     background-color: rgba(42,76,187,255);
     padding: 0 5%;
+    position: relative;
 }
 
 button {
