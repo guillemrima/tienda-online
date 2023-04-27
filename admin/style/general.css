@@ -1,0 +1,34 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: "Poppins", sans-serif;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: rgba(42,76,187,255);
+    padding: 0 5%;
+}
+
+button {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+button:hover svg {
+    transform: scale(110%);
+}
+
+img {
+    width: 100%;
+    height: 100%;
+}
+
+.panel {
+    display: grid;
+    grid-template-columns: 35% 60%;
+    gap: 5%;
+}
