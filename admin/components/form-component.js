@@ -192,8 +192,7 @@ class Form extends HTMLElement {
         `;
 
         const formParent = this.shadow.querySelector(".form-container");
-        const forms = formParent.querySelectorAll(".form");
-        const submitForm = this.shadow.querySelector("#submitButton");
+        const forms = formParent.querySelectorAll(".form");;
         const resetForm = this.shadow.querySelector("#resetButton");
         const formSelector = this.shadow.querySelector('.selector');
         const selectors = formSelector.querySelectorAll("div");
