@@ -191,13 +191,14 @@
         </section> -->
 
         <modal-component>
-                <image-modal slot="image-component-modal"></image-modal>
+                <image-component slot="image-component-modal"></image-component>
                 <details-modal slot="details-component-modal">
-                    <information-details-modal slot="information-details-modal">
+                    <information-details slot="information-details-modal">
                         <title-details-element slot="title-element"></title-details-element>
-                        <tabs-details-element slot="tabs-element"></tabs-details-element>
-                        <amount-details-element slot="amount-element"></amount-details-element>
-                    </information-details-modal>
+                        <tabs-component slot="tabs-element"></tabs-component>
+                        <amount-input-element slot="amount-element"></amount-details-element>
+                    </information-details>
+                    <form-component slot="form-details-modal"></form-component>
                 </details-modal>
         </modal-component>
 

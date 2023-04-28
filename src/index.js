@@ -15,10 +15,11 @@ import "./contactForm.js"
 import "./footer.js";
 
 //componentes de la prueba final
-import "./modal-component/modal-component.js";
-import "./modal-component/image-modal.js";
+import "./modal-component/modal.js";
+import "./modal-component/image.js";
 import "./modal-component/details-modal.js";
-import "./modal-component/information-details-modal.js";
-import "./modal-component/title-information-details-modal.js";
-import "./modal-component/tabs-information-details-modal.js";
-import "./modal-component/amount-information-details-modal.js"
+import "./modal-component/product-information.js";
+import "./modal-component/title-information.js";
+import "./modal-component/tabs.js";
+import "./modal-component/amount-input.js";
+import "./modal-component/form.js";

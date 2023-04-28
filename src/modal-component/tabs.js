@@ -1,4 +1,4 @@
-class TabsDetails extends HTMLElement {
+class Tabs extends HTMLElement {
 
     constructor() {
         super();
@@ -110,4 +110,4 @@ class TabsDetails extends HTMLElement {
     }
 }
 
-customElements.define('tabs-details-element', TabsDetails);
+customElements.define('tabs-component', Tabs);

@@ -103,4 +103,4 @@ class AmountDetails extends HTMLElement {
     }
 }
 
-customElements.define('amount-details-element', AmountDetails);
+customElements.define('amount-input-element', AmountDetails);

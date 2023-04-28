@@ -1,4 +1,4 @@
-class InformationDetailsModal extends HTMLElement {
+class FormComponent extends HTMLElement {
 
     constructor() {
         super();
@@ -11,19 +11,21 @@ class InformationDetailsModal extends HTMLElement {
         this.shadow.innerHTML = 
         `
         <style>
-            .modal-part2 {
-                width: 50%;      
+            *{
+                margin:0;
+                padding:0;
+                box-sizing: border-box;
             }
             .modal-part2{
-                display: flex;
-                flex-direction: column;
-                height: 100%;
                 width: 100%;
-                align-items: center;
+                height: 100%;
                 padding: 5% 5%;
                 display: flex;
                 flex-direction: column;
-                gap: 2rem;
+                gap:2rem;
+                justify-content: space-between;
+                align-items: center;
+                position: relative;
             }
             
             .modal-part2 .back-button button{
@@ -109,18 +111,7 @@ class InformationDetailsModal extends HTMLElement {
             
             .modal-part2 form button:hover {
                 background-color: hsl(204, 15%,26%);
-            }
-            
-            .active {
-                @include fadeIn(0s,0.5s);
-                display : flex;
-                z-index: 999;
-            
-            }
-            
-            .details-modal.active {
-                left: 0%;
-            }
+            }    
             
             .modal-part1.fadeOut {
                 @include fadeOut(0s, 0.5s)
@@ -136,66 +127,6 @@ class InformationDetailsModal extends HTMLElement {
             
             .modal-part2.fadeIn {
                 @include fadeIn(0s, 1s)
-            }
-            
-            .tab-modal {
-                display: flex;
-                flex-direction: column;
-                position: relative;
-            }
-            
-            .tab-modal .tabs {
-                display: flex;
-                justify-content: flex-start;
-                position: absolute;
-                top: -22px;
-            }
-            
-            .tabs .tab {
-                padding: 0.2rem 0.5rem;
-                cursor: pointer;
-                border:1px solid  transparent; 
-                border-bottom: 1px solid white;   
-                border-top-left-radius: 5px;
-                border-top-right-radius: 5px;
-                border-bottom: none;
-                z-index: 10000;
-            }
-            
-            .tab.active {
-            border:1px solid   hsl(209, 100%, 50%);
-            border-bottom: 1px solid white;
-            background-color: white;
-            
-            }
-            
-            .tab.active p {
-                color: hsl(209, 100%, 50%);
-            }
-            .tab p {
-                font-size: 0.8rem;
-                color:hsl(0, 0%, 25%);
-            
-            }
-            
-            .tab-content {
-                display: none;
-                height: 15vh;
-                border-radius: 5px;
-                border-top-left-radius: 0px;
-                padding: 5px 10px;
-                color: hsl(0, 0%, 25%);
-            }
-            
-            .tab-content p {
-                font-size: 0.9rem;
-                text-align: justify;
-            
-            }
-            
-            .tab-content.active {
-                display: flex;
-                border:1px solid   hsl(209, 100%, 50%);
             }
             
             .inputDiv {
@@ -216,6 +147,7 @@ class InformationDetailsModal extends HTMLElement {
             
             }
         </style>
+
         <div class="modal-part2" id="modalPart2">
             <div class="back-button" id="buttonToDetailsModal">
                 <button>Volver</button>
@@ -231,14 +163,6 @@ class InformationDetailsModal extends HTMLElement {
                 </div>
                 <div class="email limited-input inputDiv">
                     <input type="text" placeholder="Correo electrónico" data-validate = "email"/>
-                    <div class="input-counter">
-                        <div class="counter">
-                            0
-                        </div>
-                        <div class="limit-counter">
-                            /20
-                        </div>
-                    </div>
                 </div>
                 <div class="direccion">
                     <div class="inputDiv">
@@ -269,10 +193,11 @@ class InformationDetailsModal extends HTMLElement {
                 </div>
                 <button type="submit" class="submitButton">FINALIZAR COMPRA</button>
             </form>
+        
         </div>
         `;
         
     }
 }
 
-customElements.define('information-details-modal', InformationDetailsModal);
+customElements.define('form-component', FormComponent);

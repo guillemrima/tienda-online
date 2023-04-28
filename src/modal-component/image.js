@@ -1,4 +1,4 @@
-class ModalImage extends HTMLElement {
+class ImageComponent extends HTMLElement {
 
     constructor() {
         super();
@@ -19,6 +19,7 @@ class ModalImage extends HTMLElement {
             .image-carrousel {
                 width: 100%;
                 height: 100%;
+                z-index: 10;
             }
 
             .image-carrousel img {
@@ -36,4 +37,4 @@ class ModalImage extends HTMLElement {
     }
 }
 
-customElements.define('image-modal', ModalImage);
+customElements.define('image-component', ImageComponent);

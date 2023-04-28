@@ -1,4 +1,4 @@
-class InformationDetailsModal extends HTMLElement {
+class ProductInformation extends HTMLElement {
 
     constructor() {
         super();
@@ -80,4 +80,4 @@ class InformationDetailsModal extends HTMLElement {
     }
 }
 
-customElements.define('information-details-modal', InformationDetailsModal);
+customElements.define('information-details', ProductInformation);
