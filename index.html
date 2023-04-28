@@ -13,6 +13,7 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+        <!-- <script type="module" src="./js/app.js" defer></script> -->
         <script type="module" src="./src/index.js" defer></script>
 
     </head>
@@ -46,7 +47,7 @@
         <footer-component>
         </footer-component>
 
-        <section class="modal-section" id="modal">
+        <!-- <section class="modal-section" id="modal">
             <div class="modal">
                 <div class="image-carrousel" id="carrousel-container">
                     <img src="./assets/checkout-carrousel/carrousel-1.webp"class="active">
@@ -187,7 +188,19 @@
                     <img src="./assets/icon/close.svg" />
                 </div>            
             </div>
-        </section>
+        </section> -->
+
+        <modal-component>
+                <image-modal slot="image-component-modal"></image-modal>
+                <details-modal slot="details-component-modal">
+                    <information-details-modal slot="information-details-modal">
+                        <title-details-element slot="title-element"></title-details-element>
+                        <tabs-details-element slot="tabs-element"></tabs-details-element>
+                        <amount-details-element slot="amount-element"></amount-details-element>
+                    </information-details-modal>
+                </details-modal>
+        </modal-component>
+
 
         <section class="message-section">
             <div class="message" id="message">
