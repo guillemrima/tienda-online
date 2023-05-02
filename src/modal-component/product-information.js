@@ -71,12 +71,19 @@ class ProductInformation extends HTMLElement {
                     <slot name="amount-element"></slot>
                     
                     <div class="modal-button">
-                        <button type="button" id="buttonToCheckoutModal">CHECKOUT</button>
+                        <button type="button" id="buttonToCheckout">CHECKOUT</button>
                     </div>
                 </div>
         </div>
         `;
         
+        const setCheckoutForm = new CustomEvent("set-checkout-form");
+        const checkoutButton = this.shadow.querySelector("#buttonToCheckout");
+        
+        checkoutButton.addEventListener("click", () => {
+            document.dispatchEvent(setCheckoutForm);
+        })
+
     }
 }
 

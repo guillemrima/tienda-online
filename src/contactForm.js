@@ -147,7 +147,7 @@ class ContactForm extends HTMLElement {
                             0
                         </div>
                         <div class="limit-counter">
-                            /20
+                            /70
                         </div>
                     </div>
                 </div>
@@ -172,8 +172,17 @@ class ContactForm extends HTMLElement {
             document.dispatchEvent(flipCard);
             backCard.classList.remove("rotated");
         })
-
-
+        const inputContainerList = this.shadow.querySelectorAll('.limited-input');
+    
+        inputContainerList.forEach(inputContainer => {
+            const input = inputContainer.querySelector('input');
+            const counter = inputContainer.querySelector('.input-counter');
+            input.addEventListener('input', () => {
+                input.value.length > 70 ? (input.value = input.value.slice(0, 70),counter.querySelector(".counter").classList.add("limit")) 
+                : 
+                (counter.querySelector(".counter").innerHTML = input.value.length,counter.querySelector(".counter").classList.remove("limit"));
+            })
+        })
     }
 }
 

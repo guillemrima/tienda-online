@@ -55,7 +55,13 @@ class ModalDetails extends HTMLElement {
                 </div>
             </div>
         `;
-        
+                document.addEventListener("set-checkout-form", () => {
+                    this.shadow.querySelector(".details-modal").classList.add("active");
+                })
+                document.addEventListener("remove-checkout-form", () => {
+                    this.shadow.querySelector(".details-modal").classList.remove("active");
+                })
+
     }
 }
 

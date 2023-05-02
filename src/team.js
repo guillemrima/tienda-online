@@ -13,7 +13,7 @@ class Team extends HTMLElement {
         <style>
             * {
                 margin: 0;
-                paddding: 0;
+                padding: 0;
                 box-sizing: border-box;
             }
             ul {
@@ -75,6 +75,7 @@ class Team extends HTMLElement {
             .team-section .expand-card-container .expanded-card-container {
                 position: absolute;
                 z-index: 98;
+                width: 100%;
                 height: 100%;
                 border-radius: 30px;
                 padding-top: 100%;
@@ -87,13 +88,13 @@ class Team extends HTMLElement {
                 top: 0;
             }
             .expanded-card-container img {
-                transform: scale(65%);
+                transform: scale(70%);
                 cursor: pointer;
             }
             
             
             .team-section .contracted-card-container img {
-                transform: scale(60%)
+                transform: scale(10%)
             }
             
             .contracted-card-container div {

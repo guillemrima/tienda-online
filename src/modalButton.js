@@ -6,7 +6,6 @@ class modalButton extends HTMLElement {
         const text = this.attributes.getNamedItem("text").value;
         const backgroundcolor = this.attributes.getNamedItem("backgroundcolor").value;
         const fontSize = this.attributes.getNamedItem("fontsize").value;
-        console.log(backgroundcolor)
         this.render(text,backgroundcolor, fontSize);
     }
 

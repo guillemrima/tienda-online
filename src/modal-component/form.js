@@ -150,7 +150,7 @@ class FormComponent extends HTMLElement {
 
         <div class="modal-part2" id="modalPart2">
             <div class="back-button" id="buttonToDetailsModal">
-                <button>Volver</button>
+                <button id="backButton">Volver</button>
             </div>
             <form id="modalForm" class="form">
                 <div class="nombre">
@@ -196,7 +196,13 @@ class FormComponent extends HTMLElement {
         
         </div>
         `;
-        
+            const removeCheckoutForm = new CustomEvent("remove-checkout-form");
+            const backButton  = this.shadow.querySelector("#backButton");
+
+            backButton.addEventListener("click", () => {
+                document.dispatchEvent(removeCheckoutForm);
+            })
+
     }
 }
 
