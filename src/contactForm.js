@@ -42,6 +42,11 @@ class ContactForm extends HTMLElement {
                 .back{
                     transform: perspective(1000px) rotateY(180deg);
                 }
+
+                .back.rotated {
+                    transform: perspective(1000px) rotateY(360deg);
+                }
+
                 form {
                     height: 100%;
                     display: flex;
@@ -92,7 +97,7 @@ class ContactForm extends HTMLElement {
                 .back button {
                     width: 100%;
                     height: 100%;
-                    background-color: $secondaryBackgroundColor;
+                    background-color: #0084ff;
                     color: white;
                     border: none;
                     font-weight: 600;
@@ -150,12 +155,25 @@ class ContactForm extends HTMLElement {
                     <button type="submit">ENVIAR MENSAJE</button>
                 </div>
             </form>
-            <div class="close-button flip-card-back-button" id="buttonBack">
+            <div class="close-button flip-card-back-button" id="flipButton">
                 <img src="./assets/icon/close.svg" />
             </div>
         </div>
         `;
         
+        const flipCard = new CustomEvent ("flip-card-back");
+        const backCard = this.shadow.querySelector(".back");
+        const buttonFlip = this.shadow.querySelector("#flipButton");
+
+        document.addEventListener("flip-card-front", () => {
+            backCard.classList.add("rotated");
+        })
+        buttonFlip.addEventListener("click", () => {
+            document.dispatchEvent(flipCard);
+            backCard.classList.remove("rotated");
+        })
+
+
     }
 }
 

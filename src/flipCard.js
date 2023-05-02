@@ -22,6 +22,7 @@ class FlipCard extends HTMLElement {
                 width: 500px;
                 height: 50vh;
                 z-index: 100;
+                transform: perspective(1000px) rotateY(180deg);
             }          
         </style>
 

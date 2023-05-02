@@ -36,7 +36,9 @@ class ContactInfo extends HTMLElement {
                 .front {
                     transform: perspective(1000px) rotateY(0deg);
                 }
-
+                .front.rotated{
+                    transform: perspective(1000px) rotateY(180deg);
+                }
                 .icon-contact-container {
                 width: 2rem;
                 height: 2rem;
@@ -115,11 +117,24 @@ class ContactInfo extends HTMLElement {
                 </div>
             </div>
             <div class="button-contact-container flip-card-front-button" id="buttonFront">
-                <button type="button">BUTTON</button>
+                <button type="button" id="flipButton">CONTÁCTANOS AHORA</button>
             </div>
         </div>
         `;
         
+            const flipCard =  new CustomEvent("flip-card-front");
+            const buttonFlip = this.shadow.querySelector("#flipButton");
+            const frontCard = this.shadow.querySelector(".front");
+
+            buttonFlip.addEventListener("click", () => {
+                document.dispatchEvent(flipCard);
+                frontCard.classList.add("rotated");
+            })
+            document.addEventListener("flip-card-back", () => {
+                frontCard.classList.remove("rotated");
+            })
+
+
     }
 }
 

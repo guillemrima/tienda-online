@@ -25,10 +25,10 @@ class Modal extends HTMLElement {
             height: 100%;
         }
         .modal-section {
-            position: absolute;
+            position: fixed;
+            top: 0;
             width: 100%;
             height: 100vh;
-            bottom: 0;
             display: none;
             justify-content: center;
             align-items: center;

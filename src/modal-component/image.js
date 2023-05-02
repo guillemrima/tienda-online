@@ -30,7 +30,7 @@ class ImageComponent extends HTMLElement {
 
         </style>
         <div class="image-carrousel" id="carrousel-container">
-            <img src="./assets/checkout-carrousel/carrousel-1.webp">
+            <img src="./assets/checkout-carrousel/carrousel-2.webp">
         </div>
         `;
         

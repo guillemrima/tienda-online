@@ -37,6 +37,8 @@ class EraseAlert extends HTMLElement {
         }    
         .erase-information {
             text-align: center;
+            display:flex;
+            flex-direction: column;
         }
 
         .erase-information div p {
@@ -61,9 +63,11 @@ class EraseAlert extends HTMLElement {
             border: none;
             cursor: pointer;
         }
+
         button:hover {
-        background-color: #738c97;
+            background-color: #738c97;
         }
+
         .cancel-erase {
             color: white;
             background-color:#989898;
@@ -86,7 +90,7 @@ class EraseAlert extends HTMLElement {
                         <h3>¡Este perfil será eliminado permanentemente!</h3>
                     </div>
                     <div>
-                        <p>¿Estás segurto que quieres eliminarlo?</p>
+                        <p>¿Estás seguro que quieres eliminarlo?</p>
                     </div>
                 </div>
 

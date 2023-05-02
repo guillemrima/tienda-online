@@ -16,6 +16,13 @@ class Team extends HTMLElement {
                 paddding: 0;
                 box-sizing: border-box;
             }
+            ul {
+                list-style: none;
+            }
+            img {
+                width: 100%;
+                height: 100%;
+            }
             .team-section {
                 display: flex;
                 flex-direction: column;
@@ -287,7 +294,16 @@ class Team extends HTMLElement {
             </div>
         </section>
         `;
+        const buttonsHamburger = this.shadow.querySelectorAll('.contracted-card-container');
+
+            buttonsHamburger.forEach(buttonHamburguer => {
+                buttonHamburguer.addEventListener('click', () => {
+                    const hamburgerParent = buttonHamburguer.closest(".expand-card-container")
+                    hamburgerParent.querySelector(".expanded-card-container").classList.toggle("active");
+                    buttonHamburguer.classList.toggle("active");
         
+                })
+            })
     }
 }
 
