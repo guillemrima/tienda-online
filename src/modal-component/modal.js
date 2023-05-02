@@ -89,6 +89,7 @@ class Modal extends HTMLElement {
         `;
 
         const closeModal = this.shadow.querySelector("#closeButton");
+        
         closeModal.addEventListener("click", () => 
             closeModal.closest(".modal-section").classList.remove("active")
         )
