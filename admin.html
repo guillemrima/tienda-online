@@ -16,32 +16,38 @@
     <script type="module" src="./admin/components/index.js" defer></script>
 </head>
     <body>
-        <header-component></header-component>
-        <filter-component></filter-component>
-        <div class="panel">    
-            <tab-component>
-                <tab-element slot="tab-element-1">
-                    <span slot="nombre">Guillem</span>
-                    <span slot="email">rivasmartorellguillem@gmail.com</span>
-                </tab-element>
-                <tab-element slot="tab-element-2">
-                    <span slot="nombre">Arthur</span>
-                    <span slot="email">arthurmorgan@gmail.com</span>
-                </tab-element>
-                <tab-element slot="tab-element-3">
-                    <span slot="nombre">Joel</span>
-                    <span slot="email">joelmiller@gmail.com</span>
-                </tab-element>
-                <tab-element slot="tab-element-4">
-                    <span slot="nombre">Ellie</span>
-                    <span slot="email">elliewilliams@gmail.com</span>
-                </tab-element>
-                <tab-element slot="tab-element-5">
-                    <span slot="nombre">Austin</span>
-                    <span slot="email">austinpower@gmail.com</span>
-                </tab-element>
-            </tab-component>
-            <form-component></form-component>
+        <div class="padding-container">
+            <header-component></header-component>
+            <filter-component></filter-component>
+            <div class="panel">    
+                <tab-component>
+                    <tab-element slot="tab-element-1">
+                        <span slot="nombre">Guillem</span>
+                        <span slot="email">rivasmartorellguillem@gmail.com</span>
+                    </tab-element>
+                    <tab-element slot="tab-element-2">
+                        <span slot="nombre">Arthur</span>
+                        <span slot="email">arthurmorgan@gmail.com</span>
+                    </tab-element>
+                    <tab-element slot="tab-element-3">
+                        <span slot="nombre">Joel</span>
+                        <span slot="email">joelmiller@gmail.com</span>
+                    </tab-element>
+                    <tab-element slot="tab-element-4">
+                        <span slot="nombre">Ellie</span>
+                        <span slot="email">elliewilliams@gmail.com</span>
+                    </tab-element>
+                    <tab-element slot="tab-element-5">
+                        <span slot="nombre">Austin</span>
+                        <span slot="email">austinpower@gmail.com</span>
+                    </tab-element>
+                </tab-component>
+                <form-component></form-component>
+            </div>
         </div>
+
+        <modal-component width="20%" heigth="30vh">
+            <erase-alert-component slot="details-component-modal"></erase-alert-component>
+        </modal-component>
     </body>
 </html>

@@ -3,10 +3,13 @@ class Modal extends HTMLElement {
     constructor() {
         super();
         this.shadow = this.attachShadow({mode: 'open'});
-        this.render();
+        const width = this.attributes.getNamedItem("width").value;
+        const height = this.attributes.getNamedItem("heigth").value;
+
+        this.render(width, height);
     }
 
-    render() {
+    render(width, height) {
 
         this.shadow.innerHTML = 
         `
@@ -22,7 +25,7 @@ class Modal extends HTMLElement {
             height: 100%;
         }
         .modal-section {
-            position: fixed;
+            position: absolute;
             width: 100%;
             height: 100vh;
             bottom: 0;
@@ -33,14 +36,12 @@ class Modal extends HTMLElement {
         
         .modal-section::after {
             content: "";
-            width: 100%;
-            height: 100vh;
             position: absolute;
         }       
         .modal-section .modal { 
             background-color: rgb(93, 93, 93);
-            width: 50%;
-            height: 65vh;
+            width: ${width};
+            height: ${height};
             display: grid;
             grid-template-columns: 50% 50%;
             box-shadow: 10px 10px 58px -6px rgba(0,0,0,0.75);
@@ -75,7 +76,7 @@ class Modal extends HTMLElement {
         }
 
         </style>
-        <section class="modal-section active" id="modal">
+        <section class="modal-section" id="modal">
         <div class="modal">
             <slot name="image-component-modal"></slot>
             <slot name="details-component-modal"></slot>
@@ -86,6 +87,19 @@ class Modal extends HTMLElement {
         </div>
     </section>
         `;
+
+        const closeModal = this.shadow.querySelector("#closeButton");
+        closeModal.addEventListener("click", () => 
+            closeModal.closest(".modal-section").classList.remove("active")
+        )
+
+        document.addEventListener("remove-active", () =>
+            closeModal.closest(".modal-section").classList.remove("active")
+        )   
+
+        document.addEventListener("add-active", () =>
+        closeModal.closest(".modal-section").classList.add("active")
+    )  
     }
 }
 
