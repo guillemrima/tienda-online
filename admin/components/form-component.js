@@ -94,15 +94,11 @@ class Form extends HTMLElement {
                 fill: rgba(109,183,243,255);
             }
             
-            .form {
+            .profile-form {
                 display: none;
             }
             
-            .form.active {
-                display: flex;
-            }
-            
-            .form form {
+            .profile-form.active {
                 display: grid;
                 grid-template-columns: 1fr 1fr;
                 width: 100%;
@@ -159,40 +155,38 @@ class Form extends HTMLElement {
                 </div>
             </div>
             <div class="form-container">
-                <div class="form active" data-form="principal">
-                    <form id="form-principal">
-                        <div>
-                            <label>Nombre</label>
-                            <input type="text"></input>
-                        </div>
-                        <div>
-                            <label>Email</label>
-                            <input type="text"></input>
-                        </div>
-                        <div>
-                            <label>Contraseña</label>
-                            <input type="text"></input>
-                        </div>
-                        <div>
-                            <label>Confirme contraseña</label>
-                            <input type="text"></input>
-                        </div>
-                    </form>
-                </div>
-                <div class="form" data-form="image">
-                    <form id="form-images">
+                <form>
+                    <div class="profile-form active" data-form="principal" id="form-principal">
+                            <div>
+                                <label>Nombre</label>
+                                <input type="text"></input>
+                            </div>
+                            <div>
+                                <label>Email</label>
+                                <input type="text"></input>
+                            </div>
+                            <div>
+                                <label>Contraseña</label>
+                                <input type="text"></input>
+                            </div>
+                            <div>
+                                <label>Confirme contraseña</label>
+                                <input type="text"></input>
+                            </div>
+                    </div>
+                    <div class="profile-form" data-form="image">
                         <div class="input-image">
                             <label>Seleccione una imagen</label>
                             <input type="file">
                         </div>
-                    </form>
-                </div>
+                    </div>
+                </form>
             </div>
         </section>
         `;
 
         const formParent = this.shadow.querySelector(".form-container");
-        const forms = formParent.querySelectorAll(".form");;
+        const forms = formParent.querySelectorAll(".profile-form");;
         const resetForm = this.shadow.querySelector("#resetButton");
         const formSelector = this.shadow.querySelector('.selector');
         const selectors = formSelector.querySelectorAll("div");
