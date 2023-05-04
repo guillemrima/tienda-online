@@ -207,9 +207,9 @@ class Form extends HTMLElement {
                 document.dispatchEvent(event);    
                 for (let i = 0; i < selectors.length; i++) {
                 selectors[i].classList.remove("active");
-               }
-               selector.classList.add("active")
-               forms.forEach(form => {
+            }
+            selector.classList.add("active")
+            forms.forEach(form => {
                     form.dataset.form == dataset ? form.classList.add("active") : form.classList.remove("active");
             })
             })})
@@ -217,10 +217,9 @@ class Form extends HTMLElement {
         //FUNCIÓN PARA RECOGER LOS DATOS DEL FORMULARIO
             submitForm.addEventListener("click", () => {
                 const formData = new FormData(form);
-                console.log(formData.entries());
                 for (let pair of formData.entries()) {
                     console.log(pair[0] + ': ' + pair[1]);
-                  }
+                }
             })
 
     }
