@@ -149,35 +149,35 @@ class Form extends HTMLElement {
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>broom</title><path d="M19.36,2.72L20.78,4.14L15.06,9.85C16.13,11.39 16.28,13.24 15.38,14.44L9.06,8.12C10.26,7.22 12.11,7.37 13.65,8.44L19.36,2.72M5.93,17.57C3.92,15.56 2.69,13.16 2.35,10.92L7.23,8.83L14.67,16.27L12.58,21.15C10.34,20.81 7.94,19.58 5.93,17.57Z" /></svg>                        </button>
                     </div>
                     <div>
-                        <button type="button" id="submitButton">
+                        <button type="submit" id="submitButton">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>content-save</title><path d="M15,9H5V5H15M12,19A3,3 0 0,1 9,16A3,3 0 0,1 12,13A3,3 0 0,1 15,16A3,3 0 0,1 12,19M17,3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V7L17,3Z" /></svg>                        </button>
                     </div>
                 </div>
             </div>
             <div class="form-container">
-                <form>
+                <form id="form">
                     <div class="profile-form active" data-form="principal" id="form-principal">
                             <div>
                                 <label>Nombre</label>
-                                <input type="text"></input>
+                                <input name="nombre" type="text"></input>
                             </div>
                             <div>
                                 <label>Email</label>
-                                <input type="text"></input>
+                                <input name="email" type="text"></input>
                             </div>
                             <div>
                                 <label>Contraseña</label>
-                                <input type="text"></input>
+                                <input name="password" type="text"></input>
                             </div>
                             <div>
                                 <label>Confirme contraseña</label>
-                                <input type="text"></input>
+                                <input name="passwordConfirmed" type="text"></input>
                             </div>
                     </div>
                     <div class="profile-form" data-form="image">
                         <div class="input-image">
                             <label>Seleccione una imagen</label>
-                            <input type="file">
+                            <input type="file" name="imagen">
                         </div>
                     </div>
                 </form>
@@ -186,37 +186,43 @@ class Form extends HTMLElement {
         `;
 
         const formParent = this.shadow.querySelector(".form-container");
-        const forms = formParent.querySelectorAll(".profile-form");;
+        const forms = formParent.querySelectorAll(".profile-form");
+        const form = this.shadow.querySelector('#form');
         const resetForm = this.shadow.querySelector("#resetButton");
+        const submitForm = this.shadow.querySelector("#submitButton"); 
         const formSelector = this.shadow.querySelector('.selector');
         const selectors = formSelector.querySelectorAll("div");
 
 
         //FUNCIÓN PARA RESETEAR EL FORMULARIO
         resetForm.addEventListener("click",() => {
-            forms.forEach(form => { 
-                form.querySelector("form").reset();
-            })
+            form.reset();
         })
+
         //FUNCIÓN PARA MOSTRAR/OCULTAR LAS DISTINTAS SECCIONES DEL FORMULARIO
-        selectors.forEach(selector => {
-    
+        selectors.forEach(selector => {    
             const dataset = selector.dataset.form;
-            const event = new CustomEvent('show-form',{detail: dataset});
-            
-            selector.addEventListener("click", () => {
-                
-                document.dispatchEvent(event);
-    
+            const event = new CustomEvent('show-form',{detail: dataset});           
+            selector.addEventListener("click", () => {               
+                document.dispatchEvent(event);    
                 for (let i = 0; i < selectors.length; i++) {
                 selectors[i].classList.remove("active");
                }
                selector.classList.add("active")
-
                forms.forEach(form => {
-                form.dataset.form == dataset ? form.classList.add("active") : form.classList.remove("active");
+                    form.dataset.form == dataset ? form.classList.add("active") : form.classList.remove("active");
             })
-            })})     
+            })})
+
+        //FUNCIÓN PARA RECOGER LOS DATOS DEL FORMULARIO
+            submitForm.addEventListener("click", () => {
+                const formData = new FormData(form);
+                console.log(formData.entries());
+                for (let pair of formData.entries()) {
+                    console.log(pair[0] + ': ' + pair[1]);
+                  }
+            })
+
     }
 
 }
