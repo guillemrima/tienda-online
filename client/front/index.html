@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<title>HYUNDAI® | Home Page</title>
+		<meta name="description" content="descripción de la web, se recomienda 90 caracteres">
+        <meta name="keywords" 	 content="palabras clave, separadas, por comas">
+        <link href="assets/icon/favicon.svg" rel="icon" type="image/x-icon" />
+        <link rel="stylesheet" href="style/general.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+        <!-- <script type="module" src="./js/app.js" defer></script> -->
+        <script type="module" src="./src/index.js" defer></script>
+
+    </head>
+    <body>
+
+        <header-component>
+        </header-component>
+
+        <slider-component>
+        </slider-component>
+
+        <features-component>
+        </features-component>
+
+        <details-component>
+        </details-component>
+
+        <faqs-component>            
+        </faqs-component>
+
+        <team-component>
+        </team-component>
+
+        <contact-component>
+                <flipcard-componet slot="flipCard">
+                    <contactinfo-component slot="front"></contactinfo-component>
+                    <contactform-component slot="back"></contactform-component>
+                </flipcard-componet>
+        </contact-component>
+
+        <footer-component>
+        </footer-component>
+
+
+        </section> -->
+
+        <modal-component width="50%" heigth="65vh">
+                <image-component slot="image-component-modal"></image-component>
+                <details-modal slot="details-component-modal">
+                    <information-details slot="information-details-modal">
+                        <title-details-element slot="title-element"></title-details-element>
+                        <tabs-component slot="tabs-element"></tabs-component>
+                        <amount-input-element slot="amount-element"></amount-details-element>
+                    </information-details>
+                    <form-component slot="form-details-modal"></form-component>
+                </details-modal>
+        </modal-component>
+
+
+        <section class="message-section">
+            <div class="message" id="message">
+                <div class="message-image" id="message-image">
+                </div>
+                <div class="message-description">
+                    <p id="message-content"></p>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>
