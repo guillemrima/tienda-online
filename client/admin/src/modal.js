@@ -82,7 +82,7 @@ class Modal extends HTMLElement {
             <slot name="details-component-modal"></slot>
             
             <div class="close-button button-close-modal" id="closeButton">
-                <img src="./assets/icon/close.svg" />
+                <img src="./assets/close.svg" />
             </div>            
         </div>
     </section>

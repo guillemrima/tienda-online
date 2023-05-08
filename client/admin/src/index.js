@@ -5,5 +5,5 @@ import './form-component.js';
 import './tab-element.js'
 
 //Modal Components
-import "./../../src/modal-component/modal.js";
+import "./modal.js";
 import "./erase-alert-component.js";

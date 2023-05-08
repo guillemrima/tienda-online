@@ -2,5 +2,10 @@
   "dependencies": {
     "webpack": "^5.82.0",
     "webpack-cli": "^5.0.2"
+  },
+  "scripts" : {
+    "build": "webpack",
+    "watch-admin": "webpack --watch --config admin/webpack.config.js",
+    "watch-front": "webpack --watch --config front/webpack.config.js"
   }
 }

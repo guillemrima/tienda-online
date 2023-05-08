@@ -17,27 +17,13 @@ body {
     padding: 0 5%;
 }
 
-button {
-    width: 100%;
-    height: 100%;
-    cursor: pointer;
-}
 
 button:hover svg {
     transform: scale(110%);
-}
-
-img {
-    width: 100%;
-    height: 100%;
 }
 
 .panel {
     display: grid;
     grid-template-columns: 35% 60%;
     gap: 5%;
-}
-
-.modal {
-    border: 1px solid red;
 }
