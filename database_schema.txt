@@ -1,0 +1,13 @@
+Companies
+	-id
+	-fiscal_name
+	-comercal_name
+	-nif
+	-comercial_address
+	-fiscal_adress
+	-email
+	-phone
+	-web
+
+Social_networs																								DANI MARICON
+																										QUE MIRAS LOCOc
