@@ -23,20 +23,38 @@ class LateralMenu extends HTMLElement {
 
             .hamburger-tab {
                 background-color: #6db7f3;
+                position: absolute;
+                display:none;
+                top: 0;
+                right: 0;
+                width: 20%;
+                margin-top: 5%;
             }
 
+            .hamburger-tab ul {
+                width: 100%
+            }
             .hamburger-tab li {
+                width:100%;
                 color: white;
                 padding: 1rem 0.5rem;
+                cursor:pointer;
             }
 
             .hamburger-tab li:hover {
-                border: 1px solid #304cbc;
+                background-color: white;
+                color: #6db7f3;
             }
+
+            .hamburger-tab.active {
+                display: flex;
+                position: absolute;
+                top: 0;
+            }
+
 
         </style>
 
-        <article>
             <div class="hamburger-tab">
                 <ul>
                     <li>
@@ -56,8 +74,13 @@ class LateralMenu extends HTMLElement {
                     </li>
                 </ul>
             </div>
-        </article>
         `;
+
+        const hamburgerMenu = this.shadow.querySelector('.hamburger-tab');
+
+        document.addEventListener('show-lateral-menu', () => {
+            hamburgerMenu.classList.toggle("active");
+        })
         
     }
 }

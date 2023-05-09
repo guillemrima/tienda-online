@@ -82,11 +82,12 @@ class Header extends HTMLElement {
         `;
 
         const  hamburgerButton = this.shadow.querySelector(".hamburger-button");
-    
-        //FUNCIÓN PARA ANIMAR EL HAMBURGER BUTTON
+        const showLateralMenu = new CustomEvent('show-lateral-menu');
+
         hamburgerButton.addEventListener("click", () => {
-        hamburgerButton.classList.toggle("active");
-        
+            hamburgerButton.classList.toggle("active");
+            document.dispatchEvent(showLateralMenu);
+            
     })
         
     }
