@@ -1,7 +1,7 @@
 const useBcrypt = require('sequelize-bcrypt');
 
 module.exports = function(sequelize, DataTypes) {
-    const User = sequelize.define('Company', {
+    const Company = sequelize.define('Company', {
         id: {
             autoIncrement: true,
             type: DataTypes.INTEGER,
@@ -66,7 +66,7 @@ module.exports = function(sequelize, DataTypes) {
     });
 
 
-    User.associate = function(models) {
+    Company.associate = function(models) {
     };
 
     return Company;

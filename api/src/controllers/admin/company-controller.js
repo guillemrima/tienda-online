@@ -1,10 +1,10 @@
 const db = require("../../models");
-const User = db.User;
+const Company = db.Company;
 const Op = db.Sequelize.Op;
 
 exports.create = (req, res) => {
 
-    User.create(req.body).then(data => {
+    Company.create(req.body).then(data => {
 
         res.status(200).send(data);
 
@@ -30,9 +30,9 @@ exports.findAll = (req, res) => {
     let whereStatement = {};
     let condition = Object.keys(whereStatement).length > 0 ? {[Op.and]: [whereStatement]} : {};
 
-    User.findAndCountAll({
+    Company.findAndCountAll({
         where: condition, 
-        attributes: ['id', 'name', 'email'],
+        attributes: ['id', 'comercial_name', 'fiscal_name', 'nif', 'comercial_address', 'postal_code', 'email', 'web', 'telephone'],
         limit: limit,
         offset: offset,
         order: [['createdAt', 'DESC']]
@@ -58,7 +58,7 @@ exports.findOne = (req, res) => {
 
     const id = req.params.id;
 
-    User.findByPk(id).then(data => {
+    Company.findByPk(id).then(data => {
 
         if (data) {
             res.status(200).send(data);
@@ -79,7 +79,7 @@ exports.update = (req, res) => {
 
     const id = req.params.id;
 
-    User.update(req.body, {
+    Company.update(req.body, {
         where: { id: id }
     }).then(num => {
         if (num == 1) {
@@ -102,7 +102,7 @@ exports.delete = (req, res) => {
 
     const id = req.params.id;
 
-    User.destroy({
+    Company.destroy({
         where: { id: id }
     }).then(num => {
         if (num == 1) {
