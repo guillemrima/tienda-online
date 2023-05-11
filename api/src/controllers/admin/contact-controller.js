@@ -1,10 +1,10 @@
 const db = require("../../models");
-const Slider = db.Slider;
+const Contact = db.Contact;
 const Op = db.Sequelize.Op;
 
 exports.create = (req, res) => {
 
-    Slider.create(req.body).then(data => {
+    Contact.create(req.body).then(data => {
 
         res.status(200).send(data);
 
@@ -30,9 +30,9 @@ exports.findAll = (req, res) => {
     let whereStatement = {};
     let condition = Object.keys(whereStatement).length > 0 ? {[Op.and]: [whereStatement]} : {};
 
-    Slider.findAndCountAll({
+    Contact.findAndCountAll({
         where: condition, 
-        attributes: ['id', 'name', ],
+        attributes: ['id','name', 'email', 'issue', 'message'],
         limit: limit,
         offset: offset,
         order: [['createdAt', 'DESC']]
@@ -58,7 +58,7 @@ exports.findOne = (req, res) => {
 
     const id = req.params.id;
 
-    Slider.findByPk(id).then(data => {
+    Contact.findByPk(id).then(data => {
 
         if (data) {
             res.status(200).send(data);
@@ -79,7 +79,7 @@ exports.update = (req, res) => {
 
     const id = req.params.id;
 
-    Slider.update(req.body, {
+    Contact.update(req.body, {
         where: { id: id }
     }).then(num => {
         if (num == 1) {
@@ -102,7 +102,7 @@ exports.delete = (req, res) => {
 
     const id = req.params.id;
 
-    Slider.destroy({
+    Contact.destroy({
         where: { id: id }
     }).then(num => {
         if (num == 1) {
