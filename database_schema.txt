@@ -1,4 +1,4 @@
-Companies
+Companies:
 	-id
 	-fiscal_name
 	-comercal_name
@@ -9,5 +9,82 @@ Companies
 	-phone
 	-web
 
-Social_networs																								DANI MARICON
-																										QUE MIRAS LOCOc
+Menu: 
+	-id
+	-name
+	-url
+
+Social_networks:
+	-
+	-
+	-
+	-
+	-
+
+Locale_seo (Partes fijas de una ruta)
+	-
+	-
+	-
+	-
+	-
+
+Locale_slug_seo (Partes variables de la ruta: Productos, clientes etc)
+	-
+	-
+	-
+	-
+	-
+	-
+	-
+
+
+Sitemap (buscar informacion. Archivo XML donde se registran todas las url de tu pagina web). 
+
+Menu
+	-
+	-
+	-
+	-
+	-
+	-
+
+Items_menu
+	-id
+	-language
+	-name
+	-description
+	-custom_url
+
+Locale
+	-
+	-
+	-
+	-
+
+slider
+	-id
+	-name
+	-
+	-
+	-
+
+COSAS POR HACER:
+	-Redimensionamiento de Imagenes
+	-Componentes multi-idioma
+
+
+
+
+
+
+
+
+PROCESO DE CREAR UNA TABLA:
+1-Crear la migracion 
+	2-Editar la migracion
+3-Lanzar la migracion
+4-Crear el controllador
+	5-Editar el controllador
+6-Crear la ruta
+	7-Editar la ruta
+
