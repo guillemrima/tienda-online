@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>HYUNDAI® | Admin panel</title>
+	<meta name="description" content="HYUNDAI®'s Admin panel">
+    <meta name="keywords" 	 content="admin, panel">
+    <link href="./admin/assets/favicon.svg" rel="icon" type="image/x-icon" />
+    <link rel="stylesheet" href="./style/general.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script type="module" src="./src/index.js" defer></script>
+</head>
+    <body>
+        <div class="padding-container">
+            <header-component></header-component>
+            <filter-component></filter-component>
+            <div class="panel">    
+                <tab-component>
+                    <tab-element slot="tab-element-1">
+                        <span slot="nombre">Guillem</span>
+                        <span slot="email">rivasmartorellguillem@gmail.com</span>
+                    </tab-element>
+                    <tab-element slot="tab-element-2">
+                        <span slot="nombre">Arthur</span>
+                        <span slot="email">arthurmorgan@gmail.com</span>
+                    </tab-element>
+                    <tab-element slot="tab-element-3">
+                        <span slot="nombre">Joel</span>
+                        <span slot="email">joelmiller@gmail.com</span>
+                    </tab-element>
+                    <tab-element slot="tab-element-4">
+                        <span slot="nombre">Ellie</span>
+                        <span slot="email">elliewilliams@gmail.com</span>
+                    </tab-element>
+                    <tab-element slot="tab-element-5">
+                        <span slot="nombre">Austin</span>
+                        <span slot="email">austinpower@gmail.com</span>
+                    </tab-element>
+                </tab-component>
+                <form-component></form-component>
+            </div>
+        </div>
+
+        <modal-component width="20%" heigth="30vh">
+            <erase-alert-component slot="details-component-modal"></erase-alert-component>
+        </modal-component>
+
+        <lateral-menu-component></lateral-menu-component>
+    </body>
+</html>
