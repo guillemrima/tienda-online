@@ -1,84 +1,14 @@
-Companies:
-	-id
-	-fiscal_name
-	-comercal_name
-	-nif
-	-comercial_address
-	-fiscal_adress
-	-email
-	-phone
-	-web
-
-Menu: 
-	-id
-	-name
-	-url
-
-Social_networks:
-	-id
-	-name
-
-Locale_seo (Partes fijas de una ruta)
-	-
-	-
-	-
-	-
-	-
-
-Locale_slug_seo (Partes variables de la ruta: Productos, clientes etc)
-	-
-	-
-	-
-	-
-	-
-	-
-	-
-
-
-Sitemap (buscar informacion. Archivo XML donde se registran todas las url de tu pagina web). 
-
-Menu
-	-
-	-
-	-
-	-
-	-
-	-
-
-Items_menu
-	-id
-	-language
-	-name
-	-description
-	-custom_url
-
-Locale
-	-
-	-
-	-
-	-
-
-slider
-	-id
-	-name
-	-
-	-
-	-
-
-COSAS POR HACER:
-	-Redimensionamiento de Imagenes
-	-Componentes multi-idioma
-
 PROCESO DE CREAR UNA TABLA:
 	1-Crear la migracion: npx sequelize migration:generate --name="nombre de la tabla"
-	2-Lanzar la migracion: npx sequelize db:migrate
+		1.1-Editar la migracion
+		1.2-Lanzar la migracion: npx sequelize db:migrate
 
-	3-Crear el modelo
-	4-Editar el modelo
+	2-Crear el modelo
+		2.1-Editar el modelo
 
-	5-Crear el controlador.
-	6-Editar el controlador.
+	3-Crear el controlador.
+		3.1-Editar el controlador.
 
-	7-Crear el enrutador.
-	8-Editar el enrutador.
+	4-Crear el enrutador.
+		4.1-Editar el enrutador.
 
