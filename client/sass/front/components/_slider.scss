@@ -1,0 +1,123 @@
+.slider-section {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    padding-top: 10vh;
+}
+
+.slider-section .maintext-slider-container {
+    margin-top: 5vh;
+}
+
+.maintext-slider-container > .title-maintext-container > h2{
+    font-size: 5.2rem;
+    text-align: center;
+    color: $mainColor;
+    font-weight: 600;
+}
+
+.maintext-slider-container > .description-maintext-container {
+    padding: 0 25%;
+    margin-top: 1%;
+}
+
+.maintext-slider-container > .description-maintext-container > p {
+    text-align: center;
+    font-size: 1.5rem;
+    color: $secondaryColor;
+    line-height: 40px;
+    font-weight: 300;
+
+    
+}
+
+.slider-section > .button-slider-container {
+    display: flex;
+    justify-content: center;
+}
+
+.slider-section > .button-slider-container > button {
+    padding: 17px 80px;
+    font-size: 1.7rem;
+    font-weight: 500;
+    background-color: $secondaryBackgroundColor;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.slider-section > .button-slider-container > button:hover {
+    background-color: hsl(204, 15%,26%);
+}
+
+.slider-section .image-slider-container {
+    max-width: 40%; 
+    min-width: 40%;
+    position: absolute;
+    bottom: 0;
+}
+
+.image-slider-container  img {
+    object-fit: contain;
+    width: 100%;
+}
+
+
+.background-slider-container {
+    position: absolute;
+    bottom: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+}
+
+.background-slider-container  img {
+    width: 100%;
+    height: 100%;
+}
+
+
+@keyframes fadeCheckoutPart1 {
+    from {
+        left: 50%;
+    }
+    to {
+        left: 0%;
+    }
+}
+
+@keyframes fadeCheckoutPart2 {
+    from {
+        left: 0%;
+    }
+    to {
+        left: 50%;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }  
+
+    to{
+        opacity: 1;
+    }
+}
+
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }  
+
+    to{
+        opacity: 0;
+    }
+}
