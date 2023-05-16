@@ -52,14 +52,19 @@ class Slider extends HTMLElement {
                 
             }
             
+            .button-slider-container {
+                width: 100%
+                h
+            }
+
             .slider-section > .button-slider-container {
                 display: flex;
                 justify-content: center;
             }
             
             .slider-section .image-slider-container {
-                max-width: 40%; 
-                min-width: 40%;
+                max-width: 30%; 
+                min-width: 30%;
                 position: absolute;
                 bottom: 0;
             }
