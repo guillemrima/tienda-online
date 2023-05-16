@@ -1,0 +1,25 @@
+:root {
+    --paddinGeneral : 0 20%;
+    --marginBottomGeneral: 10vh;
+    --mainColor: hwb(0 25% 75%);
+    --secondaryColor: hsl(0, 0%, 55%);
+    --secondaryBackgroundColor: hsl(209, 100%, 50%);
+    --tertiaryBackgroundColor: hsl(18, 100%, 57%);
+    --borderButton: 20px;
+    --backGroundPrincipal: hsl(0,9%,96%);
+    --hoverButton : hsl(204, 15%,26%);
+}
+
+::-webkit-scrollbar {
+    background-color: rgb(232, 232, 232);
+    width: 0.5rem;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: $secondaryBackgroundColor;
+    border-radius: 20px;
+}
+
+* {
+    font-family: $font-stack;
+}

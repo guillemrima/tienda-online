@@ -1,0 +1,142 @@
+.team-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5rem;
+    background-color: hsl(0, 0%, 94%);
+    padding: 15vh 10%;
+}
+
+.team-section .teamcard-team-container .card-teamcard-container .expand-card-container {
+   position: absolute;
+   right: 0;
+   margin: 20px;
+   width: 2rem;
+   min-height: 15vh;
+   border-radius: 20px;
+   overflow: hidden;
+}
+
+
+.team-section .expand-card-container .contracted-card-container {
+    width: 2rem;
+    height: 2rem;
+    background-color: white;
+    border-radius: 100%;
+    cursor: pointer;
+    position: absolute;
+    z-index: 99;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.2rem;
+}
+
+.contracted-card-container.active .bot{
+    transform: rotate(45deg);
+    position: absolute;
+}
+
+.contracted-card-container.active .top{
+    transform: rotate(-45deg);
+    position: absolute;
+}
+
+.contracted-card-container.active .mid{
+    display: none;
+}
+
+.team-section .expand-card-container .expanded-card-container {
+    position: absolute;
+    z-index: 98;
+    height: 100%;
+    border-radius: 30px;
+    padding-top: 100%;
+    background-color: white;
+    top: -100%;
+    transition: all 0.5s ease-in-out;
+}
+
+.team-section .expand-card-container .expanded-card-container.active {
+    top: 0;
+}
+.expanded-card-container img {
+    transform: scale(65%);
+    cursor: pointer;
+}
+
+
+.team-section .contracted-card-container img {
+    transform: scale(60%)
+}
+
+.contracted-card-container div {
+    width: 50%;
+    border-bottom: 2px solid rgb(6, 6, 6);
+    transition: 0.5s;
+}
+
+.team-section .maintext-team-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.maintext-team-container h2 {
+    font-size: 3rem;
+    color: $mainColor;
+}
+
+.maintext-team-container p {
+    font-size: 1.2rem;
+    color: $mainColor;
+    text-align: center;
+    padding: 0 10%;
+}
+
+.team-section .card-teamcard-container {
+    display: flex;
+    border-top-right-radius: 20px;
+    border-top-left-radius:20px;
+    flex-direction: column;
+    position: relative;
+    -webkit-box-shadow: 10px 10px 71px -37px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 71px -37px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 71px -37px rgba(0,0,0,0.75);
+}
+
+.team-section .teamcard-team-container {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
+}
+
+.card-teamcard-container .image-card-container {
+    height: 30vh;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    overflow: hidden;
+}
+
+.image-card-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+}
+
+.card-teamcard-container .text-card-container {
+    background-color: hsl(0, 0%, 100%);
+    padding: 1rem 0;
+}
+
+.card-teamcard-container .text-card-container  h5{
+    font-size: 1rem;
+}
+
+.card-teamcard-container .text-card-container p{
+    font-size: 0.8rem;
+}
+
