@@ -1,0 +1,42 @@
+.message-section {
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    right: 0;
+}
+
+.message {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 10rem;
+    padding: 1rem;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    border: 2px solid $tertiaryBackgroundColor;
+    border-radius: 15px;
+    gap: 1rem;
+    display: none;
+}
+
+.message .message-image {
+    width: 40px;
+    height: 40px;
+    fill: $tertiaryBackgroundColor;
+}
+
+.message-description p{
+    color: $tertiaryBackgroundColor;
+    font-weight: 600;
+    font-size: 1.2rem;
+    text-align: center;
+
+}
+
+.message.active {
+    display: flex;
+    @include translateXInScreen(0s,1s);
+}

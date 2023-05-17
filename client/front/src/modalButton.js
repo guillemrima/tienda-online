@@ -15,13 +15,15 @@ class modalButton extends HTMLElement {
         `
         <style>
             .button-show-modal {
+                width: 100%;
+                heigth: 100%;
                 font-size: ${fontSize};
                 font-weight: 500;
                 background-color: ${backgroundcolor};
                 color: white;
                 border: none;
                 border-radius: 20px;
-                padding: 8px 35px;
+                padding: 10px 35px;
                 cursor: pointer;
                 transition: 0.5s;
             }
@@ -30,10 +32,8 @@ class modalButton extends HTMLElement {
             }
         </style>
 
-            <a>
                 <button type="button" class="button-show-modal" id="checkoutButtonHeader">${text}
                 </button>
-            </a>
         `;
             const modalButtonsOpen = this.shadow.querySelectorAll(".button-show-modal");
             const openModal = new CustomEvent("add-active");
