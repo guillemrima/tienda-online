@@ -9,13 +9,13 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      vatRate: {
+      type: {
         allowNull: false,
-        type: Sequelize.INTEGER.UNSIGNED,
+        type: Sequelize.INTEGER
       },
-      valid: {
+      current: {
         allowNull: false,
-        type: Sequelize.TINYINT
+        type: Sequelize.BOOLEAN
       },
       createdAt: {
         allowNull: false,
@@ -23,6 +23,9 @@ module.exports = {
       },
       updatedAt: {
         allowNull: false,
+        type: Sequelize.DATE
+      },
+      deletedAt: {
         type: Sequelize.DATE
       }
     });

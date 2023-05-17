@@ -17,16 +17,6 @@ module.exports = function(sequelize, DataTypes) {
         tableName: 'sliders',
         timestamps: true,
         paranoid: true,
-        indexes: [
-            {
-                name: "PRIMARY",
-                unique: true,
-                using: "BTREE",
-                fields: [
-                    { name: "id" },
-                ]
-            }
-        ]
     });
 
 

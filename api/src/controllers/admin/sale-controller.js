@@ -1,9 +1,9 @@
 const db = require("../../models");
-const Tax = db.Tax;
+const Sale = db.Sale;
 const Op = db.Sequelize.Op;
 
 exports.create = (req, res) => {
-  Tax.create(req.body)
+  Sale.create(req.body)
     .then(data => {
       res.status(200).send(data);
     })
@@ -14,7 +14,7 @@ exports.create = (req, res) => {
         });
       } else {
         res.status(500).send({
-          message: "Algún error ha surgido al recuperar los datos."
+          message: "Algún error ha surgido al crear los datos."
         });
       }
     });
@@ -26,12 +26,11 @@ exports.findAll = (req, res) => {
   let offset = (page - 1) * limit;
 
   let whereStatement = {};
-  let condition =
-    Object.keys(whereStatement).length > 0 ? { [Op.and]: [whereStatement] } : {};
+  let condition = Object.keys(whereStatement).length > 0 ? { [Op.and]: [whereStatement] } : {};
 
-  Tax.findAndCountAll({
+  Sale.findAndCountAll({
     where: condition,
-    attributes: ['id'],
+    attributes: ['id', 'cartId', 'customerId', 'paymentMethodId', 'reference', 'totalPrice', 'totalBasePrice', 'totalTaxPrice', 'issueDate', 'issueTime'],
     limit: limit,
     offset: offset,
     order: [['createdAt', 'DESC']]
@@ -53,8 +52,7 @@ exports.findAll = (req, res) => {
 
 exports.findOne = (req, res) => {
   const id = req.params.id;
-
-  Tax.findByPk(id)
+  Sale.findByPk(id)
     .then(data => {
       if (data) {
         res.status(200).send(data);
@@ -73,8 +71,7 @@ exports.findOne = (req, res) => {
 
 exports.update = (req, res) => {
   const id = req.params.id;
-
-  Tax.update(req.body, {
+  Sale.update(req.body, {
     where: { id: id }
   })
     .then(num => {
@@ -97,8 +94,7 @@ exports.update = (req, res) => {
 
 exports.delete = (req, res) => {
   const id = req.params.id;
-
-  Tax.destroy({
+  Sale.destroy({
     where: { id: id }
   })
     .then(num => {

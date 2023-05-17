@@ -21,16 +21,6 @@ module.exports = function(sequelize, DataTypes) {
         tableName: 'social_networks',
         timestamps: true,
         paranoid: true,
-        indexes: [
-            {
-                name: "PRIMARY",
-                unique: true,
-                using: "BTREE",
-                fields: [
-                    { name: "id" },
-                ]
-            }
-        ]
     });
 
 

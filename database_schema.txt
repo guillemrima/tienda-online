@@ -1,14 +1,383 @@
-PROCESO DE CREAR UNA TABLA:
-	1-Crear la migracion: npx sequelize migration:generate --name="nombre de la tabla"
-		1.1-Editar la migracion
-		1.2-Lanzar la migracion: npx sequelize db:migrate
+COMPANIES
 
-	2-Crear el modelo
-		2.1-Editar el modelo
+id
+fiscalName  string 
+comercialName string notnull
+nif string
+comercialAddress string
+postalCode string
+email string notnull
+web string
+telephone string
+createdAt date
+updatedAt date
+deletedAt date	
 
-	3-Crear el controlador.
-		3.1-Editar el controlador.
+-------------------------
 
-	4-Crear el enrutador.
-		4.1-Editar el enrutador.
+SLIDERS 
+
+id
+name string notnull
+visible boolean	
+createdAt date
+updatedAt date
+deletedAt date
+
+----------------------
+
+FAQS
+
+id
+name string notnull
+title string notnull
+description text notnull
+order integer default(0)
+createdAt date
+updatedAt date
+deletedAt date
+
+----------------------
+
+LOCALE_SEOS
+
+id
+language string notnull
+group string notnull
+key string notnull
+subdomain string
+url string notnull
+title string notnull
+description string 
+keywords string
+redirection boolean default(0)
+menu boolean default(1)
+changeFrequency  string
+priority  decimal
+sitemap  boolean  default(1)
+createdAt date
+updatedAt date
+deletedAt date
+
+LOCALE_SEO_REDIRECTS
+
+id
+localeSeoId integer
+language string
+group string
+key string
+subdomain string
+oldUrl string
+createdAt date
+updatedAt date
+deletedAt date
+
+LOCALE_SEO_SLUGS
+
+id
+language string  notnull
+relParent string notnull
+slug string notnull
+key  integer  notnull
+localeSeoId integer notnull
+parentSlug string
+title string notnull
+description string
+keywords string
+createdAt date
+updatedAt date
+deletedAt date
+
+MENUS
+
+id
+name  string notnull	
+createdAt date
+updatedAt date
+deletedAt date	
+
+MENU_ITEMS
+
+id
+menuId int notnull
+localeSeoId  int  
+localeSlugSeoId  int
+parentId  int  
+name  string notnull	
+description  string 
+customUrl  string  
+private boolean notnull
+order integer default(0)
+createdAt date
+updatedAt date
+deletedAt date	
+
+----------------------
+
+LANGUAGES
+
+id
+name string	notnull
+alias string notnull
+createdAt date
+updatedAt date
+deletedAt date
+
+LOCALES
+
+id
+languageAlias string notnull
+entity string notnull
+entityKey integer notnull 
+key string notnull
+value string
+createdAt date
+updatedAt date
+deletedAt date
+
+-----------------
+
+IMAGE_CONFIGURATIONS
+
+id
+entity string notnull
+name string notnull
+mediaQuery string notnull
+widthPx integer 	
+heightPx  integer
+createdAt date
+updatedAt date
+deletedAt date
+
+IMAGES
+
+id
+imageConfigurationId integer		
+entityId  integer
+entity string notnull
+name  string
+originalFilename  string
+resizedFilename string 
+title string 
+alt string	
+languageAlias string notnull
+mediaQuery string  notnull	
+latencyMs   int notnull
+createdAt date
+updatedAt date
+deletedAt date
+
+--------------------------------------------------------------------------------
+
+USERS
+
+id
+name string notnull
+email string notnull
+password string notnull
+createdAt date
+updatedAt date
+deletedAt date
+
+CUSTOMERS
+
+id
+name string notnull
+surname string notnull
+telephone string notnull
+email string notnull	 
+town string notnull
+postalCode string	notnull
+address string notnull
+createdAt date
+updatedAt date
+deletedAt date
+
+FINGERPRINT
+
+id
+customerId integer
+fingerprint string notnull
+createdAt date
+updatedAt date
+deletedAt date
+
+--------------------------------------------------------------------------------
+
+CONTACTS 
+
+id
+name  string notnull	
+email string notnull
+subject string  notnull
+message text notnull
+fingerprintId int 
+createdAt date
+updatedAt date
+deletedAt date
+
+EMAILS
+
+id
+subject string notnull
+content string notnull
+fingerprintId integer 
+createdAt date
+updatedAt date
+deletedAt date
+
+SENT_EMAILS
+
+id
+customerId integer
+emailId integer
+createdAt date
+updatedAt date
+deletedAt date
+
+---------------------------------------------------------------------
+
+PRODUCTS
+
+id
+productCategoryId integer
+name string	notnull
+featured boolean
+createdAt date
+updatedAt date
+deletedAt date
+
+PRODUCT_CATEGORIES
+
+id 
+name string	notnull
+visible boolean	
+createdAt date
+updatedAt date
+deletedAt date
+
+PRICES
+
+id
+productId  integer
+taxId  integer
+basePrice  decimal
+current boolean
+createdAt date
+updatedAt date
+deletedAt date
+
+PAYMENT_METHODS
+
+id
+name string notnull
+visible boolean notnull
+createdAt date
+updatedAt date
+deletedAt date
+
+TAXES
+
+id
+type integer notnull	
+current boolean notnull
+createdAt date
+updatedAt date
+deletedAt date
+
+CARTS
+
+id 
+customerId integer
+fingerprintId integer
+createdAt date
+updatedAt date
+deletedAt date
+
+CART_DETAILS
+
+id
+cartId integer
+productId integer
+productName string notnull
+basePrice decimal(6,2)	notnull
+taxPrice decimal(6,2)
+unitOfMeasurement string  notnull
+quantity integer 	notnull 
+createdAt date
+updatedAt date
+deletedAt date
+
+SALES
+
+id
+cartId  integer
+customerId  integer
+paymentMethodId integer
+reference string notnull
+totalPrice decimal(10,2) notnull 
+totalBasePrice  decimal (10,2) notnull 
+totalTaxPrice decimal (10,2) notnull 
+issueDate date notnull
+issueTime time notnull
+createdAt date
+updatedAt date
+deletedAt date
+
+SALE_DETAILS
+
+id 
+saleId  integer
+productId integer
+productName string notnull
+basePrice decimal(6,2)	notnull	
+taxPrice decimal(6,2)	notnull 
+unitOfMeasurement string notnull
+quantity integer 	notnull	
+createdAt date
+updatedAt date
+deletedAt date	
+
+SALE_ERRORS
+
+id
+paymentMethodId  integer notnull
+customerId integer notnull
+cartId integer notnull
+errorCode integer	notnull 
+errorMessage string
+createdAt date
+updatedAt date
+deletedAt date	
+
+RETURNS
+
+id
+saleId  integer
+customerId  integer
+paymentMethodId integer 
+reference string notnull
+totalPrice decimal (10,2) notnull 
+totalBasePrice  decimal (10,2)  notnull 
+totalTaxPrice decimal (10,2)  notnull 
+issueDate date		notnull
+issueTime time		notnull
+createdAt date
+updatedAt date
+deletedAt date	
+
+RETURN_DETAILS
+
+id 
+returnId integer
+productId integer
+productName string notnull
+basePrice decimal(6,2)		notnull		
+taxPrice decimal(6,2)		notnull		
+unitOfMeasurement string 	notnull
+quantity integer 	notnull	
+createdAt date
+updatedAt date
+deletedAt date
+
 
