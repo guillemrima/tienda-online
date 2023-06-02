@@ -1,5 +1,3 @@
-const useBcrypt = require('sequelize-bcrypt');
-
 module.exports = function(sequelize, DataTypes) {
     const Cart = sequelize.define('Cart', {
         id: {
@@ -7,26 +5,35 @@ module.exports = function(sequelize, DataTypes) {
             autoIncrement: true,
             primaryKey: true,
             type: DataTypes.INTEGER
-          },
-          clientId: {
-            allowNull: false,
+        },
+        customerId: {
             type: DataTypes.INTEGER,
             references: {
-              model: 'client',
-              key: 'id'
-            }
-          },
-          fingerprintId: {
-            allowNull: false,
-            type: DataTypes.INTEGER,
-            references: {
-              model: 'fingerprint',
-              key: 'id'
-            }
+                model: 'Customer',
+                key: 'id'  
           }
+        },
+        fingerprintId: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: 'Fingerprint',
+                key: 'id'  
+          }
+        },
+        createdAt: {
+            allowNull: false,
+            type: DataTypes.DATE
+        },
+        updatedAt: {
+            allowNull: false,
+            type: DataTypes.DATE
+        },
+        deletedAt: {
+            type: DataTypes.DATE
+        }
     }, {
         sequelize,
-        tableName: 'Carts',
+        tableName: 'carts',
         timestamps: true,
         paranoid: true,
         indexes: [
@@ -37,12 +44,40 @@ module.exports = function(sequelize, DataTypes) {
                 fields: [
                     { name: "id" },
                 ]
+            },
+            {
+                name: "foreign_customer",
+                unique: true,
+                using: "BTREE",
+                fields: [
+                    { name: "customerId" },
+                ]
+            },
+            {
+                name: "foreign_fingerprint",
+                unique: true,
+                using: "BTREE",
+                fields: [
+                    { name: "fingerprintId" },
+                ]
             }
         ]
     });
 
-
     Cart.associate = function(models) {
+            Cart.belongsTo(models.Customer, {
+                foreignKey: 'customerId',
+                as: 'customer',
+                onDelete: 'CASCADE',
+                onUpdate: 'CASCADE'
+            });
+
+            Cart.belongsTo(models.Fingerprint, {
+                foreignKey: 'fingerprintId',
+                as: 'fingerprint',
+                onDelete: 'CASCADE',
+                onUpdate: 'CASCADE'
+            });
     };
 
     return Cart;

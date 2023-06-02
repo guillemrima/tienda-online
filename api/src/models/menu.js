@@ -1,5 +1,3 @@
-const useBcrypt = require('sequelize-bcrypt');
-
 module.exports = function(sequelize, DataTypes) {
     const Menu = sequelize.define('Menu', {
         id: {
@@ -9,9 +7,25 @@ module.exports = function(sequelize, DataTypes) {
             primaryKey: true
         },
         name: {
+            type: DataTypes.STRING(255),
             allowNull: false,
-            type: DataTypes.STRING(255)
-          }
+            validate: {
+                notNull: {
+                    msg: 'Por favor, rellena el campo "Nombre".'
+                }
+            }
+        },
+        createdAt: {
+            type: DataTypes.DATE,
+            allowNull: false
+        },
+        updatedAt: {
+            type: DataTypes.DATE,
+            allowNull: false
+        },
+        deletedAt: {
+            type: DataTypes.DATE
+        }
     }, {
         sequelize,
         tableName: 'menus',
@@ -28,10 +42,10 @@ module.exports = function(sequelize, DataTypes) {
             }
         ]
     });
-
-
     Menu.associate = function(models) {
-    };
+        Menu.hasMany(models.MenuItem, { foreignKey: 'menuId' });
+      };
+      
 
     return Menu;
 };

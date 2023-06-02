@@ -35,7 +35,12 @@ module.exports = function(sequelize, DataTypes) {
         },
         password: {
             type: DataTypes.STRING(255),
-            allowNull: true
+            allowNull: false,
+            validate: {
+                notNull: {
+                    msg: 'Por favor, rellena el campo "password".'
+                }
+            }
         }
     }, {
         sequelize,

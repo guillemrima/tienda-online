@@ -1,5 +1,3 @@
-const useBcrypt = require('sequelize-bcrypt');
-
 module.exports = function(sequelize, DataTypes) {
     const Locale = sequelize.define('Locale', {
         id: {
@@ -8,27 +6,63 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: false,
             primaryKey: true
         },
-        language_alias: {
-            allowNull:false,
-            unique: true,
-            type: DataTypes.STRING(2)
-          },
-          entity: {
+        languageAlias: {
+            type: DataTypes.CHAR(2),
             allowNull: false,
-            type: DataTypes.STRING(255)
-          },
-          entity_key: {
+            validate: {
+                notNull: {
+                    msg: 'Por favor, rellena el campo "Alias del idioma".'
+                }
+            }
+        },
+        entity: {
+            type: DataTypes.STRING,
             allowNull: false,
-            type: DataTypes.INTEGER
-          },
-          key: {
+            validate: {
+                notNull: {
+                    msg: 'Por favor, rellena el campo "Entidad".'
+                }
+            }
+        },
+        entityKey: {
+            type: DataTypes.INTEGER,
             allowNull: false,
-            unique: true,
-            type: DataTypes.STRING(255)
-          },
-          value: {
-            type: DataTypes.STRING(255)
-          }
+            unsigned: true,
+            validate: {
+                notNull: {
+                    msg: 'Por favor, rellena el campo "Clave de entidad".'
+                }
+            }
+        },
+        key: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                notNull: {
+                    msg: 'Por favor, rellena el campo "Clave".'
+                }
+            }
+        },
+        value: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                notNull: {
+                    msg: 'Por favor, rellena el campo "Valor".'
+                }
+            }
+        },
+        createdAt: {
+            type: DataTypes.DATE,
+            allowNull: false
+        },
+        updatedAt: {
+            type: DataTypes.DATE,
+            allowNull: false
+        },
+        deletedAt: {
+            type: DataTypes.DATE
+        }
     }, {
         sequelize,
         tableName: 'locales',
@@ -45,9 +79,8 @@ module.exports = function(sequelize, DataTypes) {
             }
         ]
     });
-
-
     Locale.associate = function(models) {
+        Locale.hasMany(models.LocaleSeo, { foreignKey: 'localeId' });
     };
 
     return Locale;

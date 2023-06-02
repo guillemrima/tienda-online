@@ -1,5 +1,3 @@
-const useBcrypt = require('sequelize-bcrypt');
-
 module.exports = function(sequelize, DataTypes) {
     const Company = sequelize.define('Company', {
         id: {
@@ -8,49 +6,91 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: false,
             primaryKey: true
         },
-        fiscal_name: {
-            unique: true,
+        fiscalName: {
+            type: DataTypes.STRING(255),
             allowNull: false,
-            type: DataTypes.STRING(255)
-          },
-          comercial_name: {
-            unique: true,
+            validate: {
+                notNull: {
+                    msg: 'Por favor, rellena el campo "Nombre Fiscal".'
+                }
+            }
+        },
+        comercialName: {
+            type: DataTypes.STRING(255),
             allowNull: false,
-            type: DataTypes.STRING(255)
-          },
-          nif: {
-            unique: true,
+            validate: {
+                notNull: {
+                    msg: 'Por favor, rellena el campo "Nombre Comercial".'
+                }
+            }
+        },
+        nif: {
+            type: DataTypes.STRING(255),
             allowNull: false,
-            type: DataTypes.STRING(255)
-          },
-          comercial_address: {
-            unique: true,
+            validate: {
+                notNull: {
+                    msg: 'Por favor, rellena el campo "NIF".'
+                }
+            }
+        },
+        comercialAddress: {
+            type: DataTypes.STRING(255),
             allowNull: false,
-            type: DataTypes.STRING(255)
-          },
-          postal_code: {
-            unique: true,
-            allowNull: true,
-            type: DataTypes.STRING(255)
-          },
-          email: {
-            unique: false,
+            validate: {
+                notNull: {
+                    msg: 'Por favor, rellena el campo "Dirección Comercial".'
+                }
+            }
+        },
+        fiscalAddress: {
+            type: DataTypes.STRING(255),
             allowNull: false,
-            type: DataTypes.STRING(255)
-          },
-          web: {
-            unique: true, 
+            validate: {
+                notNull: {
+                    msg: 'Por favor, rellena el campo "Dirección Fiscal".'
+                }
+            }
+        },
+        postalCode: {
+            type: DataTypes.STRING(255),
             allowNull: false,
-            type: DataTypes.STRING(255)
-          },
-          telephone: {
-            unique: true,
+            validate: {
+                notNull: {
+                    msg: 'Por favor, rellena el campo "Código Postal".'
+                }
+            }
+        },
+        email: {
+            type: DataTypes.STRING(255),
             allowNull: false,
+            unique: {
+                args: true,
+                msg: 'Ya existe una empresa con ese correo electrónico.'
+            },
+            validate: {
+                notNull: {
+                    msg: 'Por favor, rellena el campo "Email".'
+                },
+                isEmail: {
+                    msg: 'Por favor, rellena el campo "Email" con un email válido.'
+                }
+            }
+        },
+        web: {
+            type: DataTypes.STRING(255),
+            allowNull: false,
+            validate: {
+                notNull: {
+                    msg: 'Por favor, rellena el campo "Sitio web".'
+                }
+            }
+        },
+        telephone: {
             type: DataTypes.STRING(255)
-          }
+        },
     }, {
         sequelize,
-        tableName: 'companies',
+        tableName: 'Companies',
         timestamps: true,
         paranoid: true,
         indexes: [
@@ -61,12 +101,20 @@ module.exports = function(sequelize, DataTypes) {
                 fields: [
                     { name: "id" },
                 ]
-            }
+            },
+            {
+                name: "email",
+                unique: true,
+                using: "BTREE",
+                fields: [
+                    { name: "email" },
+                ]
+            },
         ]
     });
 
-
     Company.associate = function(models) {
+        // Define las asociaciones con otros modelos aquí
     };
 
     return Company;

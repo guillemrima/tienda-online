@@ -9,15 +9,9 @@ exports.create = (req, res) => {
         res.status(200).send(data);
 
     }).catch(err => {
-      if(err.errors ){
-        res.status(422).send({
-          message: err.errors
-        });
-      }else{
         res.status(500).send({
-          message: "Algún error ha surgido al recuperar los datos."
+            message: err.errors || "Algún error ha surgido al insertar el dato."
         });
-      }
     });
 };
 
@@ -32,7 +26,7 @@ exports.findAll = (req, res) => {
 
     Locale.findAndCountAll({
         where: condition, 
-        attributes: ['id','language_alias', 'entity', 'entity_key', 'key', 'value'],
+        attributes: ['id', 'languageAlias', 'entity', 'entityKey', 'key', 'value'],
         limit: limit,
         offset: offset,
         order: [['createdAt', 'DESC']]

@@ -1,68 +1,147 @@
 module.exports = function(sequelize, DataTypes) {
-    const Sale = sequelize.define('Sale', {
-      id: {
-        allowNull: false,
-        autoIncrement: true,
-        primaryKey: true,
-        type: DataTypes.INTEGER
-      },
-      cartId: {
-        allowNull: false,
-        type: DataTypes.INTEGER,
-        references: {
-          model: 'Cart',
-          key: 'id'
+    const Sale = sequelize.define(
+      'Sale',
+      {
+        id: {
+          allowNull: false,
+          autoIncrement: true,
+          primaryKey: true,
+          type: DataTypes.INTEGER
+        },
+        cartId: {
+          type: DataTypes.INTEGER,
+          references: {
+            model: 'Cart',
+            key: 'id'
+          }
+        },
+        customerId: {
+          type: DataTypes.INTEGER,
+          references: {
+            model: 'Customer',
+            key: 'id'
+          }
+        },
+        paymentMethodId: {
+          type: DataTypes.INTEGER,
+          references: {
+            model: 'PaymentMethod',
+            key: 'id'
+          }
+        },
+        reference: {
+          type: DataTypes.STRING,
+          allowNull: false,
+          validate: {
+            notNull: {
+              msg: 'Please provide a value for "reference".'
+            }
+          }
+        },
+        totalPrice: {
+          type: DataTypes.DECIMAL(10, 2),
+          allowNull: false,
+          validate: {
+            notNull: {
+              msg: 'Please provide a value for "totalPrice".'
+            }
+          }
+        },
+        totalBasePrice: {
+          type: DataTypes.DECIMAL(10, 2),
+          allowNull: false,
+          validate: {
+            notNull: {
+              msg: 'Please provide a value for "totalBasePrice".'
+            }
+          }
+        },
+        totalTaxPrice: {
+          type: DataTypes.DECIMAL(10, 2),
+          allowNull: false,
+          validate: {
+            notNull: {
+              msg: 'Please provide a value for "totalTaxPrice".'
+            }
+          }
+        },
+        issueDate: {
+          type: DataTypes.DATEONLY,
+          allowNull: false,
+          validate: {
+            notNull: {
+              msg: 'Please provide a value for "issueDate".'
+            }
+          }
+        },
+        issueTime: {
+          type: DataTypes.TIME,
+          allowNull: false,
+          validate: {
+            notNull: {
+              msg: 'Please provide a value for "issueTime".'
+            }
+          }
+        },
+        createdAt: {
+          allowNull: false,
+          type: DataTypes.DATE
+        },
+        updatedAt: {
+          allowNull: false,
+          type: DataTypes.DATE
+        },
+        deletedAt: {
+          type: DataTypes.DATE
         }
       },
-      customerId: {
-        allowNull: false,
-        type: DataTypes.INTEGER,
-        references: {
-          model: 'Customer',
-          key: 'id'
-        }
-      },
-      paymentMethodId: {
-        allowNull: false,
-        type: DataTypes.INTEGER,
-        references: {
-          model: 'PaymentMethod',
-          key: 'id'
-        }
-      },
-      reference: {
-        allowNull: false,
-        type: DataTypes.STRING
-      },
-      totalPrice: {
-        allowNull: false,
-        type: DataTypes.DECIMAL(10, 2)
-      },
-      totalBasePrice: {
-        allowNull: false,
-        type: DataTypes.DECIMAL(10, 2)
-      },
-      totalTaxPrice: {
-        allowNull: false,
-        type: DataTypes.DECIMAL(10, 2)
-      },
-      issueDate: {
-        allowNull: false,
-        type: DataTypes.DATEONLY
-      },
-      issueTime: {
-        allowNull: false,
-        type: DataTypes.TIME
-      }
-    }, {
+      {
         sequelize,
         tableName: 'sales',
         timestamps: true,
         paranoid: true,
-      
-    });
+        indexes: [
+          {
+            name: "PRIMARY",
+            unique: true,
+            using: "BTREE",
+            fields: [
+                { name: "id" },
+            ]
+        },
+        {
+          name: "foreign_cart",
+          unique: true,
+          using: "BTREE",
+          fields: [
+              { name: "cartId" },
+          ]
+      },
+      {
+        name: "foreign_customer",
+        unique: true,
+        using: "BTREE",
+        fields: [
+            { name: "customerId" },
+        ]
+    },
+    {
+      name: "foreign_paymentMethod",
+      unique: true,
+      using: "BTREE",
+      fields: [
+          { name: "paymentMethodId" },
+      ]
+  }
+        ]
+      }
+    );
   
     Sale.associate = function(models) {
+      // Define las asociaciones con otros modelos aquí
+      Sale.belongsTo(models.Cart, {foreignKey: 'cartId'})
+      Sale.belongsTo(models.Customer, {foreignKey: 'customerId'})
+      Sale.belongsTo(models.PaymentMethod, {foreignKey: 'paymentMethodId'})
     };
   
     return Sale;

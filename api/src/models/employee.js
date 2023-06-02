@@ -1,5 +1,3 @@
-const useBcrypt = require('sequelize-bcrypt');
-
 module.exports = function(sequelize, DataTypes) {
     const Employee = sequelize.define('Employee', {
         id: {
@@ -7,61 +5,49 @@ module.exports = function(sequelize, DataTypes) {
             autoIncrement: true,
             primaryKey: true,
             type: DataTypes.INTEGER
-          },
-          name: {
+        },
+        name: {
             allowNull: false,
-            type: DataTypes.STRING
-          },
-          workPositionId: {
+            type: DataTypes.STRING,
+            validate: {
+                notNull: {
+                    msg: 'Por favor, rellena el campo "name".'
+                }
+            }
+        },
+        position: {
+            allowNull: false,
+            type: DataTypes.STRING,
+            validate: {
+                notNull: {
+                    msg: 'Por favor, rellena el campo "position".'
+                }
+            }
+        },
+        companyId: {
             allowNull: false,
             type: DataTypes.INTEGER,
             references: {
-              model: 'workPositions',
-              key: 'id'
-            },
-            onUpdate: 'CASCADE',
-            onDelete: 'SET NULL'
-          },
-          socialNetworksId: {
-            allowNull: true,
-            type:DataTypes.INTEGER,
-            references: {
-              model: 'socialNetworksEmployees',
-              key: 'id'
-            },
-            onUpdate: 'CASCADE',
-            onDelete: 'CASCADE'
-          },
-          profileImageId: {
-            allowNull: true,
-            type: DataTypes.INTEGER,
-            references: {
-              model: 'images',
-              key: 'id'
-            },
-            onUpdate: 'CASCADE',
-            onDelete: 'SET NULL'
-          },
-          languageId: {
-            type: DataTypes.INTEGER,
+                model: 'Company',
+                key: 'id'
+              },
+            validate: {
+                notNull: {
+                    msg: 'Por favor, rellena el campo "companyId".'
+                }
+            }
+        },
+        createdAt: {
             allowNull: false,
-            references: {
-              model: 'locale',
-              key: 'id'
-            },
-            onUpdate: 'CASCADE',
-            onDelete: 'CASCADE'
-          },
-          companyId: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.DATE
+        },
+        updatedAt: {
             allowNull: false,
-            references: {
-              model: 'Company',
-              key: 'id'
-            },
-            onUpdate: 'CASCADE',
-            onDelete: 'CASCADE'
-          }
+            type: DataTypes.DATE
+        },
+        deletedAt: {
+            type: DataTypes.DATE
+        }
     }, {
         sequelize,
         tableName: 'employees',
@@ -75,12 +61,20 @@ module.exports = function(sequelize, DataTypes) {
                 fields: [
                     { name: "id" },
                 ]
+            },
+            {
+                name: "foreign_company",
+                unique: true,
+                using: "BTREE",
+                fields: [
+                    { name: "companyId" },
+                ]
             }
         ]
     });
 
-
     Employee.associate = function(models) {
+        Employee.belongsTo(models.Company, { foreignKey: 'companyId' });
     };
 
     return Employee;
