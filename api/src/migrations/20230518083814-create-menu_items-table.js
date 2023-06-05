@@ -24,10 +24,10 @@ module.exports = {
           key: 'id'
         }
       },
-      localeSlugSeoId: {
+      localeSeoSlugId: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'LocaleSlugSeo',
+          model: 'LocaleSeSlug',
           key: 'id'
         }
       },
@@ -66,7 +66,7 @@ module.exports = {
     })
     .then(() => queryInterface.addIndex('menu_items', ['menuId']))
     .then(() => queryInterface.addIndex('menu_items', ['localeSeoId']))
-    .then(() => queryInterface.addIndex('menu_items', ['localeSlugSeoId']))
+    .then(() => queryInterface.addIndex('menu_items', ['localeSeoSlugId']))
   },
 
   down: async (queryInterface, Sequelize) => {
