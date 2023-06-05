@@ -48,28 +48,17 @@ module.exports = function(sequelize, DataTypes) {
                 fields: [
                     { name: "id" },
                 ]
-            },
-            {
-                name: "foreign_fingerprint",
-                unique: true,
-                using: "BTREE",
-                fields: [
-                    { name: "fingerprintId" },
-                ]
             }
         ]
     });
 
     Email.associate = function(models) {
-        Email.belongsTo(models.Fingerprint, { foreignKey: 'fingerprintId' });
+        Email.hasMany(models.SentEmail, {
+            foreignKey: 'emailId',
+            as: 'sentEmails',
+            onDelete: 'CASCADE',
+            onUpdate: 'CASCADE'
+        });
     };
-
-    Email.hasMany(models.SentEmail, {
-        foreignKey: 'emailId',
-        as: 'sentEmails',
-        onDelete: 'CASCADE',
-        onUpdate: 'CASCADE'
-      });
-      
     return Email;
 };
