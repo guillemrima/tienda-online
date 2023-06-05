@@ -123,8 +123,6 @@ module.exports = function(sequelize, DataTypes) {
         Returns.belongsTo(models.PaymentMethod, {
             foreignKey: 'paymentMethodId'
         });
-    };
-    Return.associate = function(models) {
       Return.hasMany(models.ReturnDetail, {
         foreignKey: 'returnId',
         as: 'returnDetails',

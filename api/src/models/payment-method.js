@@ -47,9 +47,10 @@ module.exports = function(sequelize, DataTypes) {
         }
     ]
     });
+    
     PaymentMethod.associate = function(models) {
       PaymentMethod.hasMany(models.Order, { foreignKey: 'paymentMethodId' });
-    };
+
     PaymentMethod.hasMany(models.Returns, {
       foreignKey: 'paymentMethodId',
       as: 'returns',
@@ -70,6 +71,7 @@ module.exports = function(sequelize, DataTypes) {
       onDelete: 'CASCADE',
       onUpdate: 'CASCADE'
     });
+  };
     
     return PaymentMethod;
   };
