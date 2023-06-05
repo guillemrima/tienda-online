@@ -78,6 +78,29 @@ module.exports = function(sequelize, DataTypes) {
                 onDelete: 'CASCADE',
                 onUpdate: 'CASCADE'
             });
+
+             Cart.hasMany(models.CartDetail, {
+                foreignKey: 'cartId',
+                as: 'cartDetails',
+                onDelete: 'CASCADE',
+                onUpdate: 'CASCADE'
+            });
+
+            Cart.hasMany(models.SaleError, {
+                foreignKey: 'cartId',
+                as: 'saleErrors',
+                onDelete: 'CASCADE',
+                onUpdate: 'CASCADE'
+              });
+
+              Cart.hasOne(models.Sale, {
+                foreignKey: 'cartId',
+                as: 'sale',
+                onDelete: 'CASCADE',
+                onUpdate: 'CASCADE'
+              });
+              
+              
     };
 
     return Cart;

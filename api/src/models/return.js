@@ -124,7 +124,15 @@ module.exports = function(sequelize, DataTypes) {
             foreignKey: 'paymentMethodId'
         });
     };
-  
+    Return.associate = function(models) {
+      Return.hasMany(models.ReturnDetail, {
+        foreignKey: 'returnId',
+        as: 'returnDetails',
+        onDelete: 'SET NULL',
+        onUpdate: 'CASCADE'
+      });
+    };
+    
     return Returns;
   };
   

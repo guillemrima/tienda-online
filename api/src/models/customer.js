@@ -101,7 +101,41 @@ module.exports = function(sequelize, DataTypes) {
     });
   
     Customer.associate = function(models) {
-      // Define las asociaciones con otros modelos aquí
+      Customer.hasMany(models.Cart, {
+        foreignKey: 'customerId',
+        as: 'carts',
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE'
+      });
+
+      Customer.hasMany(models.Returns, {
+        foreignKey: 'customerId',
+        as: 'returns',
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE'
+      });
+      
+      Customer.hasMany(models.SaleError, {
+        foreignKey: 'customerId',
+        as: 'saleErrors',
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE'
+      });
+
+      Customer.hasMany(models.Sale, {
+        foreignKey: 'customerId',
+        as: 'sales',
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE'
+      });
+      
+      Customer.hasMany(models.SentEmail, {
+        foreignKey: 'customerId',
+        as: 'sentEmails',
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE'
+      });
+      
     };
   
     return Customer;

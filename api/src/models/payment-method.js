@@ -50,6 +50,26 @@ module.exports = function(sequelize, DataTypes) {
     PaymentMethod.associate = function(models) {
       PaymentMethod.hasMany(models.Order, { foreignKey: 'paymentMethodId' });
     };
+    PaymentMethod.hasMany(models.Returns, {
+      foreignKey: 'paymentMethodId',
+      as: 'returns',
+      onDelete: 'CASCADE',
+      onUpdate: 'CASCADE'
+    });
+    
+    PaymentMethod.hasMany(models.SaleError, {
+      foreignKey: 'paymentMethodId',
+      as: 'saleErrors',
+      onDelete: 'CASCADE',
+      onUpdate: 'CASCADE'
+    });
+    
+    PaymentMethod.hasMany(models.Sale, {
+      foreignKey: 'paymentMethodId',
+      as: 'sales',
+      onDelete: 'CASCADE',
+      onUpdate: 'CASCADE'
+    });
     
     return PaymentMethod;
   };

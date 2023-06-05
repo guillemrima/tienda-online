@@ -42,7 +42,8 @@ module.exports = {
       deletedAt: {
         type: Sequelize.DATE
       }
-    });
+    }).then(() => queryInterface.addIndex('social_networks_companies', ['companyId']))
+    .then(() => queryInterface.addIndex('social_networks_companies', ['SocialNetworkId']))
   },
 
   down: async (queryInterface, Sequelize) => {

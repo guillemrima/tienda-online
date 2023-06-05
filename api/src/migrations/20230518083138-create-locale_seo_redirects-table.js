@@ -42,7 +42,7 @@ module.exports = {
       deletedAt: {
         type: Sequelize.DATE
       }
-    });
+    }).then(() => queryInterface.addIndex('locale_seo_redirects', ['localeSeoId']));
   },
 
   down: async (queryInterface, Sequelize) => {

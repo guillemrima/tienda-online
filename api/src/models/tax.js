@@ -50,8 +50,16 @@ module.exports = function(sequelize, DataTypes) {
             ]
           }
     ]
-
+    
   });
-
+  Tax.associate = function(models) {
+    Tax.hasMany(models.Price, {
+      foreignKey: 'taxId',
+      as: 'prices',
+      onDelete: 'CASCADE',
+      onUpdate: 'CASCADE'
+    });
+  };
+  
   return Tax;
 };

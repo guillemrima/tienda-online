@@ -142,6 +142,21 @@ module.exports = function(sequelize, DataTypes) {
       Sale.belongsTo(models.Cart, {foreignKey: 'cartId'})
       Sale.belongsTo(models.Customer, {foreignKey: 'customerId'})
       Sale.belongsTo(models.PaymentMethod, {foreignKey: 'paymentMethodId'})
+
+      Sale.hasMany(models.Returns, {
+        foreignKey: 'saleId',
+        as: 'returns',
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE'
+      });
+      
+      Sale.hasMany(models.SaleDetail, {
+        foreignKey: 'saleId',
+        as: 'saleDetails',
+        onDelete: 'SET NULL',
+        onUpdate: 'CASCADE'
+      });
+      
     };
   
     return Sale;

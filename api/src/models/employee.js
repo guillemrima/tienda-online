@@ -75,7 +75,17 @@ module.exports = function(sequelize, DataTypes) {
 
     Employee.associate = function(models) {
         Employee.belongsTo(models.Company, { foreignKey: 'companyId' });
+
+        Employee.hasMany(models.SocialNetworkEmployee, {
+            foreignKey: 'employeeId',
+            as: 'socialNetworkEmployees',
+            onDelete: 'CASCADE',
+            onUpdate: 'CASCADE'
+          });
+          
     };
+
+    
 
     return Employee;
 };

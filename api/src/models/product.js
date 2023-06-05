@@ -70,7 +70,35 @@ module.exports = function(sequelize, DataTypes) {
     Product.associate = function(models) {
         Product.belongsTo(models.ProductCategory, { foreignKey: 'productCategoryId' });
         Product.belongsTo(models.Feature, { foreignKey: 'featured', onUpdate: 'CASCADE', onDelete: 'SET NULL' });
-        // Agrega más asociaciones aquí si es necesario
+
+        Product.hasMany(models.Cart, {
+            foreignKey: 'productId',
+            as: 'carts',
+            onDelete: 'CASCADE',
+            onUpdate: 'CASCADE'
+          });
+
+          Product.hasMany(models.Price, {
+            foreignKey: 'productId',
+            as: 'prices',
+            onDelete: 'CASCADE',
+            onUpdate: 'CASCADE'
+          });
+
+          Product.hasMany(models.ReturnDetail, {
+            foreignKey: 'productId',
+            as: 'returnDetails',
+            onDelete: 'SET NULL',
+            onUpdate: 'CASCADE'
+          });
+
+          Product.hasMany(models.SaleDetail, {
+            foreignKey: 'productId',
+            as: 'saleDetails',
+            onDelete: 'SET NULL',
+            onUpdate: 'CASCADE'
+          });
+          
       };
     
 

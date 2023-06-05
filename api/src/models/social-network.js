@@ -44,6 +44,20 @@ module.exports = function(sequelize, DataTypes) {
 
     SocialNetwork.associate = function(models) {
         // Define las asociaciones con otros modelos aquí
+        SocialNetwork.hasMany(models.SocialNetworksCompanies, {
+            foreignKey: 'socialNetworkId',
+            as: 'companies',
+            onDelete: 'CASCADE',
+            onUpdate: 'CASCADE'
+          });
+          
+          SocialNetwork.hasMany(models.SocialNetworkEmployee, {
+            foreignKey: 'socialNetworkId',
+            as: 'employees',
+            onDelete: 'CASCADE',
+            onUpdate: 'CASCADE'
+          });
+          
     };
 
     return SocialNetwork;

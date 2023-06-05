@@ -43,7 +43,12 @@ module.exports = function(sequelize, DataTypes) {
         ]
     });
     Menu.associate = function(models) {
-        Menu.hasMany(models.MenuItem, { foreignKey: 'menuId' });
+        Menu.hasMany(models.MenuItem, {
+            foreignKey: 'menuId',
+            as: 'menuItems',
+            onDelete: 'CASCADE',
+            onUpdate: 'CASCADE'
+          });
       };
       
 

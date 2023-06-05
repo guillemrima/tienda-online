@@ -68,7 +68,12 @@ module.exports = function(sequelize, DataTypes) {
   });
 
   ImageConfiguration.associate = function(models) {
-      // Define las asociaciones con otros modelos aquí
+    ImageConfiguration.hasMany(models.Image, {
+        foreignKey: 'imageConfigurationId',
+        as: 'images',
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE'
+      });
   };
 
   return ImageConfiguration;

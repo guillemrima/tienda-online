@@ -114,7 +114,12 @@ module.exports = function(sequelize, DataTypes) {
     });
 
     Company.associate = function(models) {
-        // Define las asociaciones con otros modelos aquí
+        Company.hasMany(models.Employee, {
+            foreignKey: 'companyId',
+            as: 'employees',
+            onDelete: 'CASCADE',
+            onUpdate: 'CASCADE'
+          });
     };
 
     return Company;

@@ -62,7 +62,21 @@ module.exports = function(sequelize, DataTypes) {
     });
   
     Fingerprint.associate = function(models) {
+      
       Fingerprint.belongsTo(models.Customer, { foreignKey: 'customerId' });
+      Fingerprint.hasOne(models.Cart, {
+        foreignKey: 'fingerprintId',
+        as: 'cart',
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE'
+      });
+
+      Fingerprint.hasOne(models.Email, {
+        foreignKey: 'fingerprintId',
+        as: 'email',
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE'
+      });
     };
     
   

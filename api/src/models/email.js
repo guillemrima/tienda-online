@@ -24,13 +24,6 @@ module.exports = function(sequelize, DataTypes) {
                 }
             }
         },
-        fingerprintId: {
-            type: DataTypes.INTEGER,
-            references: {
-                model: 'Fingerprint',
-                key: 'id'  
-          }
-        },
         createdAt: {
             allowNull: false,
             type: DataTypes.DATE
@@ -71,5 +64,12 @@ module.exports = function(sequelize, DataTypes) {
         Email.belongsTo(models.Fingerprint, { foreignKey: 'fingerprintId' });
     };
 
+    Email.hasMany(models.SentEmail, {
+        foreignKey: 'emailId',
+        as: 'sentEmails',
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE'
+      });
+      
     return Email;
 };

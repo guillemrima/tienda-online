@@ -107,6 +107,20 @@ module.exports = function(sequelize, DataTypes) {
     });
     LocaleSeo.associate = function(models) {
         LocaleSeo.hasMany(models.LocaleSeoSlug, { foreignKey: 'localeSeoId' });
+
+        LocaleSeo.hasMany(models.LocaleSeoRedirect, {
+            foreignKey: 'localeSeoId',
+            as: 'localeSeoRedirects',
+            onDelete: 'CASCADE',
+            onUpdate: 'CASCADE'
+          });
+
+          LocaleSeo.hasMany(models.LocaleSeoSlug, {
+            foreignKey: 'localeSeoId',
+            as: 'localeSeoSlugs',
+            onDelete: 'CASCADE',
+            onUpdate: 'CASCADE'
+          });
       };
       
     return LocaleSeo;
