@@ -3,13 +3,63 @@ class Tab extends HTMLElement {
     constructor() {
         super();
         this.shadow = this.attachShadow({mode: 'open'});
-        this.render();
+        this.data = []
     }
 
-    render() {
+    static get observedAttributes () { return ['url'] }
 
+    async connectedCallback() {
+
+        document.addEventListener('refresh-table',  async () => {
+            await this.loadData()
+            await this.render()
+        })
+    }
+
+    async attributeChangedCallback (name, oldValue, newValue) {
+        await this.loadData()
+        await this.render()
+      }
+
+    async loadData() {
+        try {
+          const response = await fetch('http://localhost:8080/api/admin/users', {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          });
+      
+          this.data = await response.json(); 
+      
+        } catch (error) {
+          console.log(error);
+        }
+    }
+      
+
+    async render() {
+
+        const divs = this.data.rows.map(element => {
+            return `<tab-element id="${element.id}">
+                      <span slot="name">${element.name}</span>
+                      <span slot="email">${element.email}</span>
+                    </tab-element>`;
+          });
+          
         this.shadow.innerHTML = 
         `
+        <section class="tab-section">
+            <div class="tab-list">  
+                <ul>
+                    <li class="ficha-element">
+                    ${divs.join('')}    
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+
         <style>
             *{
                 margin: 0;
@@ -86,22 +136,10 @@ class Tab extends HTMLElement {
                 font-weight: 800;
             }
         </style>
-        
-    <section class="tab-section">
-        <div class="tab-list">  
-            <ul>
-                <li>
-                   <slot name="tab-element-1"></slot>
-                   <slot name="tab-element-2"></slot>
-                   <slot name="tab-element-3"></slot>
-                   <slot name="tab-element-4"></slot>
-                   <slot name="tab-element-5"></slot>
-                </li>
-            </ul>
-        </div>
-    </section>
+    
         `;
-        
+        const fichaParent = this.shadow.querySelector(".ficha-element")
+
     }
 }
 

@@ -212,7 +212,7 @@ class Form extends HTMLElement {
             forms.forEach(form => {
                     form.dataset.form == dataset ? form.classList.add("active") : form.classList.remove("active");
             })
-        })})
+            })})
 
         //FUNCIÓN PARA RECOGER LOS DATOS DEL FORMULARIO
 
@@ -220,7 +220,7 @@ class Form extends HTMLElement {
             return password === passwordConfirmed;
           };
           
-          submitForm.addEventListener("click", () => {
+        submitForm.addEventListener("click", () => {
             const formData = Object.fromEntries(new FormData(form));
             const isValidPassword = validatePassword(formData.password, formData.passwordConfirmed);
             
@@ -234,14 +234,19 @@ class Form extends HTMLElement {
                   'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(formData)
-              }).then(response => response.json())
-                .then(data => console.log('datos enviados correctamente'))
+              })
+              .then(response => response.json())
+              .then(data =>                
+                {
+                const event = new CustomEvent('refresh-table')
+                document.dispatchEvent(event)
+                })
                 .catch(error => console.error(error));
               } else {
                 console.log("No se pudo realizar la petición ya que las contraseñas no coinciden");
               }
-              
-        })
+              form.reset();
+            })
         
 }
 
