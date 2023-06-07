@@ -1,32 +1,32 @@
-'use strict';
+'use strict'
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('returns', {
+    await queryInterface.createTable('sales', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      saleId: {
+      cartId: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'Sale',
+          model: 'carts',
           key: 'id'
         }
       },
       customerId: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'Customer',
+          model: 'customers',
           key: 'id'
         }
       },
       paymentMethodId: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'PaymentMethod',
+          model: 'payment_methods',
           key: 'id'
         }
       },
@@ -65,13 +65,19 @@ module.exports = {
       deletedAt: {
         type: Sequelize.DATE
       }
-    })  
-    .then(() => queryInterface.addIndex('returns', ['saleId']))
-    .then(() => queryInterface.addIndex('returns', [ 'customerId']))
-    .then(() => queryInterface.addIndex('returns', ['paymentMethodId']))
+    })
+    .then(() => queryInterface.addIndex('sales', ['cartId'],{
+      name: 'sale_cartId_fk'
+    }))
+    .then(() => queryInterface.addIndex('sales', ['customerId'],{
+      name: 'sale_customerId_fk'
+    }))
+    .then(() => queryInterface.addIndex('sales', ['paymentMethodId'],{
+      name: 'sale_paymentMethodId_fk'
+    }))
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('returns');
+    await queryInterface.dropTable('sales')
   }
-};
+}

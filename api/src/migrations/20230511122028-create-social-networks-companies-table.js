@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
@@ -15,21 +15,17 @@ module.exports = {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {
-          model: 'Company',
+          model: 'companies',
           key: 'id'
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE'
+        }
       },
       socialNetworkId: {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {
-          model: 'SocialNetwork', 
-          key: 'id' 
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE'
+          model: 'social_networks',
+          key: 'id'
+        }
       },
       createdAt: {
         allowNull: false,
@@ -42,11 +38,16 @@ module.exports = {
       deletedAt: {
         type: Sequelize.DATE
       }
-    }).then(() => queryInterface.addIndex('social_networks_companies', ['companyId']))
-    .then(() => queryInterface.addIndex('social_networks_companies', ['SocialNetworkId']))
+    })
+    .then(() => queryInterface.addIndex('social_networks_companies', ['companyId'],{
+      name: 'socialNetworksCompany_companyId_fk'
+    }))
+    .then(() => queryInterface.addIndex('social_networks_companies', ['socialNetworkId'],{
+      name: 'socialNetworksCompany_socialNetworkId_fk'
+    }))
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('social_networks_companies');
+    await queryInterface.dropTable('social_networks_companies')
   }
-};
+}

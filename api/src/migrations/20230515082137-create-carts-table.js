@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
@@ -12,20 +12,16 @@ module.exports = {
       customerId: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'Customer',
-          key: 'id'  
-    },
-    onUpdate: 'CASCADE',
-    onDelete: 'SET NULL'
+          model: 'customers',
+          key: 'id'
+        }
       },
       fingerprintId: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'Fingerprint',
-          key: 'id'  
-    },
-    onUpdate: 'CASCADE',
-    onDelete: 'SET NULL'
+          model: 'fingerprints',
+          key: 'id'
+        }
       },
       createdAt: {
         allowNull: false,
@@ -38,11 +34,16 @@ module.exports = {
       deletedAt: {
         type: Sequelize.DATE
       }
-    }).then(() => queryInterface.addIndex('carts', ['customerId']))
-    .then(() => queryInterface.addIndex('carts', ['fingerprintId']));
+    })
+    .then(() => queryInterface.addIndex('carts', ['customerId'],{
+      name: 'cart_customerId_fk'
+    }))
+    .then(() => queryInterface.addIndex('carts', ['fingerprintId'],{
+      name: 'cart_fingerprintId_fk'
+    }))
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('carts');
+    await queryInterface.dropTable('carts')
   }
-};
+}

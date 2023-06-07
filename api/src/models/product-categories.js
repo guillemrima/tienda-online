@@ -1,5 +1,5 @@
 module.exports = function (sequelize, DataTypes) {
-  const Language = sequelize.define('Language', {
+  const ProductCategory = sequelize.define('ProductCategory', {
     id: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
@@ -7,34 +7,26 @@ module.exports = function (sequelize, DataTypes) {
       primaryKey: true
     },
     name: {
-      type: DataTypes.STRING(255),
+      type: DataTypes.STRING,
       allowNull: false,
       validate: {
         notNull: {
-          msg: 'Por favor, rellena el campo "Language".'
+          msg: 'Por favor, rellena el campo "Nombre".'
         }
-      },
-      unique: {
-        args: true,
-        msg: 'Ya existe ese lenguaje.'
       }
     },
-    alias: {
-      type: DataTypes.STRING(255),
+    visible: {
+      type: DataTypes.BOOLEAN,
       allowNull: false,
       validate: {
         notNull: {
-          msg: 'Por favor, rellena el campo "Alias".'
+          msg: 'Por favor, rellena el campo "Visible".'
         }
-      },
-      unique: {
-        args: true,
-        msg: 'Ya existe ese alias.'
       }
     }
   }, {
     sequelize,
-    tableName: 'languages',
+    tableName: 'product_categories',
     timestamps: true,
     paranoid: true,
     indexes: [
@@ -49,9 +41,9 @@ module.exports = function (sequelize, DataTypes) {
     ]
   })
 
-  Language.associate = function (models) {
-
+  ProductCategory.associate = function (models) {
+    ProductCategory.hasMany(models.Product, { as: 'products', foreignKey: 'productCategoryId' })
   }
 
-  return Language
+  return ProductCategory
 }

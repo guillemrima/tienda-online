@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
@@ -12,20 +12,16 @@ module.exports = {
       productId: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'Product',
-          key: 'id'  
-    },
-    onUpdate: 'CASCADE',
-    onDelete: 'SET NULL'
+          model: 'products',
+          key: 'id'
+        }
       },
       taxId: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'Tax',
-          key: 'id'  
-    },
-    onUpdate: 'CASCADE',
-    onDelete: 'SET NULL'
+          model: 'taxes',
+          key: 'id'
+        }
       },
       basePrice: {
         type: Sequelize.DECIMAL
@@ -45,11 +41,15 @@ module.exports = {
         type: Sequelize.DATE
       }
     })
-    .then(() => queryInterface.addIndex('prices', ['productId']))
-    .then(() => queryInterface.addIndex('prices', ['taxId']))
+    .then(() => queryInterface.addIndex('prices', ['productId'],{
+      name: 'price_productId_fk'
+    }))
+    .then(() => queryInterface.addIndex('prices', ['taxId'],{
+      name: 'price_taxId_fk'
+    }))
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('prices');
+    await queryInterface.dropTable('prices')
   }
-};
+}

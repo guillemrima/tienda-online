@@ -6,3 +6,4 @@ import './tab-element.js'
 import './lateral-menu-component.js';
 import "./modal.js";
 import "./erase-alert-component.js";
+import  "./login-component.js"

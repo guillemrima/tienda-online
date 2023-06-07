@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
@@ -13,7 +13,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {
-          model: 'SocialNetwork',
+          model: 'social_networks',
           key: 'id'
         }
       },
@@ -21,7 +21,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {
-          model: 'Employee',
+          model: 'employees',
           key: 'id'
         }
       },
@@ -41,11 +41,15 @@ module.exports = {
         type: Sequelize.DATE
       }
     })
-    .then(() => queryInterface.addIndex('social_networks_employees', ['socialNetworkId']))
-    .then(() => queryInterface.addIndex('social_networks_employees', ['employeeId']))
+    .then(() => queryInterface.addIndex('social_networks_employees', ['socialNetworkId'],{
+      name: 'socialNetworksEmployee_socialNetworkId_fk'
+    }))
+    .then(() => queryInterface.addIndex('social_networks_employees', ['employeeId'],{
+      name: 'socialNetworksEmployee_employeeId_fk'
+    }))
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('social_networks_employees');
+    await queryInterface.dropTable('social_networks_employees')
   }
-};
+}

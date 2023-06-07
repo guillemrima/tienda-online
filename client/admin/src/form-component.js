@@ -159,7 +159,7 @@ class Form extends HTMLElement {
                     <div class="profile-form active" data-form="principal" id="form-principal">
                             <div>
                                 <label>Nombre</label>
-                                <input name="nombre" type="text"></input>
+                                <input name="name" type="text"></input>
                             </div>
                             <div>
                                 <label>Email</label>
@@ -177,7 +177,7 @@ class Form extends HTMLElement {
                     <div class="profile-form" data-form="image">
                         <div class="input-image">
                             <label>Seleccione una imagen</label>
-                            <input type="file" name="imagen">
+                            
                         </div>
                     </div>
                 </form>
@@ -212,17 +212,38 @@ class Form extends HTMLElement {
             forms.forEach(form => {
                     form.dataset.form == dataset ? form.classList.add("active") : form.classList.remove("active");
             })
-            })})
+        })})
 
         //FUNCIÓN PARA RECOGER LOS DATOS DEL FORMULARIO
-            submitForm.addEventListener("click", () => {
-                const formData = new FormData(form);
-                for (let pair of formData.entries()) {
-                    console.log(pair[0] + ': ' + pair[1]);
-                }
-            })
 
-    }
+        const validatePassword = (password, passwordConfirmed) => {
+            return password === passwordConfirmed;
+          };
+          
+          submitForm.addEventListener("click", () => {
+            const formData = Object.fromEntries(new FormData(form));
+            const isValidPassword = validatePassword(formData.password, formData.passwordConfirmed);
+            
+            if(isValidPassword) {
+
+            delete formData.passwordConfirmed
+
+            fetch('http://localhost:8080/api/admin/users', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+              }).then(response => response.json())
+                .then(data => console.log('datos enviados correctamente'))
+                .catch(error => console.error(error));
+              } else {
+                console.log("No se pudo realizar la petición ya que las contraseñas no coinciden");
+              }
+              
+        })
+        
+}
 
 }
 

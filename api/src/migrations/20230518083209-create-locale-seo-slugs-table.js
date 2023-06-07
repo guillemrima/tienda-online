@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
@@ -8,6 +8,14 @@ module.exports = {
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
+      },
+      localeSeoId: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'locale_seos',
+          key: 'id'
+        }
       },
       language: {
         allowNull: false,
@@ -24,14 +32,6 @@ module.exports = {
       key: {
         allowNull: false,
         type: Sequelize.INTEGER
-      },
-      localeSeoId: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'LocaleSeo',
-          key: 'id'
-        }
       },
       parentSlug: {
         type: Sequelize.STRING
@@ -57,10 +57,13 @@ module.exports = {
       deletedAt: {
         type: Sequelize.DATE
       }
-    }).then(() => queryInterface.addIndex('locale_seo_slugs', ['localeSeoId']));
+    })
+    .then(() => queryInterface.addIndex('locale_seo_slugs', ['localeSeoId'],{
+      name: 'localeSeoSlug_localeSeoId_fk'
+    }))
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('locale_seo_slugs');
+    await queryInterface.dropTable('locale_seo_slugs')
   }
-};
+}

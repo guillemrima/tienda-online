@@ -1,86 +1,71 @@
-module.exports = function(sequelize, DataTypes) {
-    const SentEmail = sequelize.define('SentEmail', {
-      id: {
-        allowNull: false,
-        autoIncrement: true,
-        primaryKey: true,
-        type: DataTypes.INTEGER
-      },
-      customerId: {
-        type: DataTypes.INTEGER,
-        references: {
-          model: 'Customer',
-          key: 'id'
-        },
-        allowNull: false,
-        validate: {
-          notNull: {
-            msg: 'Por favor, rellena el campo "customerId".'
-          }
+module.exports = function (sequelize, DataTypes) {
+  const SentEmail = sequelize.define('SentEmail', {
+    id: {
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
+      type: DataTypes.INTEGER
+    },
+    customerId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Por favor, rellena el campo "customerId".'
         }
       },
-      emailId: {
-        type: DataTypes.INTEGER,
-        references: {
-          model: 'Email',
-          key: 'id'
-        },
-        allowNull: false,
-        validate: {
-          notNull: {
-            msg: 'Por favor, rellena el campo "emailId".'
-          }
-        }
-      },
-      createdAt: {
-        allowNull: false,
-        type: DataTypes.DATE
-      },
-      updatedAt: {
-        allowNull: false,
-        type: DataTypes.DATE
-      },
-      deletedAt: {
-        type: DataTypes.DATE
+      references: {
+        model: 'Customer',
+        key: 'id'
       }
-    }, {
-      sequelize,
-      tableName: 'sent_emails',
-      timestamps: true,
-      paranoid: true,
-      indexes: [
-        {
-          name: "PRIMARY",
-          unique: true,
-          using: "BTREE",
-          fields: [
-              { name: "id" },
-          ]
+    },
+    emailId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Por favor, rellena el campo "emailId".'
+        }
+      },
+      references: {
+        model: 'Email',
+        key: 'id'
+      }
+    }
+  }, {
+    sequelize,
+    tableName: 'sent_emails',
+    timestamps: true,
+    paranoid: true,
+    indexes: [
+      {
+        name: 'PRIMARY',
+        unique: true,
+        using: 'BTREE',
+        fields: [
+          { name: 'id' }
+        ]
       },
       {
-        name: "foreign_customer",
-        unique: true,
-        using: "BTREE",
+        name: 'sentEmail_customerId_fk',
+        using: 'BTREE',
         fields: [
-            { name: "customerId" },
+          { name: 'customerId' }
         ]
-    },
-    {
-      name: "foreign_email",
-      unique: true,
-      using: "BTREE",
-      fields: [
-          { name: "emailId" },
-      ]
-  },
-      ]
-    });
-  
-    SentEmail.associate = function(models) {
-      SentEmail.belongsTo(models.Customer, { foreignKey: 'customerId' });
-      SentEmail.belongsTo(models.Email, { foreignKey: 'emailId' });
-    };
-    
-    return SentEmail;
-  };
-  
+      },
+      {
+        name: 'sentEmail_emailId_fk',
+        using: 'BTREE',
+        fields: [
+          { name: 'emailId' }
+        ]
+      }
+    ]
+  })
+
+  SentEmail.associate = function (models) {
+
+  }
+
+  return SentEmail
+}

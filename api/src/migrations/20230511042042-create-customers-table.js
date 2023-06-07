@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
@@ -22,6 +22,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       email: {
+        unique: true,
         allowNull: false,
         type: Sequelize.STRING
       },
@@ -48,10 +49,13 @@ module.exports = {
       deletedAt: {
         type: Sequelize.DATE
       }
-    })
+    }).then(() => queryInterface.addIndex('customers', ['email'], {
+      unique: true,
+      name: 'customer_email_index'
+    }))
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('customers');
+    await queryInterface.dropTable('customers')
   }
-};
+}

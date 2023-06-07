@@ -1,131 +1,103 @@
-'use strict';
-const { Model } = require('sequelize');
-
 module.exports = (sequelize, DataTypes) => {
-  const Cart = sequelize.define('Cart', {
-      id: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        autoIncrement: true,
-        allowNull: false
-      },
-      cartId: {
-        type: DataTypes.INTEGER,
-        references: {
-          model: 'Cart',
-          key: 'id'
-        },
-        allowNull: false
-      },
-      productId: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        references: {
-          model: 'Product',
-          key: 'id'
-        }
-      },
-      productName: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-          notNull: {
-            msg: 'Por favor, ingresa el nombre del producto.'
-          }
-        }
-      },
-      basePrice: {
-        type: DataTypes.DECIMAL(6, 2),
-        allowNull: false,
-        validate: {
-          notNull: {
-            msg: 'Por favor, ingresa el precio base.'
-          }
-        }
-      },
-      taxPrice: {
-        type: DataTypes.DECIMAL(6, 2)
-      },
-      unitOfMeasurement: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-          notNull: {
-            msg: 'Por favor, ingresa la unidad de medida.'
-          }
-        }
-      },
-      quantity: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        validate: {
-          notNull: {
-            msg: 'Por favor, ingresa la cantidad.'
-          }
-        }
-      },
-      createdAt: {
-        type: DataTypes.DATE,
-        allowNull: false
-      },
-      updatedAt: {
-        type: DataTypes.DATE,
-        allowNull: false
-      },
-      deletedAt: {
-        type: DataTypes.DATE
+  const CartDetail = sequelize.define('CartDetail', {
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+      allowNull: false
+    },
+    cartId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: 'Cart',
+        key: 'id'
       }
     },
-    {
-      sequelize,
-      modelName: 'CartDetail',
-      tableName: 'cart_details',
-      timestamps: true,
-      paranoid: true,
-      indexes: [
-        {
-            name: "PRIMARY",
-            unique: true,
-            using: "BTREE",
-            fields: [
-                { name: "id" },
-            ]
-        },
-        {
-          name: "foreign_cart",
-          unique: true,
-          using: "BTREE",
-          fields: [
-              { name: "cartId" },
-          ]
+    productId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: 'Product',
+        key: 'id'
+      }
+    },
+    productName: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Por favor, ingresa el nombre del producto.'
+        }
+      }
+    },
+    basePrice: {
+      type: DataTypes.DECIMAL(6, 2),
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Por favor, ingresa el precio base.'
+        }
+      }
+    },
+    taxPrice: {
+      type: DataTypes.DECIMAL(6, 2)
+    },
+    unitOfMeasurement: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Por favor, ingresa la unidad de medida.'
+        }
+      }
+    },
+    quantity: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Por favor, ingresa la cantidad.'
+        }
+      }
+    }
+  }, {
+    sequelize,
+    tableName: 'carts',
+    timestamps: true,
+    paranoid: true,
+    indexes: [
+      {
+        name: 'PRIMARY',
+        unique: true,
+        using: 'BTREE',
+        fields: [
+          { name: 'id' }
+        ]
       },
       {
-        name: "foreign_product",
+        name: 'cartDetail_cartId_fk',
         unique: true,
-        using: "BTREE",
+        using: 'BTREE',
         fields: [
-            { name: "product" },
+          { name: 'cartId' }
         ]
-    }
+      },
+      {
+        name: 'cartDetail_productId_fk',
+        unique: true,
+        using: 'BTREE',
+        fields: [
+          { name: 'productId' }
+        ]
+      }
     ]
-    }
-  );
+  })
 
-  Cart.associate = function(models) {
-        Cart.belongsTo(models.Cart, {
-          foreignKey: 'cartId',
-          as: 'parentCart',
-          onDelete: 'CASCADE',
-          onUpdate: 'CASCADE'
-        });
+  CartDetail.associate = function (models) {
+    CartDetail.belongsTo(models.Cart, { as: 'cart', foreignKey: 'cartId' })
+    CartDetail.belongsTo(models.Product, { as: 'product', foreignKey: 'productId' })
+  }
 
-        Cart.belongsTo(models.Product, {
-          foreignKey: 'productId',
-          as: 'product',
-          onDelete: 'CASCADE',
-          onUpdate: 'CASCADE'
-        });
-};
-
-  return CartDetail;
-};
+  return CartDetail
+}

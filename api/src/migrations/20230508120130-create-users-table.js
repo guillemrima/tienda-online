@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
@@ -35,10 +35,13 @@ module.exports = {
       deletedAt: {
         type: Sequelize.DATE
       }
-    })
+    }).then(() => queryInterface.addIndex('users', ['email'], {
+      unique: true,
+      name: 'user_email_index'
+    }))
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('users');
+    await queryInterface.dropTable('users')
   }
-};
+}

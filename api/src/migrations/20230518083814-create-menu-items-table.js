@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
@@ -13,21 +13,21 @@ module.exports = {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {
-          model: 'Menu',
+          model: 'menus',
           key: 'id'
         }
       },
       localeSeoId: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'LocaleSeo',
+          model: 'locale_seos',
           key: 'id'
         }
       },
-      localeSeoSlugId: {
+      localeSlugSeoId: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'LocaleSeSlug',
+          model: 'locale_seo_slugs',
           key: 'id'
         }
       },
@@ -64,12 +64,18 @@ module.exports = {
         type: Sequelize.DATE
       }
     })
-    .then(() => queryInterface.addIndex('menu_items', ['menuId']))
-    .then(() => queryInterface.addIndex('menu_items', ['localeSeoId']))
-    .then(() => queryInterface.addIndex('menu_items', ['localeSeoSlugId']))
+    .then(() => queryInterface.addIndex('menu_items', ['menuId'],{
+      name: 'menuItem_menuId_fk'
+    }))
+    .then(() => queryInterface.addIndex('menu_items', ['localeSeoId'],{
+      name: 'menuItem_localeSeoId_fk'
+    }))
+    .then(() => queryInterface.addIndex('menu_items', ['localeSlugSeoId'],{
+      name: 'menuItem_localeSlugSeoId_fk'
+    }))
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('menu_items');
+    await queryInterface.dropTable('menu_items')
   }
-};
+}
