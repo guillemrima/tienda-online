@@ -10,9 +10,14 @@ class Tab extends HTMLElement {
 
     async connectedCallback() {
 
-        document.addEventListener('refresh-table',  async () => {
+        document.addEventListener('refresh-table',  async (e) => {
+            if(e.detail){
+                const rowId = e.detail.fichaId
+                await this.deleteRow(rowId)
+            }
             await this.loadData()
             await this.render()
+            
         })
     }
 
@@ -31,7 +36,23 @@ class Tab extends HTMLElement {
           });
       
           this.data = await response.json(); 
+          
+        } catch (error) {
+          console.log(error);
+        }
+    }
+
+    async deleteRow(rowId) {
+        try {
+          const response = await fetch(`http://localhost:8080/api/admin/users/${rowId}`, {
+            method: 'DELETE',
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          });
       
+          this.data = await response.json(); 
+          
         } catch (error) {
           console.log(error);
         }
@@ -39,12 +60,11 @@ class Tab extends HTMLElement {
       
 
     async render() {
-
-        const divs = this.data.rows.map(element => {
+        const divs =  this.data.rows.map(element => {
             return `<tab-element id="${element.id}">
-                      <span slot="name">${element.name}</span>
-                      <span slot="email">${element.email}</span>
-                    </tab-element>`;
+                            <span slot="name">${element.name}</span>
+                            <span slot="email">${element.email}</span>
+                        </tab-element>`;
           });
           
         this.shadow.innerHTML = 
@@ -138,7 +158,8 @@ class Tab extends HTMLElement {
         </style>
     
         `;
-        const fichaParent = this.shadow.querySelector(".ficha-element")
+
+            
 
     }
 }

@@ -96,23 +96,34 @@ class EraseAlert extends HTMLElement {
 
                 <div class="erase-options">
                     <div>
-                        <button type="button" class="cancel-erase" id="cancel-erase">Cancelar proceso</button>
+                        <button type="button" class="cancel-erase" value="cancel">Cancelar proceso</button>
                     </div>
                     <div>
-                        <button type="button" class="accept-erase" id="accept-erase">Eliminar Perfil</button>
+                        <button type="button" class="accept-erase" value="accept">Eliminar Perfil</button>
                     </div>
                 </div>
             </div>
         `;
             const modalButtons = this.shadow.querySelectorAll("button");
+            const eraseAlert = this.shadow.querySelector(".erase-alert")
+            let fichaId = ''
+            document.addEventListener("add-active", (e) => {
+                fichaId = e.detail.componentId
+            })
 
-            const cancelButton = this.shadow.querySelector("#cancel-erase");
-            const acceptButton = this.shadow.querySelector("#accept-erase");
-            const removeActive = new CustomEvent('remove-active');
 
-            modalButtons.forEach((button) => {button.addEventListener("click", () => 
-                document.dispatchEvent(removeActive))}
-            )
+            modalButtons.forEach((button) => 
+
+                {button.addEventListener("click", (e) => {          
+                    if(e.target.value === 'accept' ) {
+                        const RefreshTable = new CustomEvent('refresh-table', {detail: {fichaId: fichaId}})
+                        document.dispatchEvent(RefreshTable)
+                    }
+                    const removeActive = new CustomEvent('remove-active');
+                    document.dispatchEvent(removeActive)
+                })
+            })
+            
     }
 }
 

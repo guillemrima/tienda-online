@@ -98,8 +98,9 @@ class Modal extends HTMLElement {
             closeModal.closest(".modal-section").classList.remove("active")
         )   
 
-        document.addEventListener("add-active", () =>
+        document.addEventListener("add-active", (e) => {
         closeModal.closest(".modal-section").classList.add("active")
+        }
     )  
     }
 }

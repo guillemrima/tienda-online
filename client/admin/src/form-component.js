@@ -3,7 +3,36 @@ class Form extends HTMLElement {
     constructor() {
         super();
         this.shadow = this.attachShadow({mode: 'open'});
-        this.render();
+        
+    }
+
+    async attributeChangedCallback (name, oldValue, newValue) {
+        await this.render()
+      }
+
+    async connectedCallback() {
+        await this.render()
+
+        document.addEventListener("editRow", async (e) => {
+            this.EditTab(e)
+        })
+    } 
+    
+    async loadData(id) {
+        try {
+          const response = await fetch(`http://localhost:8080/api/admin/users/${id}`, {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          });
+      
+          this.data = await response.json();
+          return this.data
+
+        } catch (error) {
+          console.log(error);
+        }
     }
 
     render() {
@@ -159,11 +188,11 @@ class Form extends HTMLElement {
                     <div class="profile-form active" data-form="principal" id="form-principal">
                             <div>
                                 <label>Nombre</label>
-                                <input name="name" type="text"></input>
+                                <input name="name" type="text" id='name'></input>
                             </div>
                             <div>
                                 <label>Email</label>
-                                <input name="email" type="text"></input>
+                                <input name="email" type="text" id='email'></input>
                             </div>
                             <div>
                                 <label>Contraseña</label>
@@ -184,72 +213,85 @@ class Form extends HTMLElement {
             </div>
         </section>
         `;
+            this.renderTabs()
+            this.submitData()
+        }
 
-        const formParent = this.shadow.querySelector(".form-container");
-        const forms = formParent.querySelectorAll(".profile-form");
-        const form = this.shadow.querySelector('#form');
-        const resetForm = this.shadow.querySelector("#resetButton");
-        const submitForm = this.shadow.querySelector("#submitButton"); 
-        const formSelector = this.shadow.querySelector('.selector');
-        const selectors = formSelector.querySelectorAll("div");
+        renderTabs = async() => {
+            const formParent = this.shadow.querySelector(".form-container");
+            const forms = formParent.querySelectorAll(".profile-form");
+            const form = this.shadow.querySelector('#form');
+            const resetForm = this.shadow.querySelector("#resetButton");
+            const formSelector = this.shadow.querySelector('.selector');
+            const selectors = formSelector.querySelectorAll("div");
 
 
-        //FUNCIÓN PARA RESETEAR EL FORMULARIO
-        resetForm.addEventListener("click",() => {
-            form.reset();
-        })
 
-        //FUNCIÓN PARA MOSTRAR/OCULTAR LAS DISTINTAS SECCIONES DEL FORMULARIO
-        selectors.forEach(selector => {    
-            const dataset = selector.dataset.form;
-            const event = new CustomEvent('show-form',{detail: dataset});           
-            selector.addEventListener("click", () => {               
-                document.dispatchEvent(event);    
-                for (let i = 0; i < selectors.length; i++) {
-                selectors[i].classList.remove("active");
-            }
-            selector.classList.add("active")
-            forms.forEach(form => {
-                    form.dataset.form == dataset ? form.classList.add("active") : form.classList.remove("active");
+            resetForm.addEventListener("click",() => {
+                form.reset();
             })
-            })})
 
-        //FUNCIÓN PARA RECOGER LOS DATOS DEL FORMULARIO
-
-        const validatePassword = (password, passwordConfirmed) => {
-            return password === passwordConfirmed;
-          };
-          
-        submitForm.addEventListener("click", () => {
-            const formData = Object.fromEntries(new FormData(form));
-            const isValidPassword = validatePassword(formData.password, formData.passwordConfirmed);
-            
-            if(isValidPassword) {
-
-            delete formData.passwordConfirmed
-
-            fetch('http://localhost:8080/api/admin/users', {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(formData)
-              })
-              .then(response => response.json())
-              .then(data =>                
-                {
-                const event = new CustomEvent('refresh-table')
-                document.dispatchEvent(event)
+            selectors.forEach(selector => {    
+                const dataset = selector.dataset.form;
+                const event = new CustomEvent('show-form',{detail: dataset});           
+                selector.addEventListener("click", () => {               
+                    document.dispatchEvent(event);    
+                    for (let i = 0; i < selectors.length; i++) {
+                    selectors[i].classList.remove("active");
+                }
+                selector.classList.add("active")
+                forms.forEach(form => {
+                        form.dataset.form == dataset ? form.classList.add("active") : form.classList.remove("active");
                 })
-                .catch(error => console.error(error));
-              } else {
-                console.log("No se pudo realizar la petición ya que las contraseñas no coinciden");
-              }
-              form.reset();
-            })
-        
-}
+                })})
+        }
 
+        submitData = async () => {
+            const submitForm = this.shadow.querySelector("#submitButton"); 
+            const form = this.shadow.querySelector('#form');
+
+            const validatePassword = (password, passwordConfirmed) => {
+                return password === passwordConfirmed;
+            };
+
+            submitForm.addEventListener("click", () => {
+                const formData = Object.fromEntries(new FormData(form));
+                const isValidPassword = validatePassword(formData.password, formData.passwordConfirmed);
+                
+                if(isValidPassword) {
+                    const method = this.data ? 'PUT' : 'POST'
+                    const baseUrl = 'http://localhost:8080/api/admin/users'
+                    const url = this.data ? `${baseUrl}/${this.data.id}` : baseUrl
+
+                    fetch(url, {
+                        method: method,
+                        headers: {
+                        'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(formData)
+                    })
+                    .then(response => response.json())
+                    .then(data =>                
+                        {
+                        const event = new CustomEvent('refresh-table')
+                        document.dispatchEvent(event)
+                        })
+                        .catch(error => console.error(error));
+                } 
+                else {
+                    console.log("No se pudo realizar la petición ya que las contraseñas no coinciden");
+                }
+                form.reset();
+                this.data = ''
+                })
+        }
+
+        EditTab = async (e) => {
+            const id = e.detail.componentId
+            const row = await this.loadData(id)
+            this.shadow.getElementById("name").value = row.name;
+            this.shadow.getElementById("email").value = row.email;
+        }
 }
 
 customElements.define('form-component', Form);

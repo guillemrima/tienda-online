@@ -114,27 +114,25 @@ class TabElement extends HTMLElement {
                     
         `;
 
-        const componentId = this.getAttribute("id");
+
 
         const deleteTabButton = this.shadow.querySelector("#deleteButton");
         const editTabButton = this.shadow.querySelector("#editButton");
-        const addActive = new CustomEvent('add-active');
 
-        deleteTabButton.addEventListener("click", () => 
-            document.dispatchEvent(addActive)
-        )
-        editTabButton.addEventListener("click", () => {
-            const name = editTabButton.closest(".tab-element").querySelector(".tab-information").querySelector("#nameValue");
-            const email = editTabButton.closest(".tab-element").querySelector(".tab-information").querySelector("#emailValue");
-            const tabData = new Object();
-            tabData.name = name;
-            tabData.email = email
-            console.log(tabData)
+
+        deleteTabButton.addEventListener("click", () => {
+            const componentId = this.getAttribute("id");
             
+            const addActive = new CustomEvent('add-active', { detail: {componentId : componentId }});
+            document.dispatchEvent(addActive)
         })
-        
 
-        console.log(componentId)
+        editTabButton.addEventListener("click", () => {
+            const componentId = this.getAttribute("id")
+
+            const editRow = new CustomEvent('editRow', {detail: {componentId : componentId }})
+            document.dispatchEvent(editRow)
+        })
 
 }}
 
