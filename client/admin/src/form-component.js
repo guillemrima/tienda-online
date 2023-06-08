@@ -281,6 +281,7 @@ class Form extends HTMLElement {
                 else {
                     console.log("No se pudo realizar la petición ya que las contraseñas no coinciden");
                 }
+                
                 form.reset();
                 this.data = ''
                 })
