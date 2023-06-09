@@ -118,8 +118,8 @@ class EraseAlert extends HTMLElement {
 
                 {button.addEventListener("click", (e) => {          
                     if(e.target.value === 'accept' ) {
-                        const RefreshTable = new CustomEvent('refresh-table', {detail: {fichaId: fichaId}})
-                        document.dispatchEvent(RefreshTable)
+                        const refreshTable = new CustomEvent('refresh-table', {detail: {fichaId: fichaId}})
+                        document.dispatchEvent(refreshTable)
                     }
                     const removeActive = new CustomEvent('remove-active');
                     document.dispatchEvent(removeActive)

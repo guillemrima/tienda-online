@@ -27,3 +27,9 @@ button:hover svg {
     grid-template-columns: 35% 60%;
     gap: 5%;
 }
+
+@media (max-width: 1200px) {
+    .panel {
+        grid-template-columns: 1fr;
+    };
+}

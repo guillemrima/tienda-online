@@ -26,7 +26,7 @@ exports.findAll = (req, res) => {
 
     Faq.findAndCountAll({
         where: condition, 
-        attributes: ['id', 'name', 'title', 'description','order'],
+        attributes: ['id', 'name', 'order'],
         limit: limit,
         offset: offset,
         order: [['createdAt', 'DESC']]

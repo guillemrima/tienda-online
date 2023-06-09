@@ -6,10 +6,29 @@ class LateralMenu extends HTMLElement {
         this.render();
     }
 
+
+
+
+
+
+
+
+    
     render() {
 
         this.shadow.innerHTML = 
         `
+        <div class="hamburger-tab">
+                <ul>
+                    <li value="users">
+                        Users
+                    </li>
+                    <li value="faqs">
+                        Faqs
+                    </li>
+                </ul>
+            </div>
+
         <style>
             *{
                 margin: 0;
@@ -28,7 +47,7 @@ class LateralMenu extends HTMLElement {
                 top: 0;
                 right: 0;
                 width: 20%;
-                margin-top: 5%;
+                margin-top: 5.5%;
             }
 
             .hamburger-tab ul {
@@ -39,6 +58,7 @@ class LateralMenu extends HTMLElement {
                 color: white;
                 padding: 1rem 0.5rem;
                 cursor:pointer;
+                font-size: 1.5rem
             }
 
             .hamburger-tab li:hover {
@@ -54,35 +74,33 @@ class LateralMenu extends HTMLElement {
 
 
         </style>
-
-            <div class="hamburger-tab">
-                <ul>
-                    <li>
-                        Empty
-                    </li>
-                    <li>
-                        Empty
-                    </li>
-                    <li>
-                        Empty
-                    </li>
-                    <li>
-                        Empty
-                    </li>
-                    <li>
-                        Empty
-                    </li>
-                </ul>
-            </div>
         `;
+            this.renderFunctions()
+            this.apiFunctions()
+    }
 
+    renderFunctions = () => {
         const hamburgerMenu = this.shadow.querySelector('.hamburger-tab');
 
         document.addEventListener('show-lateral-menu', () => {
             hamburgerMenu.classList.toggle("active");
         })
-        
     }
+
+    apiFunctions = () => {
+        const tableOptions = this.shadow.querySelectorAll("li")
+
+        tableOptions.forEach(table => {
+            table.addEventListener("click", (e) => {
+                const  tableName = e.target.getAttribute("value")
+                const changeTable = new CustomEvent('change-table', { detail:  tableName } )
+               document.dispatchEvent(changeTable)
+            })
+        })
+    }
+
+
+
 }
 
 customElements.define('lateral-menu-component', LateralMenu);

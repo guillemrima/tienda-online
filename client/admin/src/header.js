@@ -50,18 +50,18 @@ class Header extends HTMLElement {
                 width: 100%;
                 height: 0.2rem;
                 background-color: white;
-                transition: 0.5s;
+                transition: 0.2s ease-in;
             }
             
             .hamburger-button.active .top{
-                transform: rotateY(360deg) translateY(11px) rotate(45deg)
+                transform: translateY(11px) rotate(45deg)
             }
             
             .hamburger-button.active .mid{
-                transform: rotateY(360deg) scale(0%)
+                transform:  scale(0%)
             }
             .hamburger-button.active .bot{
-                transform: rotateY(360deg) translateY(-11px) rotate(-45deg)
+                transform: translateY(-11px) rotate(-45deg)
             }
 
         </style>
@@ -82,11 +82,13 @@ class Header extends HTMLElement {
         `;
 
         const  hamburgerButton = this.shadow.querySelector(".hamburger-button");
-        const showLateralMenu = new CustomEvent('show-lateral-menu');
 
         hamburgerButton.addEventListener("click", () => {
-            hamburgerButton.classList.toggle("active");
+
+            const showLateralMenu = new CustomEvent('show-lateral-menu');
             document.dispatchEvent(showLateralMenu);
+
+            hamburgerButton.classList.toggle("active");
             
     })
         

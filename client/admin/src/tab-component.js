@@ -21,6 +21,11 @@ class Tab extends HTMLElement {
             await this.render()
             
         })
+
+        document.addEventListener('change-table', async (e) => {
+            const table = e.detail
+            this.loadData(table)
+        })
     }
 
     async attributeChangedCallback (name, oldValue, newValue) {
@@ -28,9 +33,9 @@ class Tab extends HTMLElement {
         await this.render()
       }
 
-    async loadData() {
+    async loadData(table = 'users') {
 
-        let url = this.page == null ?  `http://localhost:8080/api/admin/users` : `http://localhost:8080/api/admin/users?page=${this.page}`
+        let url = this.page == null ?  `http://localhost:8080/api/admin/${table}` : `http://localhost:8080/api/admin/${table}?page=${this.page}`
 
         try {
           const response = await fetch(url, {
@@ -46,7 +51,6 @@ class Tab extends HTMLElement {
         } catch (error) {
           console.log(error);
         }
-        console.log(this.data)
     }
 
     async deleteRow(rowId) {
