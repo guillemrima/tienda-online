@@ -18,7 +18,7 @@ exports.create = (req, res) => {
 exports.findAll = (req, res) => {
 
     let page = req.query.page || 1;
-    let limit = parseInt(req.query.size) || 10;
+    let limit = parseInt(req.query.size) || 5;
     let offset = (page - 1) * limit;
 
     let whereStatement = {};

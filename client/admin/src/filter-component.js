@@ -86,20 +86,21 @@ class Filter extends HTMLElement {
                 </button>
             </div>
             <div class="filter-options">
-                <ul>
-                    <li>Nombres</li>
-                    <li>Emails</li>
-                    <li>Contraseñas</li>
-                    <li>Imágenes</li>
+                <ul id='filter-list'>
+                    <li>Users</li>
+                    <li>FaQ's</li>
                 </ul>
             </div>
-    </section>
+        </section>
         `;
-        
+        this.renderComponent()
+        this.renderCustomEvents()
+    }
+    renderComponent = () => {    
         const filterSection = this.shadow.querySelector("#filter-section");
         const filterButton = filterSection.querySelector("#filter-button");
         
-        //FUNCIÓN PARA ABRIR LA PESTAÑA DE FILTROS
+
         filterButton.addEventListener("click", () => {
             filterSection.querySelector(".filter-options").classList.toggle("active");
             filterButton.classList.contains("plus")
@@ -110,6 +111,15 @@ class Filter extends HTMLElement {
                 , filterButton.classList.add('plus'))
         })
     }
+    
+
+    renderCustomEvents = () => {
+        // const filterList = this.shadow.querySelector("#filter-list")
+        // const filterItems = filterList.querySelectorAll("li")
+        
+        // filterItems.forEach(filterItem)
+    }
+
 }
 
 customElements.define('filter-component', Filter);

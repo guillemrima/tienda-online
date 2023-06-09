@@ -104,8 +104,10 @@ class EraseAlert extends HTMLElement {
                 </div>
             </div>
         `;
+        this.renderTabs()
+    }
+        renderTabs = async ()=> {
             const modalButtons = this.shadow.querySelectorAll("button");
-            const eraseAlert = this.shadow.querySelector(".erase-alert")
             let fichaId = ''
             document.addEventListener("add-active", (e) => {
                 fichaId = e.detail.componentId
@@ -123,8 +125,9 @@ class EraseAlert extends HTMLElement {
                     document.dispatchEvent(removeActive)
                 })
             })
+        }
             
-    }
+    
 }
 
 customElements.define('erase-alert-component', EraseAlert);

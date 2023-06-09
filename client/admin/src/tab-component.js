@@ -4,6 +4,8 @@ class Tab extends HTMLElement {
         super();
         this.shadow = this.attachShadow({mode: 'open'});
         this.data = []
+        this.page = ''
+        this.lastPage = ''
     }
 
     static get observedAttributes () { return ['url'] }
@@ -26,13 +28,30 @@ class Tab extends HTMLElement {
         await this.render()
       }
 
-    async loadData() {
+    async loadData(page = 1) {
         try {
-          const response = await fetch('http://localhost:8080/api/admin/users', {
+          const response = await fetch(`http://localhost:8080/api/admin/users?page=${page}`, {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json'
             }
+          });
+      
+          this.data = await response.json(); 
+          this.page = this.data.meta.currentPage
+          this.lastPage = this.data.meta.pages
+        } catch (error) {
+          console.log(error);
+        }
+    }
+
+
+
+    async deleteRow(rowId) {
+        try {
+          const response = await fetch(`http://localhost:8080/api/admin/users/${rowId}`, {
+            method: 'DELETE',
+            
           });
       
           this.data = await response.json(); 
@@ -42,22 +61,48 @@ class Tab extends HTMLElement {
         }
     }
 
-    async deleteRow(rowId) {
-        try {
-          const response = await fetch(`http://localhost:8080/api/admin/users/${rowId}`, {
-            method: 'DELETE',
-            headers: {
-              'Content-Type': 'application/json'
+    changePage = async () => {
+
+        const nextPageButton = this.shadow.querySelector('.nextPageButton')
+        const prevPageButton = this.shadow.querySelector('.prevPageButton')
+        const firstPageButton = this.shadow.querySelector('.firstPageButton')
+        const lastPageButton = this.shadow.querySelector('.lastPageButton')
+
+        nextPageButton.addEventListener('click',  async () => {
+            const currentPage = Number(this.page) || 1;
+            const nextPage = currentPage + 1;
+            const totalPage = Number(this.lastPage)
+            
+            if(nextPage <= totalPage) {
+            await this.loadData(nextPage);
+            await this.render()
             }
-          });
-      
-          this.data = await response.json(); 
-          
-        } catch (error) {
-          console.log(error);
-        }
+        });
+
+        prevPageButton.addEventListener('click',  async () => {
+            const currentPage = Number(this.page) || 1;
+            const prevPage = currentPage - 1;
+
+            if(prevPage >= 1) {
+            await this.loadData(prevPage);
+            await this.render()
+            }
+        });
+
+        firstPageButton.addEventListener('click',  async () => {
+            await this.loadData(1)
+            await this.render()
+        })
+
+        lastPageButton.addEventListener('click',  async () => {
+            await this.loadData(this.lastPage)
+            await this.render()
+        })
+
+        this.page == '1' ? prevPageButton.classList.add("inactive") : null
+        this.page == this.lastPage ? nextPageButton.classList.add("inactive") : null
+
     }
-      
 
     async render() {
         const divs =  this.data.rows.map(element => {
@@ -76,6 +121,12 @@ class Tab extends HTMLElement {
                     ${divs.join('')}    
                     </li>
                 </ul>
+            </div>
+            <div class="tab-page">
+                <button class="firstPageButton">Primera</button>
+                <button id="prevPageButton" class="prevPageButton" >Anterior</button>
+                <button id="nextPageButton" class="nextPageButton">Siguiente</button>
+                <button class="lastPageButton">Última</button>
             </div>
         </section>
 
@@ -155,12 +206,32 @@ class Tab extends HTMLElement {
             .tab-information div .label {
                 font-weight: 800;
             }
+
+            .tab-page {
+                margin-top: 10px;
+                display: flex;
+                justify-content: space-around;
+                gap: 1rem
+            }
+
+            .tab-page button {
+                background-color: white;
+                padding: 5px;
+                font-size: 1.2rem;
+            }
+
+            .nextPageButton.inactive {
+                opacity: 50%;
+                cursor: default;
+            }
+            .prevPageButton.inactive {
+                opacity: 50%;
+                cursor: default;
+            }
         </style>
     
         `;
-
-            
-
+        this.changePage()
     }
 }
 
