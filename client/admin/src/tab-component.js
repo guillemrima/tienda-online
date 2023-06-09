@@ -4,7 +4,7 @@ class Tab extends HTMLElement {
         super();
         this.shadow = this.attachShadow({mode: 'open'});
         this.data = []
-        this.page = ''
+        this.page = null
         this.lastPage = ''
     }
 
@@ -28,9 +28,12 @@ class Tab extends HTMLElement {
         await this.render()
       }
 
-    async loadData(page = 1) {
+    async loadData() {
+
+        let url = this.page == null ?  `http://localhost:8080/api/admin/users` : `http://localhost:8080/api/admin/users?page=${this.page}`
+
         try {
-          const response = await fetch(`http://localhost:8080/api/admin/users?page=${page}`, {
+          const response = await fetch(url, {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json'
@@ -43,9 +46,8 @@ class Tab extends HTMLElement {
         } catch (error) {
           console.log(error);
         }
+        console.log(this.data)
     }
-
-
 
     async deleteRow(rowId) {
         try {
@@ -69,39 +71,45 @@ class Tab extends HTMLElement {
         const lastPageButton = this.shadow.querySelector('.lastPageButton')
 
         nextPageButton.addEventListener('click',  async () => {
-            const currentPage = Number(this.page) || 1;
-            const nextPage = currentPage + 1;
-            const totalPage = Number(this.lastPage)
-            
-            if(nextPage <= totalPage) {
-            await this.loadData(nextPage);
-            await this.render()
+            this.page = Number(this.page) + 1 
+
+            if(this.page <= this.lastPage) {
+                await this.loadData();
+                await this.render()
             }
         });
 
         prevPageButton.addEventListener('click',  async () => {
-            const currentPage = Number(this.page) || 1;
-            const prevPage = currentPage - 1;
+            this.page = Number(this.page - 1)
 
-            if(prevPage >= 1) {
-            await this.loadData(prevPage);
-            await this.render()
+            if(this.page >= 1) {
+                await this.loadData();
+                await this.render()
             }
         });
 
         firstPageButton.addEventListener('click',  async () => {
-            await this.loadData(1)
+            this.page = 1
+
+            await this.loadData()
             await this.render()
         })
 
         lastPageButton.addEventListener('click',  async () => {
-            await this.loadData(this.lastPage)
+            this.page = this.lastPage
+
+            await this.loadData()
             await this.render()
         })
 
-        this.page == '1' ? prevPageButton.classList.add("inactive") : null
-        this.page == this.lastPage ? nextPageButton.classList.add("inactive") : null
-
+        if(this.page == 1)  {
+            prevPageButton.classList.add("inactive")
+            firstPageButton.classList.add("inactive")
+        }
+        if(this.page == this.lastPage ) {
+            nextPageButton.classList.add("inactive") 
+            lastPageButton.classList.add("inactive")
+        }
     }
 
     async render() {
@@ -225,6 +233,14 @@ class Tab extends HTMLElement {
                 cursor: default;
             }
             .prevPageButton.inactive {
+                opacity: 50%;
+                cursor: default;
+            }
+            .firstPageButton.inactive {
+                opacity: 50%;
+                cursor: default;
+            }
+            .lastPageButton.inactive {
                 opacity: 50%;
                 cursor: default;
             }
