@@ -1,4 +1,4 @@
-class EraseAlert extends HTMLElement {
+class DeleteAlert extends HTMLElement {
 
     constructor() {
         super();
@@ -130,4 +130,4 @@ class EraseAlert extends HTMLElement {
     
 }
 
-customElements.define('erase-alert-component', EraseAlert);
+customElements.define('delete-component', DeleteAlert);

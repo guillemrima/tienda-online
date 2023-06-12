@@ -1,9 +1,9 @@
-import './header.js';
+import './header-component.js';
 import './filter-component.js';
 import './tab-component.js';
 import './form-component.js';
 import './ficha-component.js'
 import './lateral-menu-component.js';
-import "./modal.js";
-import "./erase-component.js";
+import "./modal-component.js";
+import "./delete-component.js";
 import  "./login-component.js"
