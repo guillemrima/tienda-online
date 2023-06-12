@@ -58,6 +58,10 @@ class Filter extends HTMLElement {
                 z-index: -1
             }
 
+            .filter-form.active {
+                z-index: 0
+            }
+
             hero {
                 color: white;
                 font-size: 1.5rem;
@@ -119,11 +123,23 @@ class Filter extends HTMLElement {
 
     renderFilter = () => {
         const filterButton = this.shadow.querySelector(".filter-button")
+        const filterForm = this.shadow.querySelector(".filter-form")
         const filterImage = this.shadow.querySelector(".filter-image")
 
         filterButton.addEventListener("click", () => {
             filterButton.classList.toggle("active")
             filterImage.classList.toggle("active")
+
+            if(filterForm.classList.contains("active")) {
+                    filterForm.classList.remove("active")
+                    console.log("hola")
+            }
+            
+            else {
+                setTimeout(() => {
+                    filterForm.classList.add("active")
+                }, 300)
+            }
         })
     }
 
