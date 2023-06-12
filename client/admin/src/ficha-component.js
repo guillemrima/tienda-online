@@ -1,4 +1,4 @@
-class TabElement extends HTMLElement {
+class Ficha extends HTMLElement {
 
     constructor() {
         super();
@@ -44,14 +44,14 @@ class TabElement extends HTMLElement {
                 gap: 1rem;
             }
 
-            .tab-element {
+            .ficha {
                 display: flex;
                 flex-direction: column;
                 box-shadow: 0px 0px 13px 0px rgba(0,0,0,0.75);
 
             }
 
-            .tab-element .tab-options {
+            .ficha .tab-options {
                 background-color: rgba(109,183,243,255);
                 display: flex;
                 justify-content: flex-end;
@@ -64,7 +64,7 @@ class TabElement extends HTMLElement {
                 fill: white;
             }
             
-            .tab-element .tab-information {
+            .ficha .tab-information {
                 display: flex;
                 flex-direction: column;
                 background-color: rgba(113,139,224,255);
@@ -87,7 +87,7 @@ class TabElement extends HTMLElement {
             }
         </style>
     
-        <div class="tab-element">
+        <div class="ficha">
             <div class="tab-options">
                 <div class="edit">
                     <button id="editButton" >
@@ -136,4 +136,4 @@ class TabElement extends HTMLElement {
 
 }}
 
-customElements.define('tab-element', TabElement);
+customElements.define('ficha-component', Ficha);

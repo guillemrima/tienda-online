@@ -48,6 +48,7 @@ class Tab extends HTMLElement {
           this.data = await response.json(); 
           this.page = this.data.meta.currentPage
           this.lastPage = this.data.meta.pages
+
         } catch (error) {
           console.log(error);
         }
@@ -75,18 +76,16 @@ class Tab extends HTMLElement {
         const lastPageButton = this.shadow.querySelector('.lastPageButton')
 
         nextPageButton.addEventListener('click',  async () => {
-            this.page = Number(this.page) + 1 
-
-            if(this.page <= this.lastPage) {
+            if(this.page < this.lastPage) {
+                this.page = Number(this.page) + 1 
                 await this.loadData();
                 await this.render()
             }
         });
 
         prevPageButton.addEventListener('click',  async () => {
-            this.page = Number(this.page - 1)
-
-            if(this.page >= 1) {
+            if(this.page > 1) {
+                this.page = Number(this.page - 1)
                 await this.loadData();
                 await this.render()
             }
@@ -118,10 +117,10 @@ class Tab extends HTMLElement {
 
     async render() {
         const divs =  this.data.rows.map(element => {
-            return `<tab-element id="${element.id}">
+            return `<ficha-component id="${element.id}">
                             <span slot="name">${element.name}</span>
                             <span slot="email">${element.email}</span>
-                        </tab-element>`;
+                        </ficha-component>`;
           });
           
         this.shadow.innerHTML = 
@@ -137,6 +136,7 @@ class Tab extends HTMLElement {
             <div class="tab-page">
                 <button class="firstPageButton">Primera</button>
                 <button id="prevPageButton" class="prevPageButton" >Anterior</button>
+                <div class="page">${this.page}</div>
                 <button id="nextPageButton" class="nextPageButton">Siguiente</button>
                 <button class="lastPageButton">Última</button>
             </div>
@@ -248,8 +248,15 @@ class Tab extends HTMLElement {
                 opacity: 50%;
                 cursor: default;
             }
+            .page {
+                width:50%;
+                background-color: white;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
         </style>
-    
+            
         `;
         this.changePage()
     }

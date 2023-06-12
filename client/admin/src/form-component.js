@@ -3,7 +3,7 @@ class Form extends HTMLElement {
     constructor() {
         super();
         this.shadow = this.attachShadow({mode: 'open'});
-        
+        this.isFormValid = false
     }
 
     async attributeChangedCallback (name, oldValue, newValue) {
@@ -156,6 +156,17 @@ class Form extends HTMLElement {
                 padding: 0.2rem;
                 padding-left: 1rem;
             }
+
+            .error {
+                background-color: white;
+                border-left: 5px solid red;
+            }
+            .error p {
+                color: red;
+                font-size: 1.5rem;
+                font-weight: 600;
+                margin: 10px
+            }
         </style>
         
         <section class="form-section">
@@ -246,47 +257,100 @@ class Form extends HTMLElement {
                 })})
         }
 
+         showError = (errorMessage) => {
+            const errorDivElement = document.createElement("div");
+            const errorTextElement = document.createElement("p");
+            errorTextElement.textContent = errorMessage;
+            errorDivElement.appendChild(errorTextElement);
+            errorDivElement.classList.add("error");
+            const formElement = this.shadow.querySelector(".form-container");
+            formElement.prepend(errorDivElement);
+          };
+
         submitData = async () => {
-            const submitForm = this.shadow.querySelector("#submitButton"); 
             const form = this.shadow.querySelector('#form');
-
+            const submitForm = this.shadow.querySelector("#submitButton");
+          
             const validatePassword = (password, passwordConfirmed) => {
-                return password === passwordConfirmed;
+              return password === passwordConfirmed;
             };
+          
+            const showError = (errorMessage) => {
+                const errorDivElement = document.createElement("div");
+                const errorTextElement = document.createElement("p");
 
-            submitForm.addEventListener("click", () => {
+                errorTextElement.textContent = errorMessage;
+                errorDivElement.appendChild(errorTextElement);
+                errorDivElement.classList.add("error");
+                errorDivElement.id = "errorDiv";
+
+                const formElement = this.shadow.querySelector(".form-container");
+        
+                const previousErrorDiv = this.shadow.querySelector("#errorDiv");
+
+                if (previousErrorDiv) {
+                    formElement.removeChild(previousErrorDiv);
+                }
+          
+                formElement.prepend(errorDivElement);
+            };
+          
+            submitForm.addEventListener("click", (event) => {
+                event.preventDefault(); 
+          
                 const formData = Object.fromEntries(new FormData(form));
                 const isValidPassword = validatePassword(formData.password, formData.passwordConfirmed);
-                
-                if(isValidPassword) {
-                    const method = this.data ? 'PUT' : 'POST'
-                    const baseUrl = 'http://localhost:8080/api/admin/users'
-                    const url = this.data ? `${baseUrl}/${this.data.id}` : baseUrl
-
+          
+                if (isValidPassword) {
+                    const method = this.data ? 'PUT' : 'POST';
+                    const baseUrl = 'http://localhost:8080/api/admin/users';
+                    const url = this.data ? `${baseUrl}/${this.data.id}` : baseUrl;
+          
                     fetch(url, {
-                        method: method,
-                        headers: {
+                    method: method,
+                    headers: {
                         'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(formData)
+                    },
+                    body: JSON.stringify(formData)
                     })
-                    .then(response => response.json())
-                    .then(data =>                
-                        {
-                        const event = new CustomEvent('refresh-table')
-                        document.dispatchEvent(event)
-                        })
-                        .catch(error => console.error(error));
-                } 
-                else {
-                    console.log("No se pudo realizar la petición ya que las contraseñas no coinciden");
-                }
-                
-                form.reset();
-                this.data = ''
-                })
-        }
+                    .then(response => {
+                        if (!response.ok) {
+                        response.json().then(respuesta => {
+                            const errorMessages = respuesta.message[0].message;
+                            console.log(respuesta.message)
+                            showError(errorMessages);
+                        });         
+                        return response.json();
+                        }
+                    
+                        form.reset()
 
+                        const previousErrorDiv = this.shadow.querySelector("#errorDiv");
+                        if (previousErrorDiv) {
+                            const formElement = this.shadow.querySelector(".form-container");
+                            formElement.removeChild(previousErrorDiv);
+                        }
+                    return response.json();
+                    })
+                    .then(data => {
+                        const event = new CustomEvent('refresh-table');
+                        document.dispatchEvent(event);
+                        if (this.isFormValid) {
+                            form.reset();
+                            this.data = '';
+                        }
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
+          
+                } else {
+                    const errorMessage = "Las contraseñas no coinciden";
+                    showError(errorMessage);
+                }
+            });
+        }
+          
         EditTab = async (e) => {
             const id = e.detail.componentId
             const row = await this.loadData(id)
