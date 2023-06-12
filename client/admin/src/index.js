@@ -5,5 +5,5 @@ import './form-component.js';
 import './ficha-component.js'
 import './lateral-menu-component.js';
 import "./modal.js";
-import "./erase-alert-component.js";
+import "./erase-component.js";
 import  "./login-component.js"

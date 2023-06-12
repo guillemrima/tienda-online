@@ -18,7 +18,7 @@ class Form extends HTMLElement {
         })
     } 
     
-    async loadData(id) {
+    loadData = async (id) => {
         try {
           const response = await fetch(`http://localhost:8080/api/admin/users/${id}`, {
             method: 'GET',
@@ -34,6 +34,88 @@ class Form extends HTMLElement {
           console.log(error);
         }
     }
+
+    submitData = async (form) => {
+        const formData = Object.fromEntries(new FormData(form));
+        const isValidPassword = this.validatePassword(formData.password, formData.passwordConfirmed);
+
+        if (isValidPassword) {
+            const method = this.data ? 'PUT' : 'POST';
+            const baseUrl = 'http://localhost:8080/api/admin/users';
+            const url = this.data ? `${baseUrl}/${this.data.id}` : baseUrl;
+  
+            fetch(url, {
+            method: method,
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+            })
+            .then(response => {
+                if (!response.ok) {
+                response.json().then(respuesta => {
+                    const errorMessage = respuesta.message[0].message;
+                    this.showError(errorMessage);
+                });         
+                return ;
+                }                
+                form.reset()
+                const previousErrorDiv = this.shadow.querySelector("#errorDiv");
+                if (previousErrorDiv) {
+                    const formElement = this.shadow.querySelector(".form-container");
+                    formElement.removeChild(previousErrorDiv);
+                }
+            return response.json();
+            })
+            .then(data => {
+                const event = new CustomEvent('refresh-table');
+                document.dispatchEvent(event);
+                if (this.isFormValid) {
+                    form.reset();
+                    this.data = '';
+                }
+            })
+            .catch(error => {
+                console.error(error);
+            });
+  
+        } else {
+            const errorMessage = "Las contraseñas no coinciden";
+            this.showError(errorMessage);
+        }
+    
+    }
+
+    showError = (errorMessage) => {
+            const errorDivElement = document.createElement("div");
+            const errorTextElement = document.createElement("p");
+
+            errorTextElement.textContent = errorMessage;
+            errorDivElement.appendChild(errorTextElement);
+            errorDivElement.classList.add("error");
+            errorDivElement.id = "errorDiv";
+
+            const formElement = this.shadow.querySelector(".form-container");
+    
+            const previousErrorDiv = this.shadow.querySelector("#errorDiv");
+
+            if (previousErrorDiv) {
+                formElement.removeChild(previousErrorDiv);
+            }
+      
+            formElement.prepend(errorDivElement);
+    }
+
+    EditTab = async (e) => {
+            const id = e.detail.componentId
+            const row = await this.loadData(id)
+            this.shadow.getElementById("name").value = row.name;
+            this.shadow.getElementById("email").value = row.email;
+    }
+
+    validatePassword = (password, passwordConfirmed) => {
+            return password === passwordConfirmed;
+    };
 
     render() {
 
@@ -225,7 +307,6 @@ class Form extends HTMLElement {
         </section>
         `;
             this.renderTabs()
-            this.submitData()
         }
 
         renderTabs = async() => {
@@ -235,8 +316,7 @@ class Form extends HTMLElement {
             const resetForm = this.shadow.querySelector("#resetButton");
             const formSelector = this.shadow.querySelector('.selector');
             const selectors = formSelector.querySelectorAll("div");
-
-
+            const submitForm = this.shadow.querySelector("#submitButton");
 
             resetForm.addEventListener("click",() => {
                 form.reset();
@@ -255,108 +335,13 @@ class Form extends HTMLElement {
                         form.dataset.form == dataset ? form.classList.add("active") : form.classList.remove("active");
                 })
                 })})
-        }
-
-         showError = (errorMessage) => {
-            const errorDivElement = document.createElement("div");
-            const errorTextElement = document.createElement("p");
-            errorTextElement.textContent = errorMessage;
-            errorDivElement.appendChild(errorTextElement);
-            errorDivElement.classList.add("error");
-            const formElement = this.shadow.querySelector(".form-container");
-            formElement.prepend(errorDivElement);
-          };
-
-        submitData = async () => {
-            const form = this.shadow.querySelector('#form');
-            const submitForm = this.shadow.querySelector("#submitButton");
-          
-            const validatePassword = (password, passwordConfirmed) => {
-              return password === passwordConfirmed;
-            };
-          
-            const showError = (errorMessage) => {
-                const errorDivElement = document.createElement("div");
-                const errorTextElement = document.createElement("p");
-
-                errorTextElement.textContent = errorMessage;
-                errorDivElement.appendChild(errorTextElement);
-                errorDivElement.classList.add("error");
-                errorDivElement.id = "errorDiv";
-
-                const formElement = this.shadow.querySelector(".form-container");
-        
-                const previousErrorDiv = this.shadow.querySelector("#errorDiv");
-
-                if (previousErrorDiv) {
-                    formElement.removeChild(previousErrorDiv);
-                }
-          
-                formElement.prepend(errorDivElement);
-            };
-          
+              
             submitForm.addEventListener("click", (event) => {
                 event.preventDefault(); 
-          
-                const formData = Object.fromEntries(new FormData(form));
-                const isValidPassword = validatePassword(formData.password, formData.passwordConfirmed);
-          
-                if (isValidPassword) {
-                    const method = this.data ? 'PUT' : 'POST';
-                    const baseUrl = 'http://localhost:8080/api/admin/users';
-                    const url = this.data ? `${baseUrl}/${this.data.id}` : baseUrl;
-          
-                    fetch(url, {
-                    method: method,
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(formData)
-                    })
-                    .then(response => {
-                        if (!response.ok) {
-                        response.json().then(respuesta => {
-                            const errorMessages = respuesta.message[0].message;
-                            console.log(respuesta.message)
-                            showError(errorMessages);
-                        });         
-                        return response.json();
-                        }
-                    
-                        form.reset()
-
-                        const previousErrorDiv = this.shadow.querySelector("#errorDiv");
-                        if (previousErrorDiv) {
-                            const formElement = this.shadow.querySelector(".form-container");
-                            formElement.removeChild(previousErrorDiv);
-                        }
-                    return response.json();
-                    })
-                    .then(data => {
-                        const event = new CustomEvent('refresh-table');
-                        document.dispatchEvent(event);
-                        if (this.isFormValid) {
-                            form.reset();
-                            this.data = '';
-                        }
-                    })
-                    .catch(error => {
-                        console.error(error);
-                    });
-          
-                } else {
-                    const errorMessage = "Las contraseñas no coinciden";
-                    showError(errorMessage);
-                }
-            });
+                this.submitData(form)
+            })
         }
-          
-        EditTab = async (e) => {
-            const id = e.detail.componentId
-            const row = await this.loadData(id)
-            this.shadow.getElementById("name").value = row.name;
-            this.shadow.getElementById("email").value = row.email;
-        }
+      
 }
 
 customElements.define('form-component', Form);

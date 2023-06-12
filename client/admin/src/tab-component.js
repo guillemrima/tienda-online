@@ -254,6 +254,7 @@ class Tab extends HTMLElement {
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                font-weight: 600;
             }
         </style>
             
