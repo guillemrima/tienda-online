@@ -99,14 +99,14 @@ class Filter extends HTMLElement {
                 <div>
                     <hero>Filtra los registros:</hero>
                 </div>
-                <form>
+                <form id="filter-form">
                     <div class="campo">
                         <label>Nombre: </label>
-                        <input />
+                        <input name="name" />
                     </div>
                     <div class="campo">
                         <label>Email: </label>
-                        <input />
+                        <input name="email" />
                     </div>
                 </form>
             </div>
@@ -123,24 +123,33 @@ class Filter extends HTMLElement {
 
     renderFilter = () => {
         const filterButton = this.shadow.querySelector(".filter-button")
-        const filterForm = this.shadow.querySelector(".filter-form")
-        const filterImage = this.shadow.querySelector(".filter-image")
 
         filterButton.addEventListener("click", () => {
+            const filterForm = this.shadow.querySelector(".filter-form")
+            const filterImage = this.shadow.querySelector(".filter-image")
+
             filterButton.classList.toggle("active")
             filterImage.classList.toggle("active")
 
             if(filterForm.classList.contains("active")) {
                     filterForm.classList.remove("active")
-                    console.log("hola")
             }
-            
             else {
                 setTimeout(() => {
                     filterForm.classList.add("active")
                 }, 300)
             }
         })
+
+        filterButton.addEventListener("click", () => {
+            if(!filterButton.classList.contains("active")) {
+                const formFilter = this.shadow.querySelector("#filter-form")
+                const formData = Object.fromEntries(new FormData(formFilter))
+                console.log(formData)
+            }
+        })
+
+
     }
 
 }
