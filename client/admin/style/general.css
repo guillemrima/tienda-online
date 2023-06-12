@@ -33,3 +33,7 @@ button:hover svg {
         grid-template-columns: 1fr;
     };
 }
+
+::-webkit-scrollbar {
+    display: none
+}
