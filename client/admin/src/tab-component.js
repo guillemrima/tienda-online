@@ -6,6 +6,7 @@ class Tab extends HTMLElement {
         this.data = []
         this.page = null
         this.lastPage = ''
+        this.filter = null
     }
 
     static get observedAttributes () { return ['url'] }
@@ -22,9 +23,11 @@ class Tab extends HTMLElement {
             
         })
 
-        document.addEventListener('change-table', async (e) => {
-            const table = e.detail
-            this.loadData(table)
+        document.addEventListener('filter-table', async (e) => {
+            this.filter = e.detail.data
+            this.page = null
+            await this.loadData()
+            await this.render()
         })
     }
 
@@ -33,9 +36,17 @@ class Tab extends HTMLElement {
         await this.render()
       }
 
-    async loadData(table = 'users') {
+    async loadData() {
+        let url = `http://localhost:8080/api/admin/users`;
+        let conditionalStatement = (this.filter == null) ? '?' : '&';
+      
+        if (this.filter != null) {
+          url = this.filterUrl(url);
+        }
 
-        let url = this.page == null ?  `http://localhost:8080/api/admin/${table}` : `http://localhost:8080/api/admin/${table}?page=${this.page}`
+        if (this.page != null) {
+          url = `${url}${conditionalStatement}page=${this.page}`;
+        }
 
         try {
           const response = await fetch(url, {
@@ -113,6 +124,17 @@ class Tab extends HTMLElement {
             nextPageButton.classList.add("inactive") 
             lastPageButton.classList.add("inactive")
         }
+    }
+
+    filterUrl = (url) => {
+        const params = new URLSearchParams()
+
+        for (const key in this.filter) {
+              params.append(key, this.filter[key]);
+            }
+          
+        return `${url}?${params.toString()}`
+
     }
 
     async render() {

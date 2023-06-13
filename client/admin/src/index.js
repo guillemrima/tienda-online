@@ -7,3 +7,4 @@ import './lateral-menu-component.js';
 import "./modal-component.js";
 import "./delete-component.js";
 import  "./login-component.js"
+import "./image-component.js"

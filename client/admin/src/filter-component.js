@@ -6,6 +6,11 @@ class Filter extends HTMLElement {
         this.render();
     }
 
+    submitForm = (data) => {
+        const filterData = new CustomEvent('filter-table', { detail: { data : data } })
+        document.dispatchEvent(filterData)
+        }
+
     render() {
 
         this.shadow.innerHTML = 
@@ -20,7 +25,7 @@ class Filter extends HTMLElement {
 
             .filter-section {
                 position: relative;
-                margin-bottom: 2rem;
+                margin-bottom: 1rem;
                 overflow: hidden;
             }
 
@@ -49,9 +54,11 @@ class Filter extends HTMLElement {
             }
 
             .filter-image.active {
-                transform: rotate(180deg)
+                transform: rotateY(360deg)
             }
-
+            .filter-image.colorActive  svg{
+                fill: #04B911;
+            }
             .filter-form {
                 width: 100%;
                 position: absolute;
@@ -131,21 +138,41 @@ class Filter extends HTMLElement {
             filterButton.classList.toggle("active")
             filterImage.classList.toggle("active")
 
+            
+
             if(filterForm.classList.contains("active")) {
                     filterForm.classList.remove("active")
+                    setTimeout(() => {
+                        filterImage.innerHTML = ' <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14,12V19.88C14.04,20.18 13.94,20.5 13.71,20.71C13.32,21.1 12.69,21.1 12.3,20.71L10.29,18.7C10.06,18.47 9.96,18.16 10,17.87V12H9.97L4.21,4.62C3.87,4.19 3.95,3.56 4.38,3.22C4.57,3.08 4.78,3 5,3V3H19V3C19.22,3 19.43,3.08 19.62,3.22C20.05,3.56 20.13,4.19 19.79,4.62L14.03,12H14Z" /></svg>'
+                        filterImage.classList.remove("colorActive")
+                }, 150)
             }
             else {
                 setTimeout(() => {
                     filterForm.classList.add("active")
                 }, 300)
+                setTimeout(() => {
+                    filterImage.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 12V19.88C12.04 20.18 11.94 20.5 11.71 20.71C11.32 21.1 10.69 21.1 10.3 20.71L8.29 18.7C8.06 18.47 7.96 18.16 8 17.87V12H7.97L2.21 4.62C1.87 4.19 1.95 3.56 2.38 3.22C2.57 3.08 2.78 3 3 3H17C17.22 3 17.43 3.08 17.62 3.22C18.05 3.56 18.13 4.19 17.79 4.62L12.03 12H12M17.75 21L15 18L16.16 16.84L17.75 18.43L21.34 14.84L22.5 16.25L17.75 21" /></svg>'
+                    filterImage.classList.add("colorActive")
+            }, 150)
             }
         })
 
         filterButton.addEventListener("click", () => {
             if(!filterButton.classList.contains("active")) {
                 const formFilter = this.shadow.querySelector("#filter-form")
-                const formData = Object.fromEntries(new FormData(formFilter))
-                console.log(formData)
+                const data = Object.fromEntries(new FormData(formFilter))
+
+                for(const key in data) {
+                    data[key] === '' ? delete data[key] : null
+                }
+
+                setTimeout(() => {
+                    formFilter.reset()
+                },500)
+
+               this.submitForm(data)
+            
             }
         })
 
