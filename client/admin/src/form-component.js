@@ -278,7 +278,7 @@ class Form extends HTMLElement {
             </div>
             <div class="form-container">
                 <form id="form">
-                    <div class="profile-form  " data-form="principal" id="form-principal">
+                    <div class="profile-form active " data-form="principal" id="form-principal">
                             <div>
                                 <label>Nombre</label>
                                 <input name="name" type="text" id='name'></input>
@@ -296,7 +296,7 @@ class Form extends HTMLElement {
                                 <input name="passwordConfirmed" type="text"></input>
                             </div>
                     </div>
-                    <div class="profile-form active" data-form="image">
+                    <div class="profile-form " data-form="image">
                         <div class="input-image">
                             <label>Seleccione una imagen</label>
                                 <image-component></image-component>

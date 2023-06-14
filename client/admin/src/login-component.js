@@ -6,12 +6,95 @@ class Login extends HTMLElement {
         this.render();
     }
 
+    submitForm = () => {
+      const form = this.shadow.querySelector('#loginForm')
+
+       form.addEventListener('submit', (e) => {
+        e.preventDefault()
+
+        const formData = Object.fromEntries(new FormData(form))
+        const url = 'http://localhost:8080/api/auth/users/signin'
+
+        fetch(url, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+          })
+
+          .then(response => {
+            if (!response.ok) {
+              const error = response.json()
+              .then(error => {
+                this.showError(error)
+                console.log(error.message)
+              })
+            }
+            else {
+              const data = response.json()
+              .then(data => {
+                  const accessToken = data.accessToken
+                  sessionStorage.setItem("accessToken", accessToken)
+                  this.redirectPanel(data)
+                })
+            }
+          })
+
+       })
+    }
+
+    showError = (error) => {
+      const errorMessage = error.message
+      const loginPanel = this.shadow.querySelector(".login-panel")
+
+      if ( loginPanel.querySelector(".error-container")) {
+          loginPanel.querySelector(".error-container").remove()
+      }
+
+      const errorContainer = document.createElement("div")
+      const errorText = document.createElement("p")
+
+      errorText.innerHTML = errorMessage
+      errorContainer.appendChild(errorText)
+      loginPanel.appendChild(errorContainer)
+
+      errorContainer.classList.add("error-container")
+
+    }
+
+    redirectPanel = (data) => {
+      const successMessage = `¡Bievenido ${data.name}!`
+      const loginPanel = this.shadow.querySelector(".login-panel")
+
+      if ( loginPanel.querySelector(".error-container")) {
+          loginPanel.querySelector(".error-container").remove()
+      }
+
+      const successContainer = document.createElement("div")
+      const successText = document.createElement("p")
+
+      successText.innerHTML = successMessage
+      successContainer.appendChild(successText)
+      loginPanel.appendChild(successContainer)
+
+      successContainer.classList.add("success-container")
+
+      setTimeout(()=> {
+        window.location.href = 'http://127.0.0.1:5500/client/admin/admin.html'
+      }, 500)
+    }
+
     render() {
 
         this.shadow.innerHTML = 
         `
         <style>
-
+            * {
+              padding: 0;
+              margin: 0;
+              box-sizing: border-box
+            }
             .login-panel {
                 display: flex;
                 flex-direction: column;
@@ -58,9 +141,31 @@ class Login extends HTMLElement {
                 border: 1px solid white;
                 cursor: pointer;
             }
-                .title {
-                   color: white;
-                }
+            .title {
+               color: white;
+            }
+            
+            .error-container {
+              background-color: white;
+              border-left: 5px solid red;
+              padding: 1rem 0.5rem;
+              margin-top: 2rem;
+            }
+            .error-container p {
+              color: red;
+              font-weight: 600
+            }
+
+            .success-container {
+              background-color:white;
+              border-left: 5px solid green;
+              padding: 1rem 0.5rem;
+              margin-top: 2rem;
+            }
+            .success-container p {
+              color: green;
+              font-weight: 600
+            }
             
         </style>
         <div class="login-panel">
@@ -84,27 +189,9 @@ class Login extends HTMLElement {
             </form>
         </div>
         `;
-        
-
-        const form = this.shadow.querySelector('#loginForm')
-
-       form.addEventListener('submit', (e) => {
-        e.preventDefault()
-        const formData = Object.fromEntries(new FormData(form))
-
-        fetch('http://localhost:8080/api/admin/users', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(formData)
-          }).then(response => response.json())
-            .then(data => console.log(data))
-            .catch(error => console.error(error));
-        
-       })
-
+        this.submitForm();
     }
+
 }
 
 customElements.define('login-component', Login);

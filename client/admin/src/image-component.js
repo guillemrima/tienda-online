@@ -12,10 +12,13 @@ class Image extends HTMLElement {
         this.shadow.innerHTML =
         `
             <div class="image-section">
+                <div class="image-container">
                 <input class="file-input" type="file" accept="image/*" multiple="false"/>
-                
-                <div id="image-preview" class="image-preview">
+                    <div id="image-preview" class="image-preview">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4,4H7L9,2H15L17,4H20A2,2 0 0,1 22,6V18A2,2 0 0,1 20,20H4A2,2 0 0,1 2,18V6A2,2 0 0,1 4,4M12,7A5,5 0 0,0 7,12A5,5 0 0,0 12,17A5,5 0 0,0 17,12A5,5 0 0,0 12,7M12,9A3,3 0 0,1 15,12A3,3 0 0,1 12,15A3,3 0 0,1 9,12A3,3 0 0,1 12,9Z" /></svg>
+                    </div>
                 </div>
+
             </div>
 
             <style>
@@ -26,34 +29,44 @@ class Image extends HTMLElement {
                 }
                 .image-section {
                     display: flex:
-                    justify-content: space-between;
-                }
-                .file-input::-webkit-file-upload-button {
-                    opacity: 0;
-                    cursor: pointer
+                    justify-content: center;
+                    position: relative;
+                    height: 30vh;
+                    width: 80%
                 }
 
-                .file-input:hover::before {
-                    background: white;
-                    color:  rgba(113,139,224,255)
-                }
-                .reset-input {
-                    display: inline-block;
-                    border-radius: 4px;
-                    border: none;
-                    cursor: pointer;
-                    width: 1.5rem;
-                }
-                .reset-input svg {
-                }
-                .image-preview{
+                .image-container {
                     width: 100%;
-                }
-                .image-preview img {
-                    width: 5rem
+                    height: 100%;
+                    position:relative
                 }
 
+                .file-input {
+                    width: 100%;
+                    height: 100%;
+                    position: absolute;
+                    left: 0;
+                    cursor:pointer;
+                    opacity: 0
+                }
 
+                .image-preview {
+                    width: 100%;
+                    height: 100%;
+                    display: flex;
+                    justify-content: center
+                }
+
+                .image-preview svg {
+                    width: 50%;
+                    fill: white;
+                    height: 100%
+                }
+
+                .image {
+                    width : 100%;
+                    object-fit: contain
+                }
             </style>
         `
 
@@ -70,7 +83,7 @@ class Image extends HTMLElement {
 
                     const preview = this.shadow.querySelector("#image-preview")
                     const imagePreview = document.createElement("img")
-                    imagePreview.classList.add("image-preview")
+                    imagePreview.classList.add("image")
                     imagePreview.src = data
 
                     preview.innerHTML = ""

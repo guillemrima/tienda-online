@@ -76,7 +76,7 @@ class Modal extends HTMLElement {
         }
 
         </style>
-        <section class="modal-section" id="modal">
+        <section class="modal-section active" id="modal">
         <div class="modal">
             <slot name="image-component-modal"></slot>
             <slot name="details-component-modal"></slot>
