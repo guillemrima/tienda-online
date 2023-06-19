@@ -3,13 +3,43 @@ class Modal extends HTMLElement {
     constructor() {
         super();
         this.shadow = this.attachShadow({mode: 'open'});
-        const width = this.attributes.getNamedItem("width").value;
-        const height = this.attributes.getNamedItem("heigth").value;
-
-        this.render(width, height);
+        this.modalContent = ''
+        this.idFicha = ""
+        this.render();
     }
 
-    render(width, height) {
+    connectedCallback() {
+        document.addEventListener("add-active", (e) => {
+            this.renderModalContent(e)
+        })
+
+        document.addEventListener("remove-active", e => {
+            this.removeActive(e)
+        })
+    }
+
+    renderModalContent = (e) => {
+        if(e.detail.componentId) {
+            this.modalContent = 'delete-content'
+            this.fichaId = e.detail.componentId
+            this.render() 
+        }
+        else if(e.detail.detail) {
+            this.modalContent = e.detail.detail
+            this.render()
+        }
+    }
+
+    removeActive = e => {
+        if ( e.detail.detail === "delete-component") {
+            this.modalContent = ""
+        }
+            else if(e.detail.detail === "image-component") {
+        this.modalContent = ""
+        }
+        this.render()
+    }   
+    render() {
 
         this.shadow.innerHTML = 
         `
@@ -40,8 +70,6 @@ class Modal extends HTMLElement {
         }       
         .modal-section .modal { 
             background-color: rgb(93, 93, 93);
-            width: ${width};
-            height: ${height};
             display: grid;
             grid-template-columns: 50% 50%;
             box-shadow: 10px 10px 58px -6px rgba(0,0,0,0.75);
@@ -65,43 +93,40 @@ class Modal extends HTMLElement {
             filter: invert(0.5) sepia(1) saturate(40) hue-rotate(10deg);
         }
 
-        .modal-section.active {
-            @include fadeIn(0s,0.5s);
+        .modal-section.active-delete-modal {
+            display : flex;
+            z-index: 999;    
+
+        }
+        .modal-section.active-image-modal {
             display : flex;
             z-index: 999;       
+
+        }
+        .modal-section.active-delete-modal .modal {
+            width: 20%;
+            height: 30vh;
+
+        }
+        .modal-section.active-image-modal .modal {
+            width: 90%;
+            height: 90vh;
+
         }
 
-        .modal-section.active .modal {
-            z-index: 999;
-        }
 
         </style>
-        <section class="modal-section active" id="modal">
-        <div class="modal">
-            <slot name="image-component-modal"></slot>
-            <slot name="details-component-modal"></slot>
-            
-            <div class="close-button button-close-modal" id="closeButton">
-                <img src="./assets/close.svg" />
-            </div>            
+        <section class="modal-section ${this.modalContent === 'delete-content' ? 'active-delete-modal' : this.modalContent ? 'active-image-modal' : 'default-modal'}" id="modal">
+        <div class="modal" >
+            ${this.modalContent === 'delete-content' ? 
+            `<delete-component id=${this.fichaId}></delete-component>`
+            : 
+            `<image-form-component url="/api/admin/images"></image-form-component>`
+            }          
         </div>
     </section>
         `;
 
-        const closeModal = this.shadow.querySelector("#closeButton");
-        
-        closeModal.addEventListener("click", () => 
-            closeModal.closest(".modal-section").classList.remove("active")
-        )
-
-        document.addEventListener("remove-active", () =>
-            closeModal.closest(".modal-section").classList.remove("active")
-        )   
-
-        document.addEventListener("add-active", (e) => {
-        closeModal.closest(".modal-section").classList.add("active")
-        }
-    )  
     }
 }
 

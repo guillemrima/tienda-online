@@ -4,6 +4,16 @@ class DeleteAlert extends HTMLElement {
         super();
         this.shadow = this.attachShadow({mode: 'open'});
         this.render();
+        this.id=""
+    }
+
+    static get observedAttributes () { return ['id'] }
+
+    async attributeChangedCallback (name, oldValue, newValue) {
+
+        if (name === 'id' && oldValue !== newValue) {
+            this.id = newValue;
+          }
     }
 
     render() {
@@ -108,20 +118,14 @@ class DeleteAlert extends HTMLElement {
     }
         renderTabs = async ()=> {
             const modalButtons = this.shadow.querySelectorAll("button");
-            let fichaId = ''
-            document.addEventListener("add-active", (e) => {
-                fichaId = e.detail.componentId
-            })
-
 
             modalButtons.forEach((button) => 
-
                 {button.addEventListener("click", (e) => {          
                     if(e.target.value === 'accept' ) {
-                        const refreshTable = new CustomEvent('refresh-table', {detail: {fichaId: fichaId}})
+                        const refreshTable = new CustomEvent('refresh-table', {detail: {fichaId: this.id}})
                         document.dispatchEvent(refreshTable)
                     }
-                    const removeActive = new CustomEvent('remove-active');
+                    const removeActive = new CustomEvent('remove-active', {detail: {detail: "delete-component"}});
                     document.dispatchEvent(removeActive)
                 })
             })
