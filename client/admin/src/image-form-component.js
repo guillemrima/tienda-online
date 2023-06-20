@@ -4,14 +4,8 @@ class ImageForm extends HTMLElement {
         super();
         this.shadow = this.attachShadow({mode: 'open'});
         this.fileOption = "upload-option"
-    }
-
-    static get observedAttributes () { return ['url'] }
-
-    async attributeChangedCallback (name, oldValue, newValue) {
-        this.loadForm()
         this.render()
-      }
+    }
 
     selectImageOption = () => {
          const imageOptions = this.shadow.querySelectorAll(".image-option")
@@ -31,40 +25,33 @@ class ImageForm extends HTMLElement {
             
             })
          })
-
     }
     
-    handleFileUpload = () => {
-        const inputFile = this.shadow.querySelector(".file-input")
+    handleFileUpload = async  file => {
 
-        if(inputFile.files.length == 0 ) {
-            console.log("Llamar a una futura función que muestre una alerta")
-            return
+        try{
+            const formData = new FormData()
+            formData.append('file', file)
+    
+            const data = await fetch('http://localhost:8080/api/admin/images', {
+                method: 'POST',
+                headers: {
+                    Authorization: 'Bearer ' + sessionStorage.getItem('accessToken')         
+                },
+                body: formData,
+            })
+
+            if(response.status == 500){
+                throw response
+            }
+    
+            if(response.status == 200){
+                const response = await data.json()
+            }
+
+        }catch(error){
+            console.log(error)
         }
-        const file = inputFile.files[0]
-        const formData = new FormData()
-
-        formData.append('archivo', file)
-
-        this.sendFile(formData)
-    }
-
-    sendFile = async (formData) => {
-        const url = 'http://localhost:8080/api/admin/images'
-        const method = 'POST'
-
-        const data = await (fetch(url, {
-            method: method,
-            body: formData
-        }))
-        const response = await (data.json())
-    }
-
-    loadForm = async () => {
-        const url = 'http://localhost:8080/api/admin/images'
-        const data = await (fetch(url))
-        const response = await data.json()
-        console.log(response.meta)
     }
 
     render() {
@@ -90,9 +77,8 @@ class ImageForm extends HTMLElement {
                 <div class="image-input">
                     ${this.fileOption === "upload-option" ? 
                     `
-                    <form class="image-form" id="image-form" enctype="multipart/form-data">
+                    <form>
                         <input type="file"  class="file-input" multiple="false" name="image"/>
-                        <button>Añadir Imagen</button>
                     </form>
                     ` 
                     :  
@@ -189,23 +175,28 @@ class ImageForm extends HTMLElement {
 
         `
             this.selectImageOption()
-            this.renderImageFormComponent();
-    }
 
-    renderImageFormComponent = () => {
-        const form = this.shadow.querySelector("#image-form")
-        const exitButton = this.shadow.querySelector(".exit")
+            const fileInput = this.shadow.querySelector(".file-input")
+            const exitButton = this.shadow.querySelector(".exit")
+    
+            fileInput.addEventListener("change", async  () => {
 
+                if(fileInput.files.length == 0 ) {
+                    console.log("Llamar a una futura función que muestre una alerta")
+                    return
+                }
 
-        form.addEventListener("submit", e => {
-            e.preventDefault()
-            this.handleFileUpload(form)
-        })
+                const file = fileInput.files[0]
 
-        exitButton.addEventListener("click", () => {
-            const removeActive = new CustomEvent('remove-active', {detail: {detail: "image-component"}});
-            document.dispatchEvent(removeActive)
-        })
+                await this.handleFileUpload(file)
+
+                alert("hola")
+            })
+    
+            exitButton.addEventListener("click", () => {
+                const removeActive = new CustomEvent('remove-active', {detail: {detail: "image-component"}});
+                document.dispatchEvent(removeActive)
+            })
     }
  }
 

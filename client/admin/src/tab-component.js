@@ -52,9 +52,10 @@ class Tab extends HTMLElement {
           const response = await fetch(url, {
             method: 'GET',
             headers: {
-              'Content-Type': 'application/json'
+              'Content-Type': 'application/json',
+              Authorization: 'Bearer ' + sessionStorage.getItem('accessToken')         
             }
-          });
+        })
       
           this.data = await response.json(); 
           this.page = this.data.meta.currentPage

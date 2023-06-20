@@ -121,7 +121,7 @@ class Modal extends HTMLElement {
             ${this.modalContent === 'delete-content' ? 
             `<delete-component id=${this.fichaId}></delete-component>`
             : 
-            `<image-form-component url="/api/admin/images"></image-form-component>`
+            `<image-form-component></image-form-component>`
             }          
         </div>
     </section>
