@@ -16,7 +16,7 @@ module.exports = (app, upload) => {
       { name: 'file', maxCount: 1 },
     ])
   
-    router.post("/", [authJwt.verifyUserToken, uploadFields], controller.create);
+    router.post("/", [uploadFields], controller.create);
     router.get("/", [authJwt.verifyUserToken], controller.findAll);  
     router.get("/:id",  [authJwt.verifyUserToken], controller.findOne);  
     router.put("/:id", [authJwt.verifyUserToken], controller.update);  

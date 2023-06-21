@@ -22,12 +22,13 @@ class Modal extends HTMLElement {
         if(e.detail.componentId) {
             this.modalContent = 'delete-content'
             this.fichaId = e.detail.componentId
-            this.render() 
+
         }
         else if(e.detail.detail) {
             this.modalContent = e.detail.detail
-            this.render()
+
         }
+        this.render()
     }
 
     removeActive = e => {

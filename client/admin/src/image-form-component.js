@@ -27,32 +27,35 @@ class ImageForm extends HTMLElement {
          })
     }
     
-    handleFileUpload = async  file => {
+    handleFileUpload = () => {
+        const fileForm = this.shadow.querySelector("#file-form")
+        const fileInput = this.shadow.querySelector(".file-input")
 
-        try{
+        if(this.fileOption === 'upload-option' ) {
+            fileForm.addEventListener("change",  (e) => {
+                e.preventDefault()
+                if(fileInput.files.length == 0 ) {
+                console.log("Llamar a una futura función que muestre una alerta")
+                return
+                }
+
+                const file = fileInput.files[0]
+
+                    this.sendFile(file)
+            })
+        }
+    }
+
+    sendFile = async  (e,file) => {
             const formData = new FormData()
             formData.append('file', file)
     
             const data = await fetch('http://localhost:8080/api/admin/images', {
                 method: 'POST',
-                headers: {
-                    Authorization: 'Bearer ' + sessionStorage.getItem('accessToken')         
-                },
                 body: formData,
             })
-
-            if(response.status == 500){
-                throw response
-            }
-    
-            if(response.status == 200){
-                const response = await data.json()
-            }
-
-        }catch(error){
-            console.log(error)
-        }
     }
+    
 
     render() {
 
@@ -77,8 +80,8 @@ class ImageForm extends HTMLElement {
                 <div class="image-input">
                     ${this.fileOption === "upload-option" ? 
                     `
-                    <form>
-                        <input type="file"  class="file-input" multiple="false" name="image"/>
+                    <form id="file-form">
+                    <input type="file" class="file-input" multiple="false" name="image"/>
                     </form>
                     ` 
                     :  
@@ -175,24 +178,24 @@ class ImageForm extends HTMLElement {
 
         `
             this.selectImageOption()
-
-            const fileInput = this.shadow.querySelector(".file-input")
+            this.handleFileUpload()
             const exitButton = this.shadow.querySelector(".exit")
-    
-            fileInput.addEventListener("change", async  () => {
+            
+            // if(this.fileOption === 'upload-option' ) {
+            //     fileInput.addEventListener("change", async  (e) => {
+            //         if(fileInput.files.length == 0 ) {
+            //             console.log("Llamar a una futura función que muestre una alerta")
+            //             return
+            //         }
 
-                if(fileInput.files.length == 0 ) {
-                    console.log("Llamar a una futura función que muestre una alerta")
-                    return
-                }
+            //         const file = fileInput.files[0]
 
-                const file = fileInput.files[0]
+            //         await this.handleFileUpload(file)
 
-                await this.handleFileUpload(file)
+            //         alert("hola")
+            //     })
+            // }
 
-                alert("hola")
-            })
-    
             exitButton.addEventListener("click", () => {
                 const removeActive = new CustomEvent('remove-active', {detail: {detail: "image-component"}});
                 document.dispatchEvent(removeActive)
