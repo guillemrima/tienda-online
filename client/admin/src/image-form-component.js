@@ -46,13 +46,15 @@ class ImageForm extends HTMLElement {
         }
     }
 
-    sendFile = async  (e,file) => {
+    sendFile = async  (file) => {
             const formData = new FormData()
             formData.append('file', file)
-    
             const data = await fetch('http://localhost:8080/api/admin/images', {
                 method: 'POST',
                 body: formData,
+                headers: {
+                    Authorization: 'Bearer ' + sessionStorage.getItem('accessToken')         
+                  }
             })
     }
     
@@ -81,7 +83,7 @@ class ImageForm extends HTMLElement {
                     ${this.fileOption === "upload-option" ? 
                     `
                     <form id="file-form">
-                    <input type="file" class="file-input" multiple="false" name="image"/>
+                    <input type="file" class="file-input"  multiple = "multiple" name="image"/>
                     </form>
                     ` 
                     :  
