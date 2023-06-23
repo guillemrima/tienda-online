@@ -83,7 +83,7 @@ class ImageForm extends HTMLElement {
                     ${this.fileOption === "upload-option" ? 
                     `
                     <form id="file-form">
-                    <input type="file" class="file-input"  multiple = "multiple" name="image"/>
+                        <input type="file" class="file-input"  multiple = "multiple" name="image"/>
                     </form>
                     ` 
                     :  
