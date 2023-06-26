@@ -1,3 +1,5 @@
+import { API_URL } from '../config/config.js'
+
 class ImageGallery extends HTMLElement {
   constructor () {
     super()
@@ -394,7 +396,7 @@ class ImageGallery extends HTMLElement {
 
   async getThumbnails () {
     try {
-      const result = await fetch('http://localhost:8080/api/admin/images', {
+      const result = await fetch(`${API_URL}/images`, {
         headers: {
           Authorization: 'Bearer ' + sessionStorage.getItem('accessToken')
         }
@@ -422,7 +424,7 @@ class ImageGallery extends HTMLElement {
     const formData = new FormData()
     formData.append('file', file)
 
-    const result = await fetch('http://localhost:8080/api/admin/images', {
+    const result = await fetch(`${API_URL}/images`, {
       method: 'POST',
       headers: {
         Authorization: 'Bearer ' + sessionStorage.getItem('accessToken')

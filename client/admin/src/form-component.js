@@ -1,3 +1,5 @@
+import { API_URL } from '../config/config.js'
+
 class Form extends HTMLElement {
 
     constructor() {
@@ -20,7 +22,7 @@ class Form extends HTMLElement {
     
     loadData = async (id) => {
         try {
-          const response = await fetch(`http://localhost:8080/api/admin/users/${id}`, {
+          const response = await fetch(`${API_URL}/users/${id}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -42,7 +44,7 @@ class Form extends HTMLElement {
 
         if (isValidPassword) {
             const method = this.data ? 'PUT' : 'POST';
-            const baseUrl = 'http://localhost:8080/api/admin/users';
+            const baseUrl = `${API_URL}/users`;
             const url = this.data ? `${baseUrl}/${this.data.id}` : baseUrl;
   
             fetch(url, {

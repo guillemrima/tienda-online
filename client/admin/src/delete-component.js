@@ -1,5 +1,6 @@
-class DeleteAlert extends HTMLElement {
+import { API_URL } from '../config/config.js'
 
+class DeleteAlert extends HTMLElement {
     constructor() {
         super();
         this.shadow = this.attachShadow({mode: 'open'});
