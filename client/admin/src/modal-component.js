@@ -76,6 +76,7 @@ class Modal extends HTMLElement {
             box-shadow: 10px 10px 58px -6px rgba(0,0,0,0.75);
             position: relative;
             overflow: hidden;
+            animation: animation 0.15s ease-in
         }
         
         .close-button {
@@ -115,7 +116,15 @@ class Modal extends HTMLElement {
 
         }
 
+        @keyframes animation {
+            0% {
+                transform: scale(100%)
+            }
+            50% {
+                transform: scale(110%)
+            }
 
+        }
         </style>
         <section class="modal-section ${this.modalContent === 'delete-content' ? 'active-delete-modal' : this.modalContent ? 'active-image-modal' : 'default-modal'}" id="modal">
         <div class="modal" >

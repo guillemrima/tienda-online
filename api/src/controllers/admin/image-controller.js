@@ -5,9 +5,9 @@ const ImageService = require('../../services/image-service')
 
 exports.create = async (req, res) => {
     try {
-      const result = await new ImageService().uploadImages(req.files)
+        const result = await new ImageService().uploadImages(req.files)
 
-      res.status(200).send(result)
+        res.status(200).send(result)
     } catch (error) {
       res.status(500).send({
         message: error.message || 'Algún error ha surgido al insertar el dato.',

@@ -9,7 +9,7 @@ import "./delete-component.js";
 import  "./login-component.js"
 import "./image-component.js"
 import "./image-form-component.js"
-
+import "./gallery-component.js"
 
 import "./return-component.js"
 import "./products-component.js"

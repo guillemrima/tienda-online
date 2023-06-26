@@ -49,6 +49,8 @@ class ImageForm extends HTMLElement {
     sendFile = async  (file) => {
             const formData = new FormData()
             formData.append('file', file)
+
+            // const baseUrl = processs.env.BASE_URL
             const data = await fetch('http://localhost:8080/api/admin/images', {
                 method: 'POST',
                 body: formData,
@@ -56,6 +58,11 @@ class ImageForm extends HTMLElement {
                     Authorization: 'Bearer ' + sessionStorage.getItem('accessToken')         
                   }
             })
+            const result  = await data.json()
+            this.fileOption = 'select-option'
+            this.render()
+            const event = new CustomEvent('open-gallery', { detail:  result  });
+            document.dispatchEvent(event);
     }
     
 
@@ -82,12 +89,15 @@ class ImageForm extends HTMLElement {
                 <div class="image-input">
                     ${this.fileOption === "upload-option" ? 
                     `
-                    <form id="file-form">
-                        <input type="file" class="file-input"  multiple = "multiple" name="image"/>
-                    </form>
+                    <div class="file-button">
+                        <p>Añadir Imagen</p>
+                        <form id="file-form">
+                            <input type="file" class="file-input"  multiple = "multiple" name="image"/>
+                        </form>
+                    </div>
                     ` 
                     :  
-                        `¿componente de galería?`}
+                        `<gallery-component />`}
                 </div>
             </div>
         </div>
@@ -171,6 +181,28 @@ class ImageForm extends HTMLElement {
                 padding: 0.5rem;
                 cursor: pointer;
             }
+            .file-input {
+                border: 1px solid red;
+                opacity: 0;
+                cursor:pointer
+            }
+            .file-button {
+                width: 100%;
+                heigth: 4rem;
+                background-color: #2596be;
+                position: relative;
+                padding: 0.5rem;
+                cursor:pointer
+            }
+            .file-button p {
+                text-align: center;
+                position: absolute;;
+                left: 50%;
+                transform: translateX(-50%);
+                color: white;
+                font-weight: 600;
+                cursor:pointer
+            }
             .exit {
                 width: 2rem;
                 cursor: pointer
@@ -183,21 +215,6 @@ class ImageForm extends HTMLElement {
             this.handleFileUpload()
             const exitButton = this.shadow.querySelector(".exit")
             
-            // if(this.fileOption === 'upload-option' ) {
-            //     fileInput.addEventListener("change", async  (e) => {
-            //         if(fileInput.files.length == 0 ) {
-            //             console.log("Llamar a una futura función que muestre una alerta")
-            //             return
-            //         }
-
-            //         const file = fileInput.files[0]
-
-            //         await this.handleFileUpload(file)
-
-            //         alert("hola")
-            //     })
-            // }
-
             exitButton.addEventListener("click", () => {
                 const removeActive = new CustomEvent('remove-active', {detail: {detail: "image-component"}});
                 document.dispatchEvent(removeActive)

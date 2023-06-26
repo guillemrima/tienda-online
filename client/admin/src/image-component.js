@@ -26,13 +26,17 @@ class Image extends HTMLElement {
                     box-sizing: border-box;
                 }   
                 .image-section {
-                    width: 70%;
+                    width: 6rem;
+                    height: 6rem;
                     display: flex; 
-                    justify-content: center
+                    justify-content: center;
                 }
                 .image-section button {
-                    width: 10%;
-                    cursor: pointer;
+                    width: 100%;
+                    height: 100%
+                }
+                .image-section button svg {
+                    cursor: pointer
                 }
             </style>
         `
