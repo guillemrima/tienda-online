@@ -15,7 +15,7 @@ class Login extends HTMLElement {
         e.preventDefault()
 
         const formData = Object.fromEntries(new FormData(form))
-        const url = 'http://localhost:8080/api/auth/users/signin'
+        const url = `${API_URL}/auth/users/signin`
 
         fetch(url, {
             method: 'POST',

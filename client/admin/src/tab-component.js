@@ -69,7 +69,7 @@ class Tab extends HTMLElement {
 
     async deleteRow(rowId) {
         try {
-          const response = await fetch(`http://localhost:8080/api/admin/users/${rowId}`, {
+          const response = await fetch(`${API_URL}/admin/users/${rowId}`, {
             method: 'DELETE',
             
           });

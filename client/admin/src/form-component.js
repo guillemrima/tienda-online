@@ -22,7 +22,7 @@ class Form extends HTMLElement {
     
     loadData = async (id) => {
         try {
-          const response = await fetch(`${API_URL}/users/${id}`, {
+          const response = await fetch(`${API_URL}/admin/users/${id}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -44,7 +44,7 @@ class Form extends HTMLElement {
 
         if (isValidPassword) {
             const method = this.data ? 'PUT' : 'POST';
-            const baseUrl = `${API_URL}/users`;
+            const baseUrl = `${API_URL}/admin/users`;
             const url = this.data ? `${baseUrl}/${this.data.id}` : baseUrl;
   
             fetch(url, {
