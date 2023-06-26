@@ -14,7 +14,7 @@ module.exports = {
       fingerprintId: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'Fingerprints',
+          model: 'fingerprints',
           key: 'id'
         }
       },
