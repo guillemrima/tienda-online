@@ -396,7 +396,7 @@ class ImageGallery extends HTMLElement {
 
   async getThumbnails () {
     try {
-      const result = await fetch(`${API_URL}admin/images`, {
+      const result = await fetch(`${API_URL}/api/admin/images`, {
         headers: {
           Authorization: 'Bearer ' + sessionStorage.getItem('accessToken')
         }

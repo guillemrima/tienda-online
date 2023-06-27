@@ -53,7 +53,7 @@ class ImageForm extends HTMLElement {
     const formData = new FormData();
     formData.append('file', file);
 
-    const data = await fetch(`${API_URL}/admin/images`, {
+    const data = await fetch(`${API_URL}/api/admin/images`, {
       method: 'POST',
       body: formData,
       headers: {

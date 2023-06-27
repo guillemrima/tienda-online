@@ -22,7 +22,7 @@ class Form extends HTMLElement {
     
     loadData = async (id) => {
         try {
-          const response = await fetch(`${API_URL}/admin/users/${id}`, {
+          const response = await fetch(`${API_URL}/api/admin/users/${id}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
