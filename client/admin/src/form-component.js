@@ -46,7 +46,6 @@ class Form extends HTMLElement {
             const method = this.data ? 'PUT' : 'POST';
             const baseUrl = `${API_URL}/admin/users`;
             const url = this.data ? `${baseUrl}/${this.data.id}` : baseUrl;
-  
             fetch(url, {
             method: method,
             headers: {

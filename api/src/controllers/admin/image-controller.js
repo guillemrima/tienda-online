@@ -1,4 +1,5 @@
 const db = require("../../models");
+const path = require('path')
 const Image = db.Image;
 const Op = db.Sequelize.Op;
 const ImageService = require('../../services/image-service')
@@ -6,7 +7,7 @@ const ImageService = require('../../services/image-service')
 exports.create = async (req, res) => {
     try {
         const result = await new ImageService().uploadImages(req.files)
-
+        console.log(result)
         res.status(200).send(result)
     } catch (error) {
       res.status(500).send({
@@ -50,10 +51,16 @@ exports.findAll = (req, res) => {
 };
 
 exports.findOne = (req, res) => {
-
-    let filename = req.params.filename
-
-    
+    const filename = req.params.filename
+    const options = {
+      root: __dirname + '../../../storage/gallery/thumbnail/',
+      dotfiles: 'deny',
+      headers: {
+        'x-timestamp': Date.now(),
+        'x-sent': true
+      }
+    }
+    res.sendFile(filename, options)
 };
 
 exports.update = (req, res) => {

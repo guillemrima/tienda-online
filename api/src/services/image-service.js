@@ -79,7 +79,7 @@ module.exports = class ImageService {
                 if (err) {
                   reject(err);
                 } else {
-                  resolve(true);
+                  resolve(newFileName);
                 }
               });
             }
@@ -101,11 +101,10 @@ module.exports = class ImageService {
   
       try {
         const file = await readFileAsync(fileTmpPath);
-        const fileWebp = await formatFile(file);
-        processedFiles.push(fileWithoutExtension);
+        const fileWebp = await formatFile(file);;
         const isFileConvertedSaved = await writeFileAsync(fileWebp, targetPathOriginal);
         console.log("✅ Imagen convertida y almacenada en /original");
-  
+        processedFiles.push(isFileConvertedSaved)
         const fileResized = await resizeFile(file);
         const isFileResizedSaved = await writeFileAsync(fileResized, targetPathThumbnail);
         console.log("✅ Imagen redimensionada y almacenada en /thumbnail");
