@@ -16,13 +16,7 @@ class Gallery extends HTMLElement {
     }
  
      renderImage = async (file) => {
-        const route = "./../../../api/src/storage/gallery/thumbnail/";
-        const image = file;
-      
-        const imageElement = document.createElement("img");
-        imageElement.src = `${route}${image}.webp`;
-      
-        this.image = imageElement
+        
       };
 
     render() {

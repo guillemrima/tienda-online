@@ -1,4 +1,4 @@
-import { API_URL } from '../config/config.js'
+import { API_URL } from '../config.js'
 
 class ImageForm extends HTMLElement {
 
@@ -53,7 +53,7 @@ class ImageForm extends HTMLElement {
             formData.append('file', file)
 
             // const baseUrl = processs.env.BASE_URL
-            const data = await fetch(`${API_URL}/images`, {
+            const data = await fetch(`${API_URL}/admin/images`, {
                 method: 'POST',
                 body: formData,
                 headers: {

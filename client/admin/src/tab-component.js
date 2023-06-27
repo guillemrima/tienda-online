@@ -1,4 +1,5 @@
-import { API_URL } from '../config/config.js'
+import { API_URL } from '../config.js'
+
 class Tab extends HTMLElement {
 
     constructor() {
@@ -38,7 +39,7 @@ class Tab extends HTMLElement {
       }
 
     async loadData() {
-        let url = `${API_URL}/users`;
+        let url = `${API_URL}/admin/users/`;
         let conditionalStatement = (this.filter == null) ? '?' : '&';
       
         if (this.filter != null) {
