@@ -44,12 +44,13 @@ class Form extends HTMLElement {
 
         if (isValidPassword) {
             const method = this.data ? 'PUT' : 'POST';
-            const baseUrl = `${API_URL}/admin/users`;
+            const baseUrl = `${API_URL}/api/admin/users`;
             const url = this.data ? `${baseUrl}/${this.data.id}` : baseUrl;
             fetch(url, {
             method: method,
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                Authorization: 'Bearer ' + sessionStorage.getItem('accessToken')     
             },
             body: JSON.stringify(formData)
             })

@@ -39,7 +39,7 @@ class Tab extends HTMLElement {
       }
 
     async loadData() {
-        let url = `${API_URL}/admin/users/`;
+        let url = `${API_URL}/api/admin/users/`;
         let conditionalStatement = (this.filter == null) ? '?' : '&';
       
         if (this.filter != null) {
@@ -72,6 +72,9 @@ class Tab extends HTMLElement {
         try {
           const response = await fetch(`${API_URL}/api/admin/users/${rowId}`, {
             method: 'DELETE',
+            headers : {
+                Authorization: 'Bearer ' + sessionStorage.getItem('accessToken')     
+            }
             
           });
       

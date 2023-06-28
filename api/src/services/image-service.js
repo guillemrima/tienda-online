@@ -65,7 +65,7 @@ module.exports = class ImageService {
                 if (err) {
                   reject(err);
                 } else {
-                  resolve(true);
+                  resolve(fileWithoutExtension+ ".webp");
                 }
               });
             } else {
