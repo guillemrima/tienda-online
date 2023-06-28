@@ -10,7 +10,6 @@ class ImageForm extends HTMLElement {
 
   connectedCallback () {
     this.images = JSON.parse(localStorage.getItem("images")) || [];
-    console.log(this.images);
     this.render();
   }
 
@@ -74,6 +73,21 @@ class ImageForm extends HTMLElement {
     galleryElement.click()
   }
 
+  selectImage() {
+    const images = this.shadow.querySelectorAll(".image-container");
+    if (images.length) {
+      images.forEach((image) => {
+        image.addEventListener("click", () => {
+          images.forEach((img) => {
+            img.classList.remove("selected");
+          });
+
+          image.classList.add("selected");
+        });
+      });
+    }
+  }
+
   render() {
     const fileOptionUploadActive = this.fileOption === 'upload-option' ? 'active' : '';
     const fileOptionSelectActive = this.fileOption === 'select-option' ? 'active' : '';
@@ -82,10 +96,9 @@ class ImageForm extends HTMLElement {
 
     if (this.images) { 
       this.images.forEach((image, index) => {
-        const route = "./../../../api/src/storage/gallery/thumbnail/";
         let imageContainer = `
           <div class="image-container">
-            <img src="${route}${image}" alt="${image}">
+            <img src="${API_URL}/api/admin/images/${image}" alt="${image}">
           </div>
         `;
       
@@ -99,7 +112,6 @@ class ImageForm extends HTMLElement {
         content += imageContainer;
       });
     }
-
 
     this.shadow.innerHTML = `
     <div class="image-form-container">
@@ -138,9 +150,21 @@ class ImageForm extends HTMLElement {
         `}
       </div>
       <div class="image-info">
-      <div class="select-button">
-        <button>Seleccionar</button>
-      </div>
+        <div class="info-form">
+          <form id="info-form">
+            <div class="input-container>
+              <label htmlFor="name">Nombre de la imagen:</label>
+              <input type="text" name="name"/>
+            </div>
+            <div class="input-container>
+              <label htmlFor="alt">Descripción de la imagen:</label>
+              <input type="text" name="alt"/>
+            </div>
+          </form>
+        </div>
+        <div class="select-button">
+          <button>Seleccionar Imagen</button>
+        </div>
       </div>
     </div>
   </div>
@@ -224,7 +248,6 @@ class ImageForm extends HTMLElement {
         background-color: #F3F3F3;
         border: 1px solid #C2C2C2;
         border-radius: 10px;
-        border-top-left-radius: 0;       
       }
       .image-form {
           display: flex;
@@ -272,24 +295,37 @@ class ImageForm extends HTMLElement {
       .image-container { 
         display: inline-block;
         cursor: pointer;
+        border: 3px solid transparent;
+        overflow: hidden;
+      }
+      .image-container.selected {
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
       }
       .image-container img {
         transition: 0.5s
       }
+
       .image-container.selected img {
-        border: 3px solid red
-      }
-      .image-container:hover img {
-        transform: scale(1.05);
+        transform: scale(1.2);
       }
       .select-button { 
         position: absolute;
+        display: flex;
+        justify-content: center;
         bottom: 0;
         width: 100%;
         margin: 2rem
       } 
       .select-button button { 
-        width: 100%;
+        width: 50%;
+        background-color: rgba(109,183,243,255);
+        border: none;
+        font-size: 1rem;
+        color: white;
+        font-weight: 800;
+        padding: 0.5rem;
+        cursor: pointer;
+        border-radius: 0.5rem;
       }
       .exit {
           width: 2rem;
@@ -301,7 +337,13 @@ class ImageForm extends HTMLElement {
 
     this.selectImageOption();
     this.handleFileUpload();
+    this.selectImage()
 
+    const exitButton = this.shadow.querySelector(".exit")
+    exitButton.addEventListener("click", () => {
+      const removeActive = new CustomEvent('remove-active', {detail: {detail: "image-component"}});
+      document.dispatchEvent(removeActive)
+    })
   }
 
 
