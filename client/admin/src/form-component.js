@@ -287,11 +287,11 @@ class Form extends HTMLElement {
                                 <input name="name" type="text" id='name'></input>
                             </div>
                             <div>
-                                <label>Email</label>
+                                <label for="email">Email</label>
                                 <input name="email" type="text" id='email'></input>
                             </div>
                             <div>
-                                <label>Contraseña</label>
+                                <label for="password">Contraseña</label>
                                 <input name="password" type="text"></input>
                             </div>
                             <div>
@@ -302,7 +302,7 @@ class Form extends HTMLElement {
                     <div class="profile-form " data-form="image">
                         <div class="input-image">
                             <label>Seleccione una imagen</label>
-                                <image-component></image-component>
+                                <image-component name="avatar"></image-component>
                         </div>
                     </div>
                 </form>

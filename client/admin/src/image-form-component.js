@@ -75,6 +75,10 @@ class ImageForm extends HTMLElement {
 
   selectImage() {
     const images = this.shadow.querySelectorAll(".image-container");
+    const infoForm = this.shadow.querySelector("#form"); 
+    const nameInput = infoForm.querySelector("#name");
+    const altInput = infoForm.querySelector("#alt");
+
     if (images.length) {
       images.forEach((image) => {
         image.addEventListener("click", () => {
@@ -83,10 +87,26 @@ class ImageForm extends HTMLElement {
           });
 
           image.classList.add("selected");
+          nameInput.readOnly = true;
+          nameInput.value = image.querySelector("img").alt;
+          altInput.value = image.querySelector("img").alt;
         });
       });
     }
+
+    infoForm.addEventListener("submit", (e) => {
+          e.preventDefault();
+          const formData = Object.fromEntries(new FormData(infoForm));
+          const selectImage = new CustomEvent('select-image', {detail: {name: "avatar", image : formData}});
+
+          if(Object.values(formData).some(value => value !== "")) {
+            const removeActive = new CustomEvent('remove-active', {detail: {detail: "image-component"}});
+            document.dispatchEvent(removeActive)
+            document.dispatchEvent(selectImage)
+          }
+    })
   }
+
 
   render() {
     const fileOptionUploadActive = this.fileOption === 'upload-option' ? 'active' : '';
@@ -94,7 +114,7 @@ class ImageForm extends HTMLElement {
 
     let content = '';
 
-    if (this.images) { 
+    if (this.images) {
       this.images.forEach((image, index) => {
         let imageContainer = `
           <div class="image-container">
@@ -151,19 +171,25 @@ class ImageForm extends HTMLElement {
       </div>
       <div class="image-info">
         <div class="info-form">
-          <form id="info-form">
-            <div class="input-container>
-              <label htmlFor="name">Nombre de la imagen:</label>
-              <input type="text" name="name"/>
+          <form id="form" class="form">
+            <div class="input-container">
+              <label htmlFor="name">Nombre del archivo:</label>
+              <input type="text" name="name" id="name"/>
             </div>
-            <div class="input-container>
-              <label htmlFor="alt">Descripción de la imagen:</label>
-              <input type="text" name="alt"/>
+
+            <div class="input-container">
+              <label htmlFor="alt">Texto alternativo:</label>
+              <input type="text" name="alt" id="alt"/>
+            </div>
+            
+            <div class="input-container">
+              <label htmlFor="name">Título de la imagen:</label>
+              <textarea name="title" id="title"></textarea>
+            </div>
+            <div class="select-button">
+              <button>Seleccionar Imagen</button>
             </div>
           </form>
-        </div>
-        <div class="select-button">
-          <button>Seleccionar Imagen</button>
         </div>
       </div>
     </div>
@@ -248,12 +274,38 @@ class ImageForm extends HTMLElement {
         background-color: #F3F3F3;
         border: 1px solid #C2C2C2;
         border-radius: 10px;
+        padding-top: 2rem
+      }
+
+      .info-form {
+        width: 100%;
+        height: 100%;
+      }
+
+      .form {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .input-container {
+        width: 80%;;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
       }
       .image-form {
           display: flex;
           flex-direction: column;
           gap: 2rem
       }
+      .textarea { 
+        max-width: 100%;
+        max-height: 60%;
+      }
+
       .image-form button {
           background-color: rgba(109,183,243,255);
           border: none;
@@ -287,27 +339,37 @@ class ImageForm extends HTMLElement {
       .gallery {
         width: 100%;
         height: 100%;
-        display: flex;
-        align-items: flex-start;
-        gap:0.5rem;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(135px, 1fr));
+        grid-template-rows: repeat(auto-fill, minmax(135px, 1fr));
+        gap: 0.5rem;
         padding: 1rem;
+        overflow: scroll
       }
-      .image-container { 
-        display: inline-block;
+      
+      .image-container {
+        display: block;
         cursor: pointer;
-        border: 3px solid transparent;
+        border: 4px solid transparent;
         overflow: hidden;
+        line-height: 0;
+        align-self: flex-start;
       }
+      
       .image-container.selected {
-        box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+        border: 4px solid rgba(109, 183, 243, 255);
+        border-radius: 0.5rem;
       }
+      
       .image-container img {
-        transition: 0.5s
+        transition: 0.5s;
+        display: block;
       }
-
+      
       .image-container.selected img {
         transform: scale(1.2);
       }
+
       .select-button { 
         position: absolute;
         display: flex;
