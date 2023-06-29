@@ -203,6 +203,21 @@ class ImageForm extends HTMLElement {
           padding: 0;
           box-sizing: border-box;
       }
+
+    ::-webkit-scrollbar {
+      width: 10px; 
+    }
+
+    ::-webkit-scrollbar-track {
+      background-color: #f1f1f1; 
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background-color: #888; 
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background-color: #555;
+    }
       h3, p{
           color: #606060;
       }
