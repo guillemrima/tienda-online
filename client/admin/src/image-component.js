@@ -11,8 +11,9 @@ class Image extends HTMLElement {
 
     connectedCallback()  {
         this.name = this.getAttribute('name');
+
         document.addEventListener('select-image', (e) => {
-            if( e.detail.name = this.name)
+            if( e.detail.name === this.name)
             this.image = e.detail.image
             this.render()
         })
@@ -25,7 +26,7 @@ class Image extends HTMLElement {
                 <button type="button" id="button-form">
                     ${this.image != null ? 
                        `
-                        <img src="${API_URL}/api/admin/images/${this.image.name}" alt="${this.image.alt}" />
+                        <img src="${API_URL}/api/admin/images/${this.image.name}" alt="${this.image.alt}" title="${this.image.title}" />
                        `     
                     :
                     `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" /></svg>`
@@ -63,7 +64,7 @@ class Image extends HTMLElement {
         const buttonForm = this.shadow.querySelector("#button-form")
             
         buttonForm.addEventListener("click", () => {
-            const addActive = new CustomEvent('add-active', { detail: {detail : "image-component" }});
+            const addActive = new CustomEvent('add-active', { detail: {name: this.name, detail : "image-component" }});
             document.dispatchEvent(addActive)
         })
     }

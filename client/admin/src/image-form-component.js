@@ -6,9 +6,11 @@ class ImageForm extends HTMLElement {
     this.shadow = this.attachShadow({ mode: 'open' });
     this.fileOption = "upload-option";
     this.images
+    this.name = ""
   }
 
   connectedCallback () {
+    this.name = this.getAttribute('name');
     this.images = JSON.parse(localStorage.getItem("images")) || [];
     this.render();
   }
@@ -97,7 +99,7 @@ class ImageForm extends HTMLElement {
     infoForm.addEventListener("submit", (e) => {
           e.preventDefault();
           const formData = Object.fromEntries(new FormData(infoForm));
-          const selectImage = new CustomEvent('select-image', {detail: {name: "avatar", image : formData}});
+          const selectImage = new CustomEvent('select-image', {detail: {name: this.name, image : formData}});
 
           if(Object.values(formData).some(value => value !== "")) {
             const removeActive = new CustomEvent('remove-active', {detail: {detail: "image-component"}});
@@ -174,17 +176,17 @@ class ImageForm extends HTMLElement {
           <form id="form" class="form">
             <div class="input-container">
               <label htmlFor="name">Nombre del archivo:</label>
-              <input type="text" name="name" id="name"/>
+              <input type="text" name="name" id="name" required/>
             </div>
 
             <div class="input-container">
               <label htmlFor="alt">Texto alternativo:</label>
-              <input type="text" name="alt" id="alt"/>
+              <input type="text" name="alt" id="alt" required/>
             </div>
             
             <div class="input-container">
               <label htmlFor="name">Título de la imagen:</label>
-              <textarea name="title" id="title"></textarea>
+              <textarea class="textarea" name="title" id="title" required></textarea>
             </div>
             <div class="select-button">
               <button>Seleccionar Imagen</button>
@@ -304,6 +306,7 @@ class ImageForm extends HTMLElement {
       .textarea { 
         max-width: 100%;
         max-height: 60%;
+        padding: 0.5rem
       }
 
       .image-form button {
@@ -348,7 +351,9 @@ class ImageForm extends HTMLElement {
       }
       
       .image-container {
-        display: block;
+        width: 135px;
+        height: 135px;
+        display:block;
         cursor: pointer;
         border: 4px solid transparent;
         overflow: hidden;

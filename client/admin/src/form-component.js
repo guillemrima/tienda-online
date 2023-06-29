@@ -301,8 +301,12 @@ class Form extends HTMLElement {
                     </div>
                     <div class="profile-form " data-form="image">
                         <div class="input-image">
-                            <label>Seleccione una imagen</label>
+                            <label>Imagen de Avatar</label>
                                 <image-component name="avatar"></image-component>
+                        </div>
+                        <div class="input-image">
+                            <label>Imagen de Producto</label>
+                                <image-component name="producto"></image-component>
                         </div>
                     </div>
                 </form>

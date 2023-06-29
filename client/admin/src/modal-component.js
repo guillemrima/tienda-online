@@ -5,11 +5,13 @@ class Modal extends HTMLElement {
         this.shadow = this.attachShadow({mode: 'open'});
         this.modalContent = ''
         this.idFicha = ""
+        this.name = ""
         this.render();
     }
 
     connectedCallback() {
         document.addEventListener("add-active", (e) => {
+            this.name = e.detail.name
             this.renderModalContent(e)
         })
 
@@ -131,7 +133,7 @@ class Modal extends HTMLElement {
             ${this.modalContent === 'delete-content' ? 
             `<delete-component id=${this.fichaId}></delete-component>`
             : 
-            `<image-form-component></image-form-component>`
+            `<image-form-component name = ${this.name}></image-form-component>`
             }          
         </div>
     </section>
