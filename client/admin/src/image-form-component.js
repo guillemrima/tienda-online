@@ -89,7 +89,7 @@ class ImageForm extends HTMLElement {
           });
 
           image.classList.add("selected");
-          nameInput.readOnly = true;
+
           nameInput.value = image.querySelector("img").alt;
           altInput.value = image.querySelector("img").alt;
         });
@@ -176,7 +176,7 @@ class ImageForm extends HTMLElement {
           <form id="form" class="form">
             <div class="input-container">
               <label htmlFor="name">Nombre del archivo:</label>
-              <input type="text" name="name" id="name" required/>
+              <input type="text" name="name" id="name" required readOnly/>
             </div>
 
             <div class="input-container">
@@ -205,19 +205,19 @@ class ImageForm extends HTMLElement {
       }
 
     ::-webkit-scrollbar {
-      width: 10px; 
+      width: 8px; 
     }
 
     ::-webkit-scrollbar-track {
-      background-color: #f1f1f1; 
+      background-color: #F3F3F3;
     }
 
     ::-webkit-scrollbar-thumb {
       background-color: #888; 
+      background-color: rgba(109, 183, 243, 255);
+      border-radius: 5px;
     }
-    ::-webkit-scrollbar-thumb:hover {
-      background-color: #555;
-    }
+
       h3, p{
           color: #606060;
       }
@@ -357,12 +357,13 @@ class ImageForm extends HTMLElement {
       .gallery {
         width: 100%;
         height: 100%;
+        margin: 1rem;
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(135px, 1fr));
         grid-template-rows: repeat(auto-fill, minmax(135px, 1fr));
         gap: 0.5rem;
         padding: 1rem;
-        overflow: scroll
+        overflow: scroll;
       }
       
       .image-container {
@@ -388,6 +389,9 @@ class ImageForm extends HTMLElement {
       
       .image-container.selected img {
         transform: scale(1.2);
+        background-color: rgba(109, 183, 243, 255);
+        filter: sepia(1) hue-rotate(180deg);
+      
       }
 
       .select-button { 

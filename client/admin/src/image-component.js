@@ -13,12 +13,23 @@ class Image extends HTMLElement {
         this.name = this.getAttribute('name');
 
         document.addEventListener('select-image', (e) => {
-            if( e.detail.name === this.name)
-            this.image = e.detail.image
+            if( e.detail.name === this.name) {
+                this.image = e.detail.image
+                this.sendImageToForm()
+                this.render()
+            }
+        })
+
+        document.addEventListener('refresh-table', () => {
+            this.image = null
             this.render()
         })
     }
     
+    sendImageToForm = () => {
+        document.dispatchEvent(new CustomEvent('sendImage', { detail: this.image }));
+    }
+
     render() {
         this.shadow.innerHTML =
         `

@@ -6,6 +6,7 @@ class Form extends HTMLElement {
         super();
         this.shadow = this.attachShadow({mode: 'open'});
         this.isFormValid = false
+        this.formImages = []
     }
 
     async attributeChangedCallback (name, oldValue, newValue) {
@@ -18,6 +19,11 @@ class Form extends HTMLElement {
         document.addEventListener("editRow", async (e) => {
             this.EditTab(e)
         })
+
+        document.addEventListener("sendImage", (e) => {
+            const image = e.detail;
+            this.formImages.push(image);
+          });
     } 
     
     loadData = async (id) => {
@@ -43,6 +49,10 @@ class Form extends HTMLElement {
         const isValidPassword = this.validatePassword(formData.password, formData.passwordConfirmed);
 
         if (isValidPassword) {
+            if (this.formImages.length > 0) {
+                formData.files = this.formImages;
+              }
+            console.log(formData);  
             const method = this.data ? 'PUT' : 'POST';
             const baseUrl = `${API_URL}/api/admin/users`;
             const url = this.data ? `${baseUrl}/${this.data.id}` : baseUrl;
@@ -63,6 +73,7 @@ class Form extends HTMLElement {
                 return ;
                 }                
                 form.reset()
+                this.formImages = []
                 const previousErrorDiv = this.shadow.querySelector("#errorDiv");
                 if (previousErrorDiv) {
                     const formElement = this.shadow.querySelector(".form-container");
@@ -316,7 +327,7 @@ class Form extends HTMLElement {
             this.renderTabs()
         }
 
-        renderTabs = async() => {
+    renderTabs = async() => {
             const formParent = this.shadow.querySelector(".form-container");
             const forms = formParent.querySelectorAll(".profile-form");
             const form = this.shadow.querySelector('#form');
@@ -347,7 +358,7 @@ class Form extends HTMLElement {
                 event.preventDefault(); 
                 this.submitData(form)
             })
-        }
+    }
       
 }
 
