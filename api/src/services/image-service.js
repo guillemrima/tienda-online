@@ -121,10 +121,13 @@ module.exports = class ImageService {
     return processedFiles;
   };
   
-resizeImages = async (entity, entityId, images) => {
+  resizeImages = async (entity, entityId, images) => {
+ 
+    images.forEach( image => {
 
-  
-}
+    })
+ 
+  }
 
   deleteImages = async filename => {
     

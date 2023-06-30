@@ -4,10 +4,8 @@ const Op = db.Sequelize.Op;
 const ImageService = require('../../services/image-service');
 
 exports.create = (req, res) => {
-    console.log(req.body);
-    User.create(req.body).then(data => {
-
-        // ImageService.resizeImages('user', data.id, req.body.images)
+    User.create(req.body).then(async (data)  => {
+        const result = await new ImageService().resizeImages('user', data.id, req.body.images)
 
         res.status(200).send(data);
 

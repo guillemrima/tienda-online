@@ -100,7 +100,7 @@ class ImageForm extends HTMLElement {
           e.preventDefault();
           const formData = Object.fromEntries(new FormData(infoForm));
           const selectImage = new CustomEvent('select-image', {detail: {name: this.name, image : formData}});
-          console.log(formData)
+          
           document.dispatchEvent(new CustomEvent('sendImage', { detail: {
             name: this.name,
             filename: formData.name,
@@ -113,6 +113,7 @@ class ImageForm extends HTMLElement {
             document.dispatchEvent(removeActive)
             document.dispatchEvent(selectImage)
           }
+          this.images = []
     })
   }
 
