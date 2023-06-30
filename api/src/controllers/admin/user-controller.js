@@ -1,10 +1,13 @@
 const db = require("../../models");
 const User = db.User;
 const Op = db.Sequelize.Op;
+const ImageService = require('../../services/image-service');
 
 exports.create = (req, res) => {
-
+    console.log(req.body);
     User.create(req.body).then(data => {
+
+        // ImageService.resizeImages('user', data.id, req.body.images)
 
         res.status(200).send(data);
 

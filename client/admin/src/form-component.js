@@ -50,9 +50,9 @@ class Form extends HTMLElement {
 
         if (isValidPassword) {
             if (this.formImages.length > 0) {
-                formData.files = this.formImages;
-              }
-            console.log(formData);  
+                formData.images = this.formImages;
+             }
+             console.log(formData);
             const method = this.data ? 'PUT' : 'POST';
             const baseUrl = `${API_URL}/api/admin/users`;
             const url = this.data ? `${baseUrl}/${this.data.id}` : baseUrl;

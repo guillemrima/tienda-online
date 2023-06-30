@@ -100,6 +100,13 @@ class ImageForm extends HTMLElement {
           e.preventDefault();
           const formData = Object.fromEntries(new FormData(infoForm));
           const selectImage = new CustomEvent('select-image', {detail: {name: this.name, image : formData}});
+          console.log(formData)
+          document.dispatchEvent(new CustomEvent('sendImage', { detail: {
+            name: this.name,
+            filename: formData.name,
+            alt: formData.alt,
+            title: formData.title
+          }}));
 
           if(Object.values(formData).some(value => value !== "")) {
             const removeActive = new CustomEvent('remove-active', {detail: {detail: "image-component"}});

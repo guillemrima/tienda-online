@@ -15,7 +15,6 @@ class Image extends HTMLElement {
         document.addEventListener('select-image', (e) => {
             if( e.detail.name === this.name) {
                 this.image = e.detail.image
-                this.sendImageToForm()
                 this.render()
             }
         })
@@ -26,10 +25,6 @@ class Image extends HTMLElement {
         })
     }
     
-    sendImageToForm = () => {
-        document.dispatchEvent(new CustomEvent('sendImage', { detail: this.image }));
-    }
-
     render() {
         this.shadow.innerHTML =
         `
@@ -75,7 +70,11 @@ class Image extends HTMLElement {
         const buttonForm = this.shadow.querySelector("#button-form")
             
         buttonForm.addEventListener("click", () => {
-            const addActive = new CustomEvent('add-active', { detail: {name: this.name, detail : "image-component" }});
+            const addActive = new CustomEvent('add-active', { 
+                detail: {
+                    name: this.name, 
+                    detail : "image-component" }
+                });
             document.dispatchEvent(addActive)
         })
     }
