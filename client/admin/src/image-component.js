@@ -48,8 +48,8 @@ class Image extends HTMLElement {
                     box-sizing: border-box;
                 }   
                 .image-section {
-                    width: 6rem;
-                    height: 6rem;
+                    width: 135px;
+                    height: 135px;
                     display: flex; 
                     justify-content: center;
                 }

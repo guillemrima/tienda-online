@@ -17,6 +17,7 @@ module.exports = class ImageService {
     });
   
     for (const file of files) {
+      console.log(file);
       const fileTmpPath = file.path;
       const fileName = file.filename;
       const extensionName = path.extname(fileName);
@@ -108,7 +109,6 @@ module.exports = class ImageService {
         const fileResized = await resizeFile(file);
         const isFileResizedSaved = await writeFileAsync(fileResized, targetPathThumbnail);
         console.log("✅ Imagen redimensionada y almacenada en /thumbnail");
-  
         if (isFileConvertedSaved && isFileResizedSaved) {
           const isThumbFileDeleted = await deleteThumbFile(fileTmpPath);
           console.log("✅ Imagen temporal eliminada correctamente de /thumbnail");
@@ -122,12 +122,53 @@ module.exports = class ImageService {
   };
   
   resizeImages = async (entity, entityId, images) => {
- 
-    images.forEach( image => {
 
-    })
- 
-  }
+    images.forEach(async (image) => {
+      try {
+        const imageConfigurations = await ImageConfiguration.findAll({
+          where: {
+            entity: entity,
+            name: image.name
+          }
+        });
+
+        const jsonImageConfigurations = imageConfigurations.map(imageConfiguration => {
+          const { _previousDataValues, ...jsonImageConfiguration } = imageConfiguration.toJSON();
+          return jsonImageConfiguration;
+        });
+
+        jsonImageConfigurations.forEach(async jsonImageConfiguration => {
+          const width = jsonImageConfiguration. widthPx
+          const height = jsonImageConfiguration. heightPx
+
+          const originalRoute = path.join(__dirname,"./../storage/gallery/original",image.filename);
+          const filenameWithoutExtension= path.parse(image.filename).name;
+
+          async function resizeImage(originalRoute, width, height) { 
+
+            const currentDate = new Date();
+            const date = currentDate.toISOString();
+            
+            const  resizedRoute = path.join(__dirname,"./../storage/gallery/resized");
+            const resizedCompleteRoute = path.join(resizedRoute, `${filenameWithoutExtension}-${width}px-${height}px.webp`);
+
+            sharp(originalRoute)
+            .resize(width, height)
+            .toFile(resizedCompleteRoute)
+            .then(() => {
+              console.log(`✅ Imagen redimensionada correctamente a ${width}px x ${height}px`);
+            })
+            .catch((error) => { console.error(error); });
+          }
+
+          resizeImage(originalRoute, width,height) 
+        });
+
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    });
+  };
 
   deleteImages = async filename => {
     
