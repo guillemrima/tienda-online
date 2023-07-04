@@ -17,9 +17,11 @@ exports.create = async (req, res) => {
   }
 
 exports.findAll = async(req, res) => {
-
+    let page = req.query.page || 1;
+    page = page -1
+    let limit = req.query.limit || 28;
     try {
-        const result = await new ImageService().getThumbnails(28,0)
+        const result = await new ImageService().getThumbnails(limit,page)
         res.status(200).send(result)
     } catch (error) {
       res.status(500).send({

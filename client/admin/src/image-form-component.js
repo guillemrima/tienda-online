@@ -7,6 +7,7 @@ class ImageForm extends HTMLElement {
     this.fileOption = "upload-option";
     this.images
     this.name = []
+    this.page = 1
   }
 
   connectedCallback () {
@@ -23,7 +24,9 @@ class ImageForm extends HTMLElement {
         const selectedOption = imageOption.dataset.option;
         this.fileOption = selectedOption;
 
-        this.fileOption === 'select-option' ? await this.getImages() : null
+        if(this.fileOption === 'select-option' ){
+          await this.getImages()
+        }
 
         imageOptions.forEach((option) => {
           option.classList.remove("active");
@@ -32,6 +35,7 @@ class ImageForm extends HTMLElement {
         imageOption.classList.add("active");
         
         this.render(); 
+
       });
     });
   }
@@ -118,17 +122,63 @@ class ImageForm extends HTMLElement {
   }
 
   async getImages() {
-  const data = await fetch(`${API_URL}/api/admin/images`, {
+  const data = await fetch(`${API_URL}/api/admin/images?page=${this.page}`, {
     method: 'GET',
     headers: {
-      Authorization: 'Bearer'+ sessionStorage.getItem('accessToken')
+      Authorization: 'Bearer '+ sessionStorage.getItem('accessToken')
     }
   });
     const result = await data.json();
   this.images = result
   }
 
+  changePage = async () => {
+    if(this.fileOption === 'select-option') {
+    const nextPageButton = this.shadow.querySelector('.nextPageButton')
+    const prevPageButton = this.shadow.querySelector('.prevPageButton')
+    const firstPageButton = this.shadow.querySelector('.firstPageButton')
+    const lastPageButton = this.shadow.querySelector('.lastPageButton')
 
+    nextPageButton.addEventListener('click',  async () => {
+
+            this.page = Number(this.page) + 1 
+            await this.getImages();
+            await this.render()
+
+    });
+
+    prevPageButton.addEventListener('click',  async () => {
+
+            this.page = Number(this.page - 1)
+            await this.getImages();
+            await this.render()
+
+    });
+
+    firstPageButton.addEventListener('click',  async () => {
+        this.page = 1
+
+        await this.getImages()
+        await this.render()
+    })
+
+    lastPageButton.addEventListener('click',  async () => {
+        this.page = this.lastPage
+
+        await this.getImages()
+        await this.render()
+    })
+
+    if(this.page == 1)  {
+        prevPageButton.classList.add("inactive")
+        firstPageButton.classList.add("inactive")
+    }
+    if(this.page == this.lastPage ) {
+        nextPageButton.classList.add("inactive") 
+        lastPageButton.classList.add("inactive")
+    }
+  }
+}
 
   render() {
     const fileOptionUploadActive = this.fileOption === 'upload-option' ? 'active' : '';
@@ -188,6 +238,13 @@ class ImageForm extends HTMLElement {
         ` : `
           <div class="gallery">
             ${content}
+            <div class="tab-page">
+              <button class="firstPageButton">Primera</button>
+              <button id="prevPageButton" class="prevPageButton" >Anterior</button>
+              <div class="page">${this.page}</div>
+              <button id="nextPageButton" class="nextPageButton">Siguiente</button>
+              <button class="lastPageButton">Última</button>
+            </div>
           </div>
         `}
       </div>
@@ -375,6 +432,7 @@ class ImageForm extends HTMLElement {
           cursor:pointer
       }
       .gallery {
+        position:relative;
         width: 100%;
         height: 100%;
         margin: 1rem;
@@ -383,7 +441,6 @@ class ImageForm extends HTMLElement {
         grid-template-rows: repeat(auto-fill, minmax(135px, 1fr));
         gap: 0.5rem;
         padding: 1rem;
-        overflow: scroll;
       }
       
       .image-container {
@@ -437,13 +494,56 @@ class ImageForm extends HTMLElement {
           width: 2rem;
           cursor: pointer
       }
+      .tab-page {
+        position: absolute;
+        bottom: -3rem;
+        margin-top: 10px;
+        display: flex;
+        justify-content: space-around;
+        gap: 1rem;
+        transform: translateX(100%);
+      }
 
+    .tab-page button {
+        background-color: rgba(109, 183, 243, 255);
+        color: white;
+        border: none;
+        border: 1px solid grey;
+        padding: 5px;
+        font-size: 1.2rem;
+        cursor: pointer;
+    }
+
+    .nextPageButton.inactive {
+        opacity: 50%;
+        cursor: default;
+    }
+    .prevPageButton.inactive {
+        opacity: 50%;
+        cursor: default;
+    }
+    .firstPageButton.inactive {
+        opacity: 50%;
+        cursor: default;
+    }
+    .lastPageButton.inactive {
+        opacity: 50%;
+        cursor: default;
+    }
+    .page {
+        background-color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: 600;
+    }
   </style>
     `;
 
     this.selectImageOption();
     this.handleFileUpload();
     this.selectImage()
+    this.changePage()
 
     const exitButton = this.shadow.querySelector(".exit")
     exitButton.addEventListener("click", () => {
