@@ -7,7 +7,6 @@ const ImageService = require('../../services/image-service')
 exports.create = async (req, res) => {
     try {
         const result = await new ImageService().uploadImages(req.files)
-        console.log(result)
         res.status(200).send(result)
     } catch (error) {
       res.status(500).send({
@@ -17,37 +16,43 @@ exports.create = async (req, res) => {
     }
   }
 
-exports.findAll = (req, res) => {
+exports.findAll = async(req, res) => {
 
-    let page = req.query.page || 1;
-    let limit = parseInt(req.query.size) || 10;
-    let offset = (page - 1) * limit;
+    try {
+        const result = await new ImageService().getThumbnails(28,0)
+        res.status(200).send(result)
+    } catch (error) {
+      res.status(500).send({
+        message: error.message || 'Ha surgido algún error al recuperar las imágenes.',
+        errors: error.errors
+      })
+    }
 
-    let whereStatement = {};
-    let condition = Object.keys(whereStatement).length > 0 ? {[Op.and]: [whereStatement]} : {};
+    // let whereStatement = {};
+    // let condition = Object.keys(whereStatement).length > 0 ? {[Op.and]: [whereStatement]} : {};
 
-    Image.findAndCountAll({
-        where: condition, 
-        attributes: ['id', 'imageConfigurationId', 'entityId', 'entity', 'name', 'originalFilename', 'resizedFilename', 'title', 'alt', 'languageAlias', 'mediaQuery', 'latencyMs'],
-        limit: limit,
-        offset: offset,
-        order: [['createdAt', 'DESC']]
-    })
-    .then(result => {
+    // Image.findAndCountAll({
+    //     where: condition, 
+    //     attributes: ['id', 'imageConfigurationId', 'entityId', 'entity', 'name', 'originalFilename', 'resizedFilename', 'title', 'alt', 'languageAlias', 'mediaQuery', 'latencyMs'],
+    //     limit: limit,
+    //     offset: offset,
+    //     order: [['createdAt', 'DESC']]
+    // })
+    // .then(result => {
 
-        result.meta = {
-            total: result.count,
-            pages: Math.ceil(result.count / limit),
-            currentPage: page
-        };
+    //     result.meta = {
+    //         total: result.count,
+    //         pages: Math.ceil(result.count / limit),
+    //         currentPage: page
+    //     };
 
-        res.status(200).send(result);
+    //     res.status(200).send(result);
 
-    }).catch(err => {
-        res.status(500).send({
-            message: err.errors || "Algún error ha surgido al recuperar los datos."
-        });
-    });
+    // }).catch(err => {
+    //     res.status(500).send({
+    //         message: err.errors || "Algún error ha surgido al recuperar los datos."
+    //     });
+    // });
 };
 
 exports.findOne = (req, res) => {

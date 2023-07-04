@@ -6,28 +6,31 @@ class ImageForm extends HTMLElement {
     this.shadow = this.attachShadow({ mode: 'open' });
     this.fileOption = "upload-option";
     this.images
-    this.name = ""
+    this.name = []
   }
 
   connectedCallback () {
     this.name = this.getAttribute('name');
-    this.images = JSON.parse(localStorage.getItem("images")) || [];
+
     this.render();
   }
 
  selectImageOption() {
     const imageOptions = this.shadow.querySelectorAll(".image-option");
     imageOptions.forEach((imageOption) => {
-      imageOption.addEventListener("click", () => {
+      imageOption.addEventListener("click", async () => {
 
         const selectedOption = imageOption.dataset.option;
         this.fileOption = selectedOption;
+
+        this.fileOption === 'select-option' ? await this.getImages() : null
 
         imageOptions.forEach((option) => {
           option.classList.remove("active");
         });
 
         imageOption.classList.add("active");
+        
         this.render(); 
       });
     });
@@ -68,9 +71,6 @@ class ImageForm extends HTMLElement {
 
     const result = await data.json();
     
-    this.images.unshift(result[0]);
-    localStorage.setItem("images", JSON.stringify(this.images));
-
     const galleryElement = this.shadow.querySelector(".image-option[data-option='select-option']");
     galleryElement.click()
   }
@@ -116,6 +116,18 @@ class ImageForm extends HTMLElement {
           this.images = []
     })
   }
+
+  async getImages() {
+  const data = await fetch(`${API_URL}/api/admin/images`, {
+    method: 'GET',
+    headers: {
+      Authorization: 'Bearer'+ sessionStorage.getItem('accessToken')
+    }
+  });
+    const result = await data.json();
+  this.images = result
+  }
+
 
 
   render() {

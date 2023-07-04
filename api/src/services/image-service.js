@@ -17,7 +17,6 @@ module.exports = class ImageService {
     });
   
     for (const file of files) {
-      console.log(file);
       const fileTmpPath = file.path;
       const fileName = file.filename;
       const extensionName = path.extname(fileName);
@@ -122,8 +121,9 @@ module.exports = class ImageService {
   };
   
   resizeImages = async (entity, entityId, images) => {
-
-    images.forEach(async (image) => {
+    for (const image of images) {
+      var startTime = new Date().getTime();
+      
       try {
         const imageConfigurations = await ImageConfiguration.findAll({
           where: {
@@ -131,50 +131,66 @@ module.exports = class ImageService {
             name: image.name
           }
         });
-
+  
         const jsonImageConfigurations = imageConfigurations.map(imageConfiguration => {
           const { _previousDataValues, ...jsonImageConfiguration } = imageConfiguration.toJSON();
           return jsonImageConfiguration;
         });
+  
+        for (const jsonImageConfiguration of jsonImageConfigurations) {
+          const width = jsonImageConfiguration.widthPx;
+          const height = jsonImageConfiguration.heightPx;
+  
+          const originalRoute = path.join(__dirname, "./../storage/gallery/original", image.filename);
+          const filenameWithoutExtension = path.parse(image.filename).name;
+  
+          const resizedRoute = path.join(__dirname, "./../storage/gallery/resized");
+          const resizedCompleteRoute = path.join(resizedRoute, `${filenameWithoutExtension}-${width}px-${height}px.webp`);
+  
+          try {
+            await sharp(originalRoute).resize(width, height).toFile(resizedCompleteRoute);        
+            console.log(`✅ Imagen redimensionada correctamente a ${width}px x ${height}px`);
 
-        jsonImageConfigurations.forEach(async jsonImageConfiguration => {
-          const width = jsonImageConfiguration. widthPx
-          const height = jsonImageConfiguration. heightPx
+            var endTime = new Date().getTime()
+            var latencyMs = endTime - startTime
 
-          const originalRoute = path.join(__dirname,"./../storage/gallery/original",image.filename);
-          const filenameWithoutExtension= path.parse(image.filename).name;
+            const body = {
+              imageConfigurationId: jsonImageConfiguration.id,
+              entityId: entityId,
+              entity: entity,
+              name: image.name,
+              originalFilename: image.filename,
+              resizedFilename: `${filenameWithoutExtension}-${width}px-${height}px.webp`,
+              title: image.title,
+              languageAlias: 'es',
+              alt: image.alt,
+              mediaQuery: jsonImageConfiguration.mediaQuery,
+              latencyMs: latencyMs
+            }
 
-          async function resizeImage(originalRoute, width, height) { 
+            Image.create(body)
 
-            const currentDate = new Date();
-            const date = currentDate.toISOString();
-            
-            const  resizedRoute = path.join(__dirname,"./../storage/gallery/resized");
-            const resizedCompleteRoute = path.join(resizedRoute, `${filenameWithoutExtension}-${width}px-${height}px.webp`);
-
-            sharp(originalRoute)
-            .resize(width, height)
-            .toFile(resizedCompleteRoute)
-            .then(() => {
-              console.log(`✅ Imagen redimensionada correctamente a ${width}px x ${height}px`);
-            })
-            .catch((error) => { console.error(error); });
+          } catch (error) {
+            console.error(error);
           }
-
-          resizeImage(originalRoute, width,height) 
-        });
-
+        }
       } catch (error) {
         console.error("Error:", error);
       }
-    });
+    }
   };
-
+  
   deleteImages = async filename => {
-    
   }
 
   getThumbnails = async (limit, offset) => {
-    
+
+    const thumbnailFilePath = path.join(__dirname, "./../storage/gallery/thumbnail");
+    const thumbnailFiles = fs.readdirSync(thumbnailFilePath);
+
+    const startIndex = offset * limit;
+    const endIndex = startIndex + limit;
+
+    return thumbnailFiles.slice(startIndex, endIndex);
   }
 }
