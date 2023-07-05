@@ -49,7 +49,6 @@ class ImageForm extends HTMLElement {
       fileForm.addEventListener("change", (e) => {
         e.preventDefault();
         if (fileInput.files.length === 0) {
-          console.log("Llamar a una futura función que muestre una alerta");
           return;
         }
 
@@ -130,7 +129,7 @@ class ImageForm extends HTMLElement {
     }
   });
     const result = await data.json();
-    console.log(result)
+
     this.images = result.thumbnails;
     this.lastPage = result.totalPages;
     this.page = result.currentPage;
@@ -144,7 +143,7 @@ class ImageForm extends HTMLElement {
     const lastPageButton = this.shadow.querySelector('.lastPageButton')
 
     nextPageButton.addEventListener('click',  async () => {
-      console.log(this.page, this.lastPage)
+
       if(this.page < this.lastPage) {
           this.page = Number(this.page) + 1 
           await this.getImages()

@@ -32,7 +32,8 @@ class Image extends HTMLElement {
                     ${this.image != null ? 
                        `
                        <button type="button" id="button-form" class="button-image">
-                            <img src="${API_URL}/api/admin/images/${this.image.name}" alt="${this.image.alt}" title="${this.image.title}" />
+                            <img src="${API_URL}/api/admin/images/${this.image.name}" alt="${this.image.alt}" title="${this.image.title}"  class="image-element"/>
+                            
                         </button>
                         <div class="delete-image">
                             <button id="delete-button">
@@ -74,7 +75,7 @@ class Image extends HTMLElement {
                 
                 .button-image {
                     z-index: 2;
-                    background-color: red;
+                    background-color: transparent;
                     border: none;
                     cursor: pointer;
                 }
@@ -97,6 +98,7 @@ class Image extends HTMLElement {
                 }
                 .delete-image:hover {
                     transform: scale(1.1);
+                    background-color:red;
                     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
                 }
                 .delete-image button {
@@ -117,7 +119,7 @@ class Image extends HTMLElement {
         `
 
         const buttonForm = this.shadow.querySelector("#button-form")
-            
+
         buttonForm.addEventListener("click", () => {
             const addActive = new CustomEvent('add-active', { 
                 detail: {
@@ -126,6 +128,21 @@ class Image extends HTMLElement {
                 });
             document.dispatchEvent(addActive)
         })
+
+        if(this.image!= null) {
+            const deleteButton = this.shadow.querySelector("#delete-button")
+
+            deleteButton.addEventListener("click", () => {
+                document.dispatchEvent(new CustomEvent('deleteImage', { detail: {
+                    image: this.image
+                }}));
+
+                this.image = null
+                this.render()
+
+
+        })
+        }
     }
 
 }

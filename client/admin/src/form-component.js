@@ -23,7 +23,17 @@ class Form extends HTMLElement {
         document.addEventListener("sendImage", (e) => {
             const image = e.detail;
             this.formImages.push(image);
-          });
+        });
+
+        document.addEventListener("deleteImage", (e) => {
+            const image = e.detail.image;
+            this.formImages.forEach((formImage, index) => {
+                if(formImage.filename === image.name) {
+                    this.formImages.splice(index, 1);
+                }
+                    
+            })
+        })
     } 
     
     loadData = async (id) => {
