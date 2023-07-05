@@ -5,9 +5,10 @@ class ImageForm extends HTMLElement {
     super();
     this.shadow = this.attachShadow({ mode: 'open' });
     this.fileOption = "upload-option";
-    this.images
+    this.images 
     this.name = []
-    this.page = 1
+    this.page = ""
+    this.lastPage = ""
   }
 
   connectedCallback () {
@@ -129,7 +130,10 @@ class ImageForm extends HTMLElement {
     }
   });
     const result = await data.json();
-  this.images = result
+    console.log(result)
+    this.images = result.thumbnails;
+    this.lastPage = result.totalPages;
+    this.page = result.currentPage;
   }
 
   changePage = async () => {
@@ -140,18 +144,21 @@ class ImageForm extends HTMLElement {
     const lastPageButton = this.shadow.querySelector('.lastPageButton')
 
     nextPageButton.addEventListener('click',  async () => {
-
-            this.page = Number(this.page) + 1 
-            await this.getImages();
-            await this.render()
-
-    });
+      console.log(this.page, this.lastPage)
+      if(this.page < this.lastPage) {
+          this.page = Number(this.page) + 1 
+          await this.getImages()
+          await this.render()
+      }
+  });
 
     prevPageButton.addEventListener('click',  async () => {
 
-            this.page = Number(this.page - 1)
-            await this.getImages();
-            await this.render()
+      if(this.page > 1) {
+        this.page = Number(this.page - 1)
+        await this.getImages();
+        await this.render()
+    }
 
     });
 

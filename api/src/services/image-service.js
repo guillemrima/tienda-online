@@ -190,7 +190,14 @@ module.exports = class ImageService {
 
     const startIndex = offset * limit;
     const endIndex = startIndex + limit;
+    const totalPages = Math.ceil(thumbnailFiles.length / limit);
+    const currentPage = Math.floor(offset + 1);
+    const thumbnails = thumbnailFiles.slice(startIndex, endIndex);
 
-    return thumbnailFiles.slice(startIndex, endIndex);
+    return {
+      thumbnails,
+      totalPages,
+      currentPage
+    }
   }
 }
