@@ -80,8 +80,15 @@ module.exports = function (sequelize, DataTypes) {
   useBcrypt(User)
 
   User.associate = function (models) {
-
+    User.hasMany(models.Image, {
+      foreignKey: 'entityId',
+      scope: {
+        entity: 'user'
+      },
+      as: 'images'
+    })
   }
 
   return User
 }
+ 

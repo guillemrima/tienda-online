@@ -15,6 +15,7 @@ class Image extends HTMLElement {
         document.addEventListener('select-image', (e) => {
             if( e.detail.name === this.name) {
                 this.image = e.detail.image
+                console.log(this.image);
                 this.render()
             }
         })
@@ -23,8 +24,20 @@ class Image extends HTMLElement {
             this.image = null
             this.render()
         })
+
+        document.addEventListener("editImage", async (e) => {
+            const images = e.detail
+            images.forEach( (image) => {
+                if(image.name === this.name) {
+                    this.image = {}
+                    this.image.name = image.originalFilename
+                    this.image.alt = image.alt
+                    this.render()
+                }
+            })
+        })
     }
-    
+
     render() {
         this.shadow.innerHTML =
         `

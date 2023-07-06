@@ -59,7 +59,17 @@ exports.findOne = (req, res) => {
 
     const id = req.params.id;
 
-    User.findByPk(id).then(data => {
+    User.findByPk(id, {
+        include: [
+            {
+                model: db.Image,    
+                as: 'images',
+                where: { mediaquery: 'lg' }
+            }
+        ]
+    })
+    
+    .then(data => {
 
         if (data) {
             res.status(200).send(data);

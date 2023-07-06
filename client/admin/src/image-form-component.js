@@ -17,7 +17,7 @@ class ImageForm extends HTMLElement {
     this.render();
   }
 
- selectImageOption() {
+  selectImageOption = () => {
     const imageOptions = this.shadow.querySelectorAll(".image-option");
     imageOptions.forEach((imageOption) => {
       imageOption.addEventListener("click", async () => {
@@ -41,7 +41,7 @@ class ImageForm extends HTMLElement {
     });
   }
 
-  handleFileUpload() {
+  handleFileUpload = () => {
     if (this.fileOption === 'upload-option') {
       const fileForm = this.shadow.querySelector("#file-form");
       const fileInput = this.shadow.querySelector(".file-input");
@@ -61,7 +61,7 @@ class ImageForm extends HTMLElement {
     }
   }
 
-  async sendFile(file) {
+  sendFile = async (file) => {
     const formData = new FormData();
     formData.append('file', file);
 
@@ -79,7 +79,7 @@ class ImageForm extends HTMLElement {
     galleryElement.click()
   }
 
-  selectImage() {
+  selectImage = () => {
     const images = this.shadow.querySelectorAll(".image-container");
     const infoForm = this.shadow.querySelector("#form"); 
     const nameInput = infoForm.querySelector("#name");
@@ -87,18 +87,15 @@ class ImageForm extends HTMLElement {
 
     if (images.length) {
       images.forEach((image) => {
-        image.addEventListener("click", () => {
-          images.forEach((img) => {
-            img.classList.remove("selected");
+          image.addEventListener("click", () => {
+              images.forEach((img) => img.classList.remove("selected"));
+              image.classList.add("selected");
+  
+              nameInput.value = image.querySelector("img").alt;
+              altInput.value = image.querySelector("img").alt;
           });
-
-          image.classList.add("selected");
-
-          nameInput.value = image.querySelector("img").alt;
-          altInput.value = image.querySelector("img").alt;
-        });
       });
-    }
+  }
 
     infoForm.addEventListener("submit", (e) => {
           e.preventDefault();
@@ -121,7 +118,7 @@ class ImageForm extends HTMLElement {
     })
   }
 
-  async getImages() {
+  getImages = async () => {
   const data = await fetch(`${API_URL}/api/admin/images?page=${this.page}`, {
     method: 'GET',
     headers: {
@@ -184,7 +181,7 @@ class ImageForm extends HTMLElement {
         lastPageButton.classList.add("inactive")
     }
   }
-}
+  }
 
   render() {
     const fileOptionUploadActive = this.fileOption === 'upload-option' ? 'active' : '';

@@ -9,10 +9,6 @@ class Form extends HTMLElement {
         this.formImages = []
     }
 
-    async attributeChangedCallback (name, oldValue, newValue) {
-        await this.render()
-      }
-
     async connectedCallback() {
         await this.render()
 
@@ -61,7 +57,6 @@ class Form extends HTMLElement {
         if (isValidPassword) {
             if (this.formImages.length > 0) {
                 formData.images = this.formImages;
-                console.log(formData);
              }
 
             const method = this.data ? 'PUT' : 'POST';
@@ -134,6 +129,9 @@ class Form extends HTMLElement {
     EditTab = async (e) => {
             const id = e.detail.componentId
             const row = await this.loadData(id)
+
+            document.dispatchEvent(new CustomEvent('editImage', {detail: row.images}))
+            
             this.shadow.getElementById("name").value = row.name;
             this.shadow.getElementById("email").value = row.email;
     }

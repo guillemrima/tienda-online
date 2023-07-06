@@ -102,6 +102,13 @@ module.exports = function (sequelize, DataTypes) {
 
   Image.associate = function (models) {
     Image.belongsTo(models.ImageConfiguration, { as: 'imageConfiguration', foreignKey: 'imageConfigurationId' })
+    Image.belongsTo(models.User, {
+      foreignKey: 'entityId',
+      scope: {
+        entity: 'user'
+      },
+      as: 'user'
+    });
   }
 
   return Image
