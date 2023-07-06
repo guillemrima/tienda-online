@@ -132,15 +132,24 @@ class Image extends HTMLElement {
         `
 
         const buttonForm = this.shadow.querySelector("#button-form")
-
+        
         buttonForm.addEventListener("click", () => {
+            const eventDetail = {
+              name: this.name,
+              detail: "image-component"
+            };
+          
+            if (this.image !== null) {
+              eventDetail.image = this.image;
+            }
+          
             const addActive = new CustomEvent('add-active', { 
-                detail: {
-                    name: this.name, 
-                    detail : "image-component" }
-                });
-            document.dispatchEvent(addActive)
-        })
+              detail: eventDetail
+            });
+          
+            document.dispatchEvent(addActive);
+          });
+          
 
         if(this.image!= null) {
             const deleteButton = this.shadow.querySelector("#delete-button")

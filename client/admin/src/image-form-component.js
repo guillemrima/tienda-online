@@ -6,6 +6,7 @@ class ImageForm extends HTMLElement {
     this.shadow = this.attachShadow({ mode: 'open' });
     this.fileOption = "upload-option";
     this.images 
+    this.currentImage
     this.name = []
     this.page = ""
     this.lastPage = ""
@@ -13,7 +14,8 @@ class ImageForm extends HTMLElement {
 
   connectedCallback () {
     this.name = this.getAttribute('name');
-
+    this.currentImage = this.getAttribute('current-image');
+    console.log(this.currentImage)
     this.render();
   }
 
