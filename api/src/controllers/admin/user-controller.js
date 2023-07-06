@@ -64,7 +64,8 @@ exports.findOne = (req, res) => {
             {
                 model: db.Image,    
                 as: 'images',
-                where: { mediaquery: 'lg' }
+                where: { mediaquery: 'lg' },
+                required: false
             }
         ]
     })
