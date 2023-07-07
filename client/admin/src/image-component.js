@@ -26,8 +26,8 @@ class Image extends HTMLElement {
 
         document.addEventListener("editImage", async (e) => {
             const images = e.detail ? e.detail : null;
-            console.log(images)
-            if (images === null) {
+
+            if (images.length === 0) {
               this.image = null;
             } else {
               images.forEach((image) => {

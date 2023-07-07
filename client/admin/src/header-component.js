@@ -68,7 +68,7 @@ class Header extends HTMLElement {
         
         <header>
             <div>
-                <h1>Detectib</h1>
+                <h1>Guillemrima</h1>
             </div>
             <div class="centro">
                 <h1>Clientes</h1>

@@ -104,6 +104,7 @@ module.exports = function (sequelize, DataTypes) {
     Image.belongsTo(models.ImageConfiguration, { as: 'imageConfiguration', foreignKey: 'imageConfigurationId' })
     Image.belongsTo(models.User, {
       foreignKey: 'entityId',
+      onDelete: 'CASCADE',
       scope: {
         entity: 'user'
       },
