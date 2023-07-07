@@ -12,10 +12,13 @@ class ImageForm extends HTMLElement {
     this.lastPage = ""
   }
 
-  connectedCallback () {
+  async connectedCallback () {
     this.name = this.getAttribute('name');
-    this.currentImage = this.getAttribute('current-image');
-    console.log(this.currentImage)
+    if (this.getAttribute('current-image') != 'undefined') {
+      this.currentImage = JSON.parse(this.getAttribute('current-image'));
+      this.fileOption = 'select-option';
+      await this.getImages()
+    }
     this.render();
   }
 
@@ -86,18 +89,25 @@ class ImageForm extends HTMLElement {
     const infoForm = this.shadow.querySelector("#form"); 
     const nameInput = infoForm.querySelector("#name");
     const altInput = infoForm.querySelector("#alt");
+    const titleInput = infoForm.querySelector("#title");
 
     if (images.length) {
       images.forEach((image) => {
           image.addEventListener("click", () => {
               images.forEach((img) => img.classList.remove("selected"));
               image.classList.add("selected");
-  
               nameInput.value = image.querySelector("img").alt;
               altInput.value = image.querySelector("img").alt;
+
           });
       });
-  }
+    }
+
+    if(this.currentImage) {
+      nameInput.value = this.currentImage.name;
+      altInput.value = this.currentImage.name;  
+      titleInput.value = this.currentImage.title;
+    }
 
     infoForm.addEventListener("submit", (e) => {
           e.preventDefault();
@@ -194,16 +204,25 @@ class ImageForm extends HTMLElement {
     if (this.images) {
       this.images.forEach((image, index) => {
         let imageContainer = `
-          <div class="image-container">
+          <div class="image-container" name="${image}">
             <img src="${API_URL}/api/admin/images/${image}" alt="${image}">
           </div>
         `;
       
-        if (index === 0) {
-          imageContainer = imageContainer.replace(
-            'class="image-container"',
-            'class="image-container selected"'
-          );
+        if (this.currentImage == undefined && this.currentImage == null) {
+          if (index === 0) {
+            imageContainer = imageContainer.replace(
+              'class="image-container"',
+              'class="image-container selected"'
+            );
+          }
+        } else {
+          if (this.currentImage.name === image) {
+            imageContainer = imageContainer.replace(
+              'class="image-container"',
+              'class="image-container selected"'
+            );
+          }
         }
       
         content += imageContainer;

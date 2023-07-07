@@ -23,7 +23,7 @@ class Return extends HTMLElement {
         <style>
             .return-button-container {
                 width: 3rem;
-                position: absolute;
+                position: fixed;
                 bottom: 0;
                 right: 0;
                 margin: 2rem 4rem

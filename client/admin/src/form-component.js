@@ -80,6 +80,7 @@ class Form extends HTMLElement {
                 }                
                 form.reset()
                 this.formImages = []
+                this.data = '';
                 const previousErrorDiv = this.shadow.querySelector("#errorDiv");
                 if (previousErrorDiv) {
                     const formElement = this.shadow.querySelector(".form-container");
@@ -90,10 +91,8 @@ class Form extends HTMLElement {
             .then(data => {
                 const event = new CustomEvent('refresh-table');
                 document.dispatchEvent(event);
-                if (this.isFormValid) {
                     form.reset();
                     this.data = '';
-                }
             })
             .catch(error => {
                 console.error(error);
@@ -138,7 +137,7 @@ class Form extends HTMLElement {
 
     validatePassword = (password, passwordConfirmed) => {
             return password === passwordConfirmed;
-    };
+    }
 
     render() {
 
@@ -334,7 +333,7 @@ class Form extends HTMLElement {
         </section>
         `;
             this.renderTabs()
-        }
+    }
 
     renderTabs = async() => {
             const formParent = this.shadow.querySelector(".form-container");
@@ -347,6 +346,7 @@ class Form extends HTMLElement {
 
             resetForm.addEventListener("click",() => {
                 form.reset();
+                document.dispatchEvent(new CustomEvent('reset-image'))
             })
 
             selectors.forEach(selector => {    

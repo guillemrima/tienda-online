@@ -26,7 +26,7 @@ class Image extends HTMLElement {
 
         document.addEventListener("editImage", async (e) => {
             const images = e.detail ? e.detail : null;
-          
+            console.log(images)
             if (images === null) {
               this.image = null;
             } else {
@@ -35,12 +35,18 @@ class Image extends HTMLElement {
                   this.image = {};
                   this.image.name = image.originalFilename;
                   this.image.alt = image.alt;
+                  this.image.title = image.title;
                 }
               });
             }
-            console.log(this.image)
             this.render();
-          });
+        });
+
+        document.addEventListener("reset-image", async (e) => {
+            this.image = null;
+            this.render();
+
+        })
           
     }
 

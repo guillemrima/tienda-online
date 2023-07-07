@@ -6,7 +6,7 @@ class Modal extends HTMLElement {
         this.modalContent = ''
         this.idFicha = ""
         this.name = ""
-        this.image = ""
+        this.image = null
         this.render();
     }
 
@@ -135,7 +135,7 @@ class Modal extends HTMLElement {
             ${this.modalContent === 'delete-content' ? 
             `<delete-component id=${this.fichaId}></delete-component>`
             : 
-            `<image-form-component name = ${this.name} current-image = ${this.image}></image-form-component>`
+            `<image-form-component name="${this.name}" current-image='${JSON.stringify(this.image)}'></image-form-component>`
             }          
         </div>
     </section>
