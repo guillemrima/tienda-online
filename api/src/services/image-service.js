@@ -180,8 +180,24 @@ module.exports = class ImageService {
     }
   };
   
-  deleteImages = async filename => {
-  }
+  deleteImage = async (filename) => {
+    try {
+      const thumbnailFilePath = path.join(__dirname, "./../storage/gallery/thumbnail");
+      const thumbnailFiles = fs.readdirSync(thumbnailFilePath);
+  
+      for (const thumbnail of thumbnailFiles) {
+        if (thumbnail === filename) {
+          fs.unlinkSync(path.join(thumbnailFilePath, thumbnail));
+        }
+      }
+  
+      return true;
+    } catch (error) {
+      console.error(error);
+      return false;
+    }
+  };
+  
 
   getThumbnails = async (limit, offset) => {
 

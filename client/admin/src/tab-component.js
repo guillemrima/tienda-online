@@ -16,10 +16,6 @@ class Tab extends HTMLElement {
     async connectedCallback() {
 
         document.addEventListener('refresh-table',  async (e) => {
-            if(e.detail){
-                const rowId = e.detail.fichaId
-                await this.deleteRow(rowId)
-            }
             await this.loadData()
             await this.render()
             
@@ -63,23 +59,6 @@ class Tab extends HTMLElement {
           this.page = this.data.meta.currentPage
           this.lastPage = this.data.meta.pages
 
-        } catch (error) {
-          console.log(error);
-        }
-    }
-
-    async deleteRow(rowId) {
-        try {
-          const response = await fetch(`${API_URL}/api/admin/users/${rowId}`, {
-            method: 'DELETE',
-            headers : {
-                Authorization: 'Bearer ' + sessionStorage.getItem('accessToken')     
-            }
-            
-          });
-      
-          this.data = await response.json(); 
-          
         } catch (error) {
           console.log(error);
         }

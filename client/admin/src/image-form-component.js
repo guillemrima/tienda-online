@@ -96,6 +96,8 @@ class ImageForm extends HTMLElement {
           image.addEventListener("click", () => {
               images.forEach((img) => img.classList.remove("selected"));
               image.classList.add("selected");
+              this.currentImage = image.getAttribute('name')
+
               nameInput.value = image.querySelector("img").alt;
               altInput.value = image.querySelector("img").alt;
 
@@ -289,9 +291,19 @@ class ImageForm extends HTMLElement {
               <label htmlFor="name">Título de la imagen:</label>
               <textarea class="textarea" name="title" id="title" required></textarea>
             </div>
+            <div class="buttons-container">
             <div class="select-button">
               <button>Seleccionar Imagen</button>
             </div>
+            <div class="delete-button">
+              <button type="button" id="delete-button">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                  <path d="M9,3V4H4V6H5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V6H20V4H15V3H9M7,6H17V19H7V6M9,8V17H11V8H9M13,8V17H15V8H13Z" />
+                </svg>
+              </button>
+            </div>
+          </div>
+          
           </form>
         </div>
       </div>
@@ -495,16 +507,33 @@ class ImageForm extends HTMLElement {
       
       }
 
-      .select-button { 
+      .buttons-container {
         position: absolute;
+        bottom: 0;
+        margin-bottom: 1rem;  
+        display: flex;
+        gap: 1rem;
+      }
+
+      .delete-button button {
+        border-radius: 0.5rem;
+        cursor: pointer;
+        background-color: red;
+        border: none;
+        padding: 0.5rem;
+      }
+
+      .delete-button button svg{
+        width: 2rem;
+        fill: white
+      }
+      .select-button { 
         display: flex;
         justify-content: center;
-        bottom: 0;
         width: 100%;
-        margin: 2rem
       } 
       .select-button button { 
-        width: 50%;
+        width: 100%;
         background-color: rgba(109,183,243,255);
         border: none;
         font-size: 1rem;
@@ -513,6 +542,7 @@ class ImageForm extends HTMLElement {
         padding: 0.5rem;
         cursor: pointer;
         border-radius: 0.5rem;
+        padding: 0.5rem
       }
       .exit {
           width: 2rem;
@@ -561,6 +591,8 @@ class ImageForm extends HTMLElement {
         align-items: center;
         font-weight: 600;
     }
+
+  
   </style>
     `;
 
@@ -574,6 +606,23 @@ class ImageForm extends HTMLElement {
       const removeActive = new CustomEvent('remove-active', {detail: {detail: "image-component"}});
       document.dispatchEvent(removeActive)
     })
+
+    this.shadow.querySelector("#delete-button").addEventListener("click",  async ( ) => {
+      console.log(this.currentImage)
+      const  response = await fetch( `${API_URL}/api/admin/images/${this.currentImage}`, 
+      {
+        method: 'DELETE',
+         headers: {
+        Authorization: 'Bearer '+ sessionStorage.getItem('accessToken')
+        }
+      })
+      const result = await response.json()
+      if( result ){
+        await this.getImages()
+        await this.render()
+      }
+    })
+
   }
 
 

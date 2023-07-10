@@ -111,32 +111,38 @@ exports.update = (req, res) => {
 };
 
 exports.delete = (req, res) => {
-
     const id = req.params.id;
 
-    User.destroy({
-        where: { id: id },
-        include: [
-            {
-                model: db.Image,    
-                as: 'images',
-                where: { mediaquery: 'lg' },
-                required: false
+    db.sequelize.transaction((t) => {
+        return User.destroy({
+            where: { id: id },
+            transaction: t
+        })
+        .then(num => {
+            if (num == 1) {
+                return db.Image.destroy({
+                    where: { entityId: id, entity: 'user' },
+                    transaction: t
+                });
+            } else {
+                throw new Error(`No se puede borrar el elemento con la id=${id}. Tal vez no se ha encontrado el elemento.`);
             }
-        ]
-    }).then(num => {
-        if (num == 1) {
-            res.status(200).send({
-                message: "El elemento ha sido borrado correctamente"
+        });
+    })
+    .then(() => {
+        res.status(200).send({
+            message: "El elemento ha sido borrado correctamente"
+        });
+    })
+    .catch(err => {
+        if (err.message) {
+            res.status(404).send({
+                message: err.message
             });
         } else {
-            res.status(404).send({
-                message: `No se puede borrar el elemento con la id=${id}. Tal vez no se ha encontrado el elemento.`
+            res.status(500).send({
+                message: "Algún error ha surgido al borrar la id=" + id
             });
         }
-    }).catch(err => {
-        res.status(500).send({
-            message: "Algún error ha surgido al borrar la id=" + id
-        });
     });
 };

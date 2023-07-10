@@ -85,7 +85,8 @@ module.exports = function (sequelize, DataTypes) {
       scope: {
         entity: 'user'
       },
-      as: 'images'
+      as: 'images',
+      onDelete: 'CASCADE'
     })
   }
 

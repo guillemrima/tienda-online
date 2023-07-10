@@ -93,25 +93,16 @@ exports.update = (req, res) => {
     });
 };
 
-exports.delete = (req, res) => {
+exports.delete = async (req, res) => {
 
-    const id = req.params.id;
-
-    Image.destroy({
-        where: { id: id }
-    }).then(num => {
-        if (num == 1) {
-            res.status(200).send({
-                message: "El elemento ha sido borrado correctamente"
-            });
-        } else {
-            res.status(404).send({
-                message: `No se puede borrar el elemento con la id=${id}. Tal vez no se ha encontrado el elemento.`
-            });
-        }
-    }).catch(err => {
-        res.status(500).send({
-            message: "Algún error ha surgido al borrar la id=" + id
-        });
-    });
+    const filename = req.params.filename
+    try {
+        const result = await new ImageService().deleteImage(filename)
+        res.status(200).send(result)
+    } catch (error) {
+      res.status(500).send({
+        message: error.message || 'Algún error ha surgido al insertar el dato.',
+        errors: error.errors
+      })
+    }
 };

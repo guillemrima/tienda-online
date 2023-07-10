@@ -121,8 +121,21 @@ class DeleteAlert extends HTMLElement {
             const modalButtons = this.shadow.querySelectorAll("button");
 
             modalButtons.forEach((button) => 
-                {button.addEventListener("click", (e) => {          
+                {button.addEventListener("click", async (e) => {      
                     if(e.target.value === 'accept' ) {
+                        try {
+                            const responseUser = await fetch(`${API_URL}/api/admin/users/${this.id}`, {
+                              method: 'DELETE',
+                              headers : {
+                                  Authorization: 'Bearer ' + sessionStorage.getItem('accessToken')     
+                              }                              
+                            })             
+                            this.data = await responseUser.json(); 
+                            
+                            this.id = ''
+                          } catch (error) {
+                            console.log(error);
+                          }
                         const refreshTable = new CustomEvent('refresh-table', {detail: {fichaId: this.id}})
                         document.dispatchEvent(refreshTable)
                     }

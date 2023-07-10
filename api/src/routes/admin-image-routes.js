@@ -20,7 +20,7 @@ module.exports = (app, upload) => {
     router.get("/", controller.findAll);  
     router.get("/:filename", controller.findOne);  
     router.put("/:id", [authJwt.verifyUserToken], controller.update);  
-    router.delete("/:id", [authJwt.verifyUserToken],controller.delete);
+    router.delete("/:filename", [authJwt.verifyUserToken],controller.delete);
   
     app.use('/api/admin/images', router);
   };
