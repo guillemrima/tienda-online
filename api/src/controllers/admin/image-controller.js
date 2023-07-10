@@ -96,9 +96,14 @@ exports.update = (req, res) => {
 exports.delete = async (req, res) => {
 
     const filename = req.params.filename
+    const confirmation = req.body.confirmation
+    console.log(confirmation)
     try {
         const result = await new ImageService().deleteImage(filename)
-        res.status(200).send(result)
+        res.status(200).send({
+          success: result.success,
+          message: result.message
+        })
     } catch (error) {
       res.status(500).send({
         message: error.message || 'Algún error ha surgido al insertar el dato.',

@@ -10,10 +10,12 @@ class ImageForm extends HTMLElement {
     this.name = []
     this.page = ""
     this.lastPage = ""
+    this.confirmDeleteImage = false;
   }
 
   async connectedCallback () {
     this.name = this.getAttribute('name');
+
     if (this.getAttribute('current-image') != 'undefined') {
       this.currentImage = JSON.parse(this.getAttribute('current-image'));
       this.fileOption = 'select-option';
@@ -277,6 +279,7 @@ class ImageForm extends HTMLElement {
       <div class="image-info">
         <div class="info-form">
           <form id="form" class="form">
+
             <div class="input-container">
               <label htmlFor="name">Nombre del archivo:</label>
               <input type="text" name="name" id="name" required readOnly/>
@@ -291,10 +294,15 @@ class ImageForm extends HTMLElement {
               <label htmlFor="name">Título de la imagen:</label>
               <textarea class="textarea" name="title" id="title" required></textarea>
             </div>
+
+            <div class="alert-container">
+            </div>
+
             <div class="buttons-container">
             <div class="select-button">
               <button>Seleccionar Imagen</button>
             </div>
+
             <div class="delete-button">
               <button type="button" id="delete-button">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -592,6 +600,32 @@ class ImageForm extends HTMLElement {
         font-weight: 600;
     }
 
+    .alert-container {
+      margin-top: 90%;
+      padding: 0.5rem;
+    }
+
+    .alert-container p {
+      font-size: 0.9rem;
+      color: black;
+      font-weight: 600;
+    }
+
+    .alert-container button {
+      background-color: white;
+      color: red;
+      font-weight: 800;
+      padding: 0.5rem;
+      border: 2px solid red;
+      cursor: pointer;
+      transition: 0.2s;
+      border-radius: 0.5rem;
+    }
+
+    .alert-container button:hover {
+      background-color: red;
+      color: white;
+    }
   
   </style>
     `;
@@ -608,18 +642,34 @@ class ImageForm extends HTMLElement {
     })
 
     this.shadow.querySelector("#delete-button").addEventListener("click",  async ( ) => {
-      console.log(this.currentImage)
+
       const  response = await fetch( `${API_URL}/api/admin/images/${this.currentImage}`, 
       {
         method: 'DELETE',
          headers: {
         Authorization: 'Bearer '+ sessionStorage.getItem('accessToken')
-        }
+        },
+        body: this.confirmDeleteImage
       })
+      console.log(this.confirmDeleteImage)
       const result = await response.json()
-      if( result ){
+
+      if( result.success ){
         await this.getImages()
         await this.render()
+      } else {
+        const alertContainer = this.shadow.querySelector(".alert-container")
+        const alertContent = document.createElement('p')
+        const confirmButton = document.createElement('button')
+
+        alertContent.textContent = result.message
+        confirmButton.innerHTML = "Deseo eliminar la imagen de todas formas"
+
+        alertContainer.innerHTML = ""
+        alertContainer.appendChild(alertContent)
+        alertContainer.appendChild(confirmButton)
+
+        this.confirmDeleteImage = true
       }
     })
 

@@ -185,16 +185,34 @@ module.exports = class ImageService {
       const thumbnailFilePath = path.join(__dirname, "./../storage/gallery/thumbnail");
       const thumbnailFiles = fs.readdirSync(thumbnailFilePath);
   
+      const files = await Image.findAll({
+        where: {
+          originalFilename: filename
+        }
+      });
+  
       for (const thumbnail of thumbnailFiles) {
         if (thumbnail === filename) {
-          fs.unlinkSync(path.join(thumbnailFilePath, thumbnail));
+          if (files.length > 0) {
+            return {
+              success: false,
+              message: "La imagen está siendo utilizada por varios usuarios. ¿Estás seguro que deseas eliminarla?"
+            }
+          } else {
+            fs.unlinkSync(path.join(thumbnailFilePath, thumbnail));
+            return {
+              success: true,
+              message: "La imagen ha sido eliminada correctamente"  
+            };
+          }
         }
       }
-  
-      return true;
     } catch (error) {
       console.error(error);
-      return false;
+      return {
+        success: false,
+        message: error
+      };
     }
   };
   
