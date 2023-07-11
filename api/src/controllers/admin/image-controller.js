@@ -96,10 +96,11 @@ exports.update = (req, res) => {
 exports.delete = async (req, res) => {
 
     const filename = req.params.filename
-    const confirmation = req.body.confirmation
-    console.log(confirmation)
+    const confirmation = req.query.confirmation
+    console.log(filename, confirmation)
     try {
-        const result = await new ImageService().deleteImage(filename)
+        const result = await new ImageService().deleteImage(filename, confirmation)
+        console.log(result)
         res.status(200).send({
           success: result.success,
           message: result.message

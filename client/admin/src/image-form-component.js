@@ -199,6 +199,18 @@ class ImageForm extends HTMLElement {
   }
   }
 
+  deleteImage = async () => {
+    const confirmation = this.confirmDeleteImage;
+    const  response = await fetch( `${API_URL}/api/admin/images/${this.currentImage}/?confirmation=${confirmation}`,  
+    {
+      method: 'DELETE',
+       headers: {
+      Authorization: 'Bearer '+ sessionStorage.getItem('accessToken')
+      },
+    })
+    return  await response.json()
+  }
+
   render() {
     const fileOptionUploadActive = this.fileOption === 'upload-option' ? 'active' : '';
     const fileOptionSelectActive = this.fileOption === 'select-option' ? 'active' : '';
@@ -642,17 +654,7 @@ class ImageForm extends HTMLElement {
     })
 
     this.shadow.querySelector("#delete-button").addEventListener("click",  async ( ) => {
-
-      const  response = await fetch( `${API_URL}/api/admin/images/${this.currentImage}`, 
-      {
-        method: 'DELETE',
-         headers: {
-        Authorization: 'Bearer '+ sessionStorage.getItem('accessToken')
-        },
-        body: this.confirmDeleteImage
-      })
-      console.log(this.confirmDeleteImage)
-      const result = await response.json()
+      const result = await this.deleteImage()
 
       if( result.success ){
         await this.getImages()
@@ -664,12 +666,19 @@ class ImageForm extends HTMLElement {
 
         alertContent.textContent = result.message
         confirmButton.innerHTML = "Deseo eliminar la imagen de todas formas"
+        confirmButton.setAttribute("type", "button")
 
         alertContainer.innerHTML = ""
         alertContainer.appendChild(alertContent)
         alertContainer.appendChild(confirmButton)
 
         this.confirmDeleteImage = true
+
+        confirmButton.addEventListener("click", async ( ) => {
+          const result = await this.deleteImage()
+          await this.getImages()
+          await this.render()
+        })
       }
     })
 

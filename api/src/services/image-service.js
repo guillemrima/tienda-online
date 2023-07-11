@@ -180,7 +180,8 @@ module.exports = class ImageService {
     }
   };
   
-  deleteImage = async (filename) => {
+  deleteImage = async (filename, confirmation) => {
+    console.log(typeof confirmation);
     try {
       const thumbnailFilePath = path.join(__dirname, "./../storage/gallery/thumbnail");
       const thumbnailFiles = fs.readdirSync(thumbnailFilePath);
@@ -193,18 +194,24 @@ module.exports = class ImageService {
   
       for (const thumbnail of thumbnailFiles) {
         if (thumbnail === filename) {
-          if (files.length > 0) {
+          if (files.length > 0 && confirmation === 'false') {
             return {
               success: false,
-              message: "La imagen está siendo utilizada por varios usuarios. ¿Estás seguro que deseas eliminarla?"
+              message: "La imagen está siendo utilizada por varios usuarios. ¿Estás seguro que deseas eliminarla uevon?"
             }
           } else {
             fs.unlinkSync(path.join(thumbnailFilePath, thumbnail));
             return {
               success: true,
-              message: "La imagen ha sido eliminada correctamente"  
+              message: "La imagen ha sido eliminada correctamente y lo sabias cabron"  
             };
           }
+        } else {
+          fs.unlinkSync(path.join(thumbnailFilePath, thumbnail));
+          return {
+            success: true,
+            message: "La imagen ha sido eliminada correctamente"  
+          };
         }
       }
     } catch (error) {
