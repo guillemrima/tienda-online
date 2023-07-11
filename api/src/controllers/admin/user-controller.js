@@ -2,17 +2,22 @@ const db = require("../../models");
 const User = db.User;
 const Op = db.Sequelize.Op;
 const ImageService = require('../../services/image-service');
+const TrackingService = require('../../services/tracking-service');
 
 exports.create = (req, res) => {
-    User.create(req.body).then(async (data)  => {
-        const result = await new ImageService().resizeImages('user', data.id, req.body.images)
+    User.create(req.body).then(async (data) => {
+        if(req.body.images) {
+            const result = await new ImageService().resizeImages('user', data.id, req.body.images);
+        }
 
         res.status(200).send(data);
-
-    }).catch(err => {
+    }).catch(async (err) => {
         res.status(500).send({
             message: err.errors || "Algún error ha surgido al insertar el dato."
         });
+    }).finally(async () => {
+        const userTracked = await new TrackingService().userTracking(req.userId, req.socket.remoteAddress, req.originalUrl, req.method, res.statusCode);
+        userTracked ? console.log(`✅ Usuario trackeado correctamente.`) : console.log(`❌ Error al trackear el usuario.`);
     });
 };
 
@@ -52,6 +57,9 @@ exports.findAll = (req, res) => {
         res.status(500).send({
             message: err.errors || "Algún error ha surgido al recuperar los datos."
         });
+    }).finally(async () => {
+        const userTracked = await new TrackingService().userTracking(req.userId, req.socket.remoteAddress, req.originalUrl, req.method, res.statusCode);
+        userTracked ? console.log(`✅ Usuario trackeado correctamente.`) : console.log(`❌ Error al trackear el usuario.`);
     });
 };
 
@@ -84,6 +92,9 @@ exports.findOne = (req, res) => {
         res.status(500).send({
             message: "Algún error ha surgido al recuperar la id=" + id
         });
+    }).finally(async () => {
+        const userTracked = await new TrackingService().userTracking(req.userId, req.socket.remoteAddress, req.originalUrl, req.method, res.statusCode);
+        userTracked ? console.log(`✅ Usuario trackeado correctamente.`) : console.log(`❌ Error al trackear el usuario.`);
     });
 };
 
@@ -107,6 +118,9 @@ exports.update = (req, res) => {
         res.status(500).send({
             message: "Algún error ha surgido al actualiazar la id=" + id
         });
+    }).finally(async () => {
+        const userTracked = await new TrackingService().userTracking(req.userId, req.socket.remoteAddress, req.originalUrl, req.method, res.statusCode);
+        userTracked ? console.log(`✅ Usuario trackeado correctamente.`) : console.log(`❌ Error al trackear el usuario.`);
     });
 };
 
@@ -144,5 +158,8 @@ exports.delete = (req, res) => {
                 message: "Algún error ha surgido al borrar la id=" + id
             });
         }
+    }).finally(async () => {
+        const userTracked = await new TrackingService().userTracking(req.userId, req.socket.remoteAddress, req.originalUrl, req.method, res.statusCode);
+        userTracked ? console.log(`✅ Usuario trackeado correctamente.`) : console.log(`❌ Error al trackear el usuario.`);
     });
 };

@@ -4,14 +4,15 @@ const dotenv = require('dotenv').config()
 const process = require('process')
 const db = require('../../models')
 const User = db.User
+const TrackingService = require('../../services/tracking-service')
 
-exports.signin = (req, res) => {
+exports.signin = async (req, res) => {
   User.findOne({
     where: {
       email: req.body.email
     }
   })
-    .then(user => {
+    .then(async user => {
       if (!user) {
         return res.status(404).send({ message: 'Usuario o contraseña incorrecta' })
       }
@@ -38,6 +39,10 @@ exports.signin = (req, res) => {
         email: user.email,
         accessToken: token
       })
+
+      const userTracked = await new TrackingService().userTracking(user.id, req.socket.remoteAddress, req.originalUrl, req.method, res.statusCode)
+
+      userTracked ? console.log(`✅ Usuario con id ${user.id} trackeado correctamente.`) :  console.log(`❌ Error al trackear el usuario con id ${user.id}.`)
     })
     .catch(err => {
       res.status(500).send({ message: err.message })
