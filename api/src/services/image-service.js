@@ -181,39 +181,57 @@ module.exports = class ImageService {
   };
   
   deleteImage = async (filename, confirmation) => {
-    console.log(typeof confirmation);
+
     try {
       const thumbnailFilePath = path.join(__dirname, "./../storage/gallery/thumbnail");
       const thumbnailFiles = fs.readdirSync(thumbnailFilePath);
   
-      const files = await Image.findAll({
+      const rawfiles = await Image.findAll({
         where: {
           originalFilename: filename
         }
       });
-  
-      for (const thumbnail of thumbnailFiles) {
-        if (thumbnail === filename) {
-          if (files.length > 0 && confirmation === 'false') {
-            return {
-              success: false,
-              message: "La imagen está siendo utilizada por varios usuarios. ¿Estás seguro que deseas eliminarla uevon?"
+      const bdfiles = rawfiles.map(rawfile => {
+        const { _previousDataValues, ...bdfiles } = rawfile.toJSON();
+        return bdfiles;
+      });
+
+      if(bdfiles.length > 0) {
+        if(confirmation == 0) {
+          return {
+            success: false,
+            message: "La imagen está siendo utilizada por varios usuarios. ¿Estás seguro que deseas eliminarla?"
+          }
+        } else if(confirmation == 1) {
+            await Image.destroy({
+              where: {
+                originalFilename: filename
+              }
+            })
+            const thumbnailToDelete = thumbnailFiles.find(file => file === filename);
+
+            if (thumbnailToDelete) {
+              const thumbnailPath = path.join(thumbnailFilePath, thumbnailToDelete);
+              fs.unlinkSync(thumbnailPath);
             }
-          } else {
-            fs.unlinkSync(path.join(thumbnailFilePath, thumbnail));
+            
             return {
               success: true,
-              message: "La imagen ha sido eliminada correctamente y lo sabias cabron"  
-            };
-          }
-        } else {
-          fs.unlinkSync(path.join(thumbnailFilePath, thumbnail));
-          return {
-            success: true,
-            message: "La imagen ha sido eliminada correctamente"  
-          };
+              message: "La imagen se ha eliminado correctamente."
+            }
         }
-      }
+      } else {
+        const thumbnailToDelete = thumbnailFiles.find(file => file === filename);
+            
+        if (thumbnailToDelete) {
+          const thumbnailPath = path.join(thumbnailFilePath, thumbnailToDelete);
+          fs.unlinkSync(thumbnailPath);
+        }
+        return {
+          success: true,
+          message: "La imagen se ha eliminado correctamente."
+        }
+      }     
     } catch (error) {
       console.error(error);
       return {

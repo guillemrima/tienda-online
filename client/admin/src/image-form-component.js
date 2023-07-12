@@ -10,7 +10,7 @@ class ImageForm extends HTMLElement {
     this.name = []
     this.page = ""
     this.lastPage = ""
-    this.confirmDeleteImage = false;
+    this.confirmDeleteImage = 0;
   }
 
   async connectedCallback () {
@@ -672,7 +672,7 @@ class ImageForm extends HTMLElement {
         alertContainer.appendChild(alertContent)
         alertContainer.appendChild(confirmButton)
 
-        this.confirmDeleteImage = true
+        this.confirmDeleteImage = 1
 
         confirmButton.addEventListener("click", async ( ) => {
           const result = await this.deleteImage()
