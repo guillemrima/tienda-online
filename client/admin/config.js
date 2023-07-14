@@ -1,1 +1,1 @@
-export const API_URL = 'https://guillemrima'
+export const API_URL = 'https://guillemrima.com:8080/api/'
