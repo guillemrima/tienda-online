@@ -83,7 +83,7 @@ class Login extends HTMLElement {
       successContainer.classList.add("success-container")
 
       setTimeout(()=> {
-        window.location.href = `${API_URL}/client/admin/admin.html`
+        window.location.href = `${API_URL}/admin.html`
       }, 500)
     }
 
