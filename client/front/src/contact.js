@@ -43,7 +43,7 @@ class Contact extends HTMLElement {
 
         <section class="contact-section" id="contact">
             <div  class="map-contact-container">
-                <iframe  width="100%" height="100%" src="https://www.openstreetmap.org/export/embed.html?bbox=2.5489997863769536%2C39.556338932988446%2C2.835674285888672%2C39.676145005898455&amp;layer=mapnik&amp;marker=39.61626788999703%2C2.6923370361328125"></iframe>          
+                <iframe  width="100%" height="100%" title="mapa" src="https://www.openstreetmap.org/export/embed.html?bbox=2.5489997863769536%2C39.556338932988446%2C2.835674285888672%2C39.676145005898455&amp;layer=mapnik&amp;marker=39.61626788999703%2C2.6923370361328125"></iframe>          
             </div>
             <div class="card-contact-container">
                 <slot name="flipCard"></slot
