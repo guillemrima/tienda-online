@@ -156,7 +156,7 @@ class ContactForm extends HTMLElement {
                 </div>
             </form>
             <div class="close-button flip-card-back-button" id="flipButton">
-                <img src="./assets/icon/close.svg" />
+                <img src="./assets/icon/close.svg" alt="icon close"/>
             </div>
         </div>
         `;
