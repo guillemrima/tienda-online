@@ -409,7 +409,7 @@ class ImageGallery extends HTMLElement {
       data.filenames.forEach(filename => {
         html += `
                   <div class="image" data-filename="${filename}">
-                      <img src="${window.env.API_URL}image-gallery/${filename}" />
+                      <img src="${window.env.API_URL}image-gallery/${filename}" alt="image" />
                   </div>
                 `
       })

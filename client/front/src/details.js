@@ -72,7 +72,7 @@ class Details extends HTMLElement {
         <div class="column-details-container">
             <div class="element-column-container">
                 <div class="image-element-container">
-                    <img src="./assets/icon/car-cruise-control.svg"alt="key-image">
+                    <img src="./assets/icon/car-cruise-control.svg" alt="key-image">
                 </div>
                 <div class="text-element-container">
                     <div class="title-text-container">
@@ -116,7 +116,7 @@ class Details extends HTMLElement {
         <div class="column-details-container right-column">
             <div class="element-column-container">
                 <div class="image-element-container image4">
-                    <img src="./assets/icon/car-shift-pattern.svg"alt="key-image">
+                    <img src="./assets/icon/car-shift-pattern.svg" alt="key-image">
                 </div>
                 <div class="text-element-container">
                     <div class="title-text-container">
@@ -129,7 +129,7 @@ class Details extends HTMLElement {
             </div>
             <div class="element-column-container">
                 <div class="image-element-container image5">
-                    <img src="./assets/icon/car-traction-control.svg"alt="key-image">
+                    <img src="./assets/icon/car-traction-control.svg" alt="key-image">
                 </div>
                 <div class="text-element-container">
                     <div class="title-text-container">

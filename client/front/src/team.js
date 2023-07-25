@@ -201,9 +201,9 @@ class Team extends HTMLElement {
                         </div>
                         <div class="expanded-card-container">
                             <ul>
-                                <li><img src="./assets/icon/email.svg"></li>
-                                <li><img src="./assets/icon/linkedin.svg"></li>
-                                <li><img src="./assets/icon/twitter.svg"></li>
+                                <li><img src="./assets/icon/email.svg" alt="image-rrss-icon"></li>
+                                <li><img src="./assets/icon/linkedin.svg" alt="image-rrss-icon"></li>
+                                <li><img src="./assets/icon/twitter.svg" alt="image-rrss-icon"></li>
                             </ul>
                         </div>
                     </div>
@@ -229,9 +229,9 @@ class Team extends HTMLElement {
                         </div>
                         <div class="expanded-card-container">
                             <ul>
-                                <li><img src="./assets/icon/email.svg"></li>
-                                <li><img src="./assets/icon/linkedin.svg"></li>
-                                <li><img src="./assets/icon/twitter.svg"></li>
+                                <li><img src="./assets/icon/email.svg" alt="image-rrss-icon"></li>
+                                <li><img src="./assets/icon/linkedin.svg" alt="image-rrss-icon"></li>
+                                <li><img src="./assets/icon/twitter.svg" alt="image-rrss-icon"></li>
                             </ul>
                         </div>
                     </div>
@@ -257,9 +257,9 @@ class Team extends HTMLElement {
                         </div>
                         <div class="expanded-card-container">
                             <ul>
-                                <li><img src="./assets/icon/email.svg"></li>
-                                <li><img src="./assets/icon/linkedin.svg"></li>
-                                <li><img src="./assets/icon/twitter.svg"></li>
+                                <li><img src="./assets/icon/email.svg" alt="icon-rrss-image"></li>
+                                <li><img src="./assets/icon/linkedin.svg" alt="icon-rrss-image"></li>
+                                <li><img src="./assets/icon/twitter.svg" alt="icon-rrss-image"></li>
                             </ul>
                         </div>
                     </div>
@@ -285,9 +285,9 @@ class Team extends HTMLElement {
                         </div>
                         <div class="expanded-card-container">
                             <ul>
-                                <li><img src="./assets/icon/email.svg"></li>
-                                <li><img src="./assets/icon/linkedin.svg"></li>
-                                <li><img src="./assets/icon/twitter.svg"></li>
+                                <li><img src="./assets/icon/email.svg" alt="team-image"></li>
+                                <li><img src="./assets/icon/linkedin.svg" alt="team-image"></li>
+                                <li><img src="./assets/icon/twitter.svg" alt="team-image"></li>
                             </ul>
                         </div>
                     </div>
