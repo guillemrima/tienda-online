@@ -104,7 +104,7 @@ class Slider extends HTMLElement {
                 <modalbutton-component text="Hazte con el tuyo ahora" backgroundcolor="hsl(209, 100%, 50%)" fontSize ="2rem"></modalbutton-component>
             </div>
             <div class="image-slider-container">
-                <img src="./assets/product.png" alt="product-image">
+                <img src="./assets/product.webp" alt="product-image">
             </div>
             <div class="background-slider-container">
                 <img src="./assets/background-1-product.webp" alt="background-image" class="background-slider active">
