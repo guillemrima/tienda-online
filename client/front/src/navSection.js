@@ -26,7 +26,7 @@ class NavSection extends HTMLElement {
         </style>
 
         <li>
-            <a>${sectionRef}</a>
+            <a href=${sectionRef}>${sectionRef}</a>
         </li>
         `;
 
